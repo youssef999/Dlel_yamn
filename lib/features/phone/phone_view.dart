@@ -4,6 +4,7 @@
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/features/phone/phone_controller.dart';
+import 'package:freelancerApp/features/phone/phone_details.dart';
 
 import 'package:get/get.dart';
 
@@ -31,8 +32,8 @@ class _PhoneViewState extends State<PhoneView> {
              decoration:BoxDecoration(
                gradient: LinearGradient(
                   colors: [
-                    Colors.blue[200]!,
-                    Colors.white,
+                  const Color(0xffC7E1EE),
+               Colors.blue[200]!,
                
                   ],
             ),
@@ -40,6 +41,7 @@ class _PhoneViewState extends State<PhoneView> {
           child: ListView(
             children: [
               const SizedBox(height: 21,),
+
           
               GridView.builder(
                 shrinkWrap: true,
@@ -73,22 +75,29 @@ class PhoneCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-        width: MediaQuery.of(context).size.width*0.46,
-        decoration:BoxDecoration(
-          borderRadius:BorderRadius.circular(12),
-          color: Colors.white,
-
+    return InkWell(
+      child: Column(children: [
+        Container(
+          width: MediaQuery.of(context).size.width*0.46,
+          decoration:BoxDecoration(
+            borderRadius:BorderRadius.circular(12),
+            color: Colors.white,
+      
+          ),
+          child:Image.asset(image,height: 100,width: 70,),
+      
         ),
-        child:Image.asset(image,height: 100,width: 70,),
-
-      ),
-      const SizedBox(height: 10,),
-
-      Text(txt,style: Styles.darkTextStyle)
-
-
-    ],);
+        const SizedBox(height: 10,),
+      
+        Text(txt,style: Styles.darkTextStyle)
+      
+      
+      ],),
+      onTap:(){
+        Get.to(PhoneDetailsView(
+          phoneType: txt
+        ));
+      },
+    );
   }
 }

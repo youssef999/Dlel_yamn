@@ -12,9 +12,10 @@ import 'app_routes.dart';
 class Theme1AppPages {
   // ignore: constant_identifier_names
   static const INITIAL = Routes.SPLASH;
+   static const HOME = Routes.HOME;
   static final routes = [
     GetPage(name: Routes.SPLASH, page: () => const SplashView()),
-     GetPage(name: Routes.HOME, page: () => const HomeView(), binding: HomeBinding()),
+    GetPage(name: Routes.HOME, page: () => const HomeView(), binding: HomeBinding()),
     // GetPage(name: Routes.ROOT, page: () => RootView(), binding: RootBinding()),    GetPage(name: Routes.PROFILE, page: () => ProfileView(), binding: ProfileBinding()),
     // GetPage(
     //     name: Routes.SERVICEDETAILS,

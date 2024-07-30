@@ -37,6 +37,7 @@ import 'package:webview_flutter/webview_flutter.dart';
   else{
     box.write('locale','ar');
   }
+
   if (defaultTargetPlatform == TargetPlatform.android) {
     WebView.platform = SurfaceAndroidWebView();
   }
@@ -52,28 +53,28 @@ import 'package:webview_flutter/webview_flutter.dart';
  class _MainAppState extends State<MainApp> {
 
 List<Map<String, dynamic>> tokenList = [];
+
   String? token='';
 
+  // getToken() async{
 
-  getToken() async{
+  //   final box=GetStorage();
+  //   FirebaseMessaging messaging =FirebaseMessaging.instance;
 
-    final box=GetStorage();
-    FirebaseMessaging messaging =FirebaseMessaging.instance;
+  //   token = await messaging.getToken();
 
-    token = await messaging.getToken();
+  //   print("TOKEN===$token");
 
-    print("TOKEN===$token");
-
-    box.write('token', 'token');
-    // ignore: prefer_interpolation_to_compose_strings
-    print("TOKEN LIST==="+tokenList.toString());
-    if(tokenList.contains(token)){
-      print("yes");
-    }
-    else{
-      addTokenToFireBase();
-    }
-  }
+  //   box.write('token', 'token');
+  //   // ignore: prefer_interpolation_to_compose_strings
+  //   print("TOKEN LIST==="+tokenList.toString());
+  //   if(tokenList.contains(token)){
+  //     print("yes");
+  //   }
+  //   else{
+  //     addTokenToFireBase();
+  //   }
+  // }
 
   addTokenToFireBase() async {
     await FirebaseFirestore.instance.collection('tokens').add({
@@ -89,23 +90,22 @@ List<Map<String, dynamic>> tokenList = [];
     super.initState();
 
     final box=GetStorage();
-
   //  fetchTokens();
 
     String tokenData=box.read('token')??'x';
 
     print("TOKENxx===$tokenData");
 
-    if(tokenData =='x'){
+  //   if(tokenData =='x'){
 
-      print(".....HERE.........");
-      getToken();
-      box.write('token', 'token');
-    }
-    else{
-      print("yyyyy");
-      print('xx');
-    }
+  //     print(".....HERE.........");
+  //    // getToken();
+  //  //   box.write('token', 'token');
+  //   }
+  //   else{
+  //     print("yyyyy");
+  //     print('xx');
+  //   }
   }
   @override
   Widget build(BuildContext context) {
@@ -128,7 +128,8 @@ List<Map<String, dynamic>> tokenList = [];
         title: "EASY",
         // locale: lang,
         //  supportedLocales: supportedLocales,
-        initialRoute: Theme1AppPages.INITIAL,
+        initialRoute: 
+        Theme1AppPages.HOME,
         getPages: Theme1AppPages.routes,
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.cupertino,
@@ -144,20 +145,21 @@ List<Map<String, dynamic>> tokenList = [];
             child: mWidget,
           );
         },
-        fallbackLocale: lang,
+       // fallbackLocale: lang,
       );
     }
     else{
       return
         GetMaterialApp(
+            locale:lang,
           // translations: MyLocal(),
-          locale:lang,
+          //locale:lang,
           translations: MyLocal(),
           title: "EASY",
           // locale: lang,
           //  supportedLocales: supportedLocales,
           initialRoute: Theme1AppPages.INITIAL,
-         // getPages: Theme1AppPages.routes,
+          getPages: Theme1AppPages.routes,
           debugShowCheckedModeBanner: false,
           defaultTransition: Transition.cupertino,
           navigatorObservers: [BotToastNavigatorObserver()],
@@ -172,7 +174,7 @@ List<Map<String, dynamic>> tokenList = [];
               child: mWidget,
             );
           },
-          fallbackLocale: lang,
+         // fallbackLocale: lang,
         );
     }
   }

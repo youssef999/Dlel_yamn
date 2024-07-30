@@ -10,6 +10,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/widgets/Custom_Text.dart';
 import 'package:freelancerApp/core/widgets/custom_loading.dart';
+import 'package:freelancerApp/features/home/views/home_view.dart';
 import 'package:freelancerApp/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -563,7 +564,7 @@ class AuthController extends GetxController {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailController.text)
           .then((value) {
-        appMessage(text: "checkMail".tr, fail: true);
+        appMessage(text: "تم ارسال رسالة لتغيير كلمة المرور", fail: true);
 
         Get.offNamed(Routes.LOGIN)!
             .then((value) => appMessage(text: "checkMail".tr, fail: false));
@@ -640,24 +641,21 @@ class AuthController extends GetxController {
             email:
             emailController.text,
             password: passController.text);
-
         Future.delayed(const Duration(seconds: 1)).then((value) {
-          if (cred.user!.emailVerified) {
+        
             print("DONE");
             box.write('email', emailController.text);
-            box.write('roleId', roleId);
-            Get.offAllNamed(Routes.ROOT);
+           // box.write('roleId', roleId);
+            Get.offAll(const HomeView());
             loading = false;
             CustomLoading.cancelLoading();
             update();
-          } else {
-            CustomLoading.cancelLoading();
-            appMessage(text: 'emailNotVerfied'.tr, fail: true);
-          }
+      
           print('Received data: $value');
-          checkFreelanceType();
+         // checkFreelanceType();
         }).catchError((error) {
-
+  CustomLoading.cancelLoading();
+           appMessage(text: 'emailNotVerfied'.tr, fail: true);
         });
 
         // .then((value) async {

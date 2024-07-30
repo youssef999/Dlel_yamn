@@ -87,7 +87,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   widget.obs = !widget.obs;
                 });
               }),
-                          hintText: 'password'.tr,
+                          hintText:'كلمة المرور',
                           hintStyle: const TextStyle(color: Colors.grey),
                           labelStyle: const TextStyle(color: Colors.grey),
                         //  labelText: 'Password',

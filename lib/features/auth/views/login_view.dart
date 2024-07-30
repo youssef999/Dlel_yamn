@@ -8,10 +8,10 @@ import 'package:freelancerApp/core/widgets/custom_loading.dart';
 import 'package:freelancerApp/core/widgets/custom_textformfield.dart';
 import 'package:freelancerApp/features/auth/controllers/auth_controller.dart';
 import 'package:freelancerApp/features/auth/views/forgot_pass.dart';
+import 'package:freelancerApp/features/home/views/home_view.dart';
 import 'package:freelancerApp/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../core/resources/app_colors.dart';
 import '../../../core/resources/app_styles.dart';
 import 'register_view2.dart';
@@ -52,7 +52,6 @@ class LoginView extends StatelessWidget {
                  Text('اهلا بك في تطبيق دليل اليمن ',
                  style:Styles.primaryTextStyleLarge
                  ),
-
                 const SizedBox(height: 11,),
                 const SizedBox(
                   height: 20,
@@ -66,19 +65,19 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextFormField(
-                        hint: 'email'.tr,
+                        hint: 'البريد الالكتروني',
                         obs: false,
                         color: AppColors.textColorDark,
-                        validateMessage: 'wrongEmail'.tr,
+                        validateMessage: 'بريد الكتروني غير صحيح',
                         controller: controller.emailController),
                     const SizedBox(
                       height: 20,
                     ),
                     CustomTextFormField(
-                        hint: 'password'.tr,
+                        hint: 'كلمة المرور ',
                         obs: true,
                         color: AppColors.textColorDark,
-                        validateMessage: 'wrongPass'.tr,
+                        validateMessage: 'كلمة المرور غير صحيحة',
                         obx: true,
                         controller: controller.passController),
                     const SizedBox(
@@ -94,9 +93,9 @@ class LoginView extends StatelessWidget {
                                   width: 0.1, color: AppColors.darkColor),
                               borderRadius: BorderRadius.circular(10)),
                           backgroundColor: kPrimaryColor),
-                      child: Text(
-                        "login".tr,
-                        style: const TextStyle(
+                      child: const Text(
+                     "تسجيل دخول الان ",
+                        style: TextStyle(
                           color:Colors.white
                         ),
                         textAlign: TextAlign.center,
@@ -104,19 +103,21 @@ class LoginView extends StatelessWidget {
                       onPressed: () {
 
 
-                        CustomLoading.showLoading('Loading');
+                       CustomLoading.showLoading('Loading');
+                        controller.userLogin();
 
-                        controller.getRoleIdByUser().then((value) {
-                          print("role id done");
-                          Future.delayed(const Duration(seconds: 1))
-                              .then((value) {
+                        // controller.getRoleIdByUser().then((value) {
+                        //   print("role id done");
+                        //   Future.delayed(const Duration(seconds: 1))
+                        //       .then((value) {
 
-                            {
-                              controller.userLogin();
-                            }
+                        //     {
+                        //      // Get.offAll(const HomeView());
+                             
+                        //     }
 
-                          });
-                        });
+                        //   });
+                        // });
                       },
                     ),
                     const SizedBox(height: 6,),
@@ -128,7 +129,7 @@ class LoginView extends StatelessWidget {
                         ),
                        InkWell(
                           child: Custom_Text(
-                            text: 'forgotPassword'.tr,
+                            text: 'نسيت كلمة المرور؟',
                             color:Colors.grey[600]!,
                             fontSize: 15,
                           
@@ -144,7 +145,7 @@ class LoginView extends StatelessWidget {
                     ),
                     Center(
                         child: Text(
-                      'or'.tr,
+                      'او'.tr,
                       style:
                           const TextStyle(color: AppColors.redColor, fontSize: 20),
                     )),
@@ -152,7 +153,7 @@ class LoginView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "dontHaveAccount".tr,
+                          "لا تمتلك حساب ؟",
                           style: TextStyle(
                               fontSize: 15, color: kPrimaryColor),
                         ),
@@ -161,7 +162,7 @@ class LoginView extends StatelessWidget {
                             Get.to(const SignupView());
                           },
                           child: Text(
-                            'register'.tr,
+                            'انشاء حساب'.tr,
                             style:  const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,

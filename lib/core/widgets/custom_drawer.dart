@@ -7,9 +7,15 @@ import 'package:freelancerApp/Core/resources/app_colors.dart';
 import 'package:freelancerApp/core/resources/app_assets.dart';
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
+import 'package:freelancerApp/features/auth/views/login_view.dart';
 import 'package:freelancerApp/features/contact/contact_view.dart';
 import 'package:freelancerApp/features/convert_money/convert_money_view.dart';
+import 'package:freelancerApp/features/details/details_view.dart';
+import 'package:freelancerApp/features/football/football_view.dart';
+import 'package:freelancerApp/features/news/news_view.dart';
+import 'package:freelancerApp/features/phone/phone_view.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../features/notifications/noti_view.dart';
 
@@ -23,8 +29,8 @@ import '../../features/notifications/noti_view.dart';
             gradient: LinearGradient(
               colors: [
 
-                Colors.white,
-                kPrimaryColor,
+               const Color(0xffC7E1EE),
+               Colors.blue[200]!,
                // kPrimaryColor,
                // kPrimaryColor,
               ],
@@ -32,7 +38,7 @@ import '../../features/notifications/noti_view.dart';
 
 
     //  height: 200,
-      child: Column(children: [
+      child: ListView(children: [
         const SizedBox(height: 6,),
 
         Image.asset(AppAssets.logo,fit:BoxFit.cover,
@@ -52,17 +58,78 @@ import '../../features/notifications/noti_view.dart';
          },
          ),
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/priceMoney.png', txt: 'اسعار العملات',),
+       
+       
+        InkWell(child: DrawerItemWidget(
+          image: 'assets/images/priceMoney.png', txt: 'اسعار العملات',),
+          
+          onTap:(){
+            Get.to(DetailsView(
+              
+              dataKey: 'money'
+
+            ));
+          },
+          ),
+      
+      
+      
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/goldMoney.png', txt: 'اسعار الذهب',),
+        InkWell(child: DrawerItemWidget
+        (image: 'assets/images/goldMoney.png', txt: 'اسعار الذهب',),
+        onTap:(){
+           Get.to(DetailsView(
+              
+              dataKey: 'gold'
+
+            ));
+        },
+        ),
+
+
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/gaz.png', txt: 'اسعار المحروقات',),
+        InkWell(child: DrawerItemWidget
+        (image: 'assets/images/gaz.png', txt: 'اسعار المحروقات',),
+        
+        onTap:(){
+
+           Get.to(DetailsView(
+            
+              dataKey: 'gaz'
+
+            ));
+        },
+        ),
+
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/phoneDrawerIcon.png', txt: 'دليل الارقام',),
+        InkWell(child:
+         DrawerItemWidget(image: 'assets/images/phoneDrawerIcon.png',
+          txt: 'دليل الارقام',),
+          onTap:()
+          {
+            Get.to(const PhoneView());
+          },
+          
+          ),
+
+
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/newsDrawerIcon.png', txt: 'أخبار اقتصادية',),
+        InkWell(child: DrawerItemWidget
+        (image: 'assets/images/newsDrawerIcon.png', txt: 'أخبار اقتصادية',),
+        onTap:(){
+          Get.to(NewsView(txt:''));
+        },
+        ),
+
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/ball.png', txt: 'دليل المباريات',),
+        InkWell(child: DrawerItemWidget
+        (image: 'assets/images/ball.png', txt: 'دليل المباريات',),
+        
+        onTap:(){
+
+          Get.to(const FootballView());
+        },
+        ),
         const SizedBox(height: 20,),
         InkWell(child: DrawerItemWidget(image: 'assets/images/convert.png',
           txt: 'تحويل العملات',),
@@ -71,6 +138,8 @@ import '../../features/notifications/noti_view.dart';
           Get.to(const ConvertMoney());
         },
         ),
+
+
         const SizedBox(height: 20,),
         DrawerItemWidget(image: 'assets/images/lang.png', txt: 'اللغة الانجليزية',),
         const SizedBox(height: 20,),
@@ -83,6 +152,17 @@ import '../../features/notifications/noti_view.dart';
         ),
         const SizedBox(height: 20,),
         DrawerItemWidget(image: 'assets/images/share.png', txt: 'شارك التطبيق',),
+
+        const SizedBox(height: 20,),
+        InkWell(child: DrawerItemWidget(image: 'assets/images/logout.png', txt: 'تسجيل الخروج',),
+        onTap:(){
+          final box=GetStorage();
+          box.remove('email');
+          Get.offAll(const LoginView());
+
+        },
+        ),
+        const SizedBox(height: 20,),
 
 
         //lang.png //share.png

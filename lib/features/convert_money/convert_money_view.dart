@@ -15,144 +15,158 @@ class ConvertMoney extends StatefulWidget {
 }
 
 class _ConvertMoneyState extends State<ConvertMoney> {
+
+
+ ConvertController controller = Get.put(ConvertController());
+  @override
+  void initState() {
+    controller.getAllCurrency();
+   // controller. getCurrencyData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    ConvertController controller = Get.put(ConvertController());
+   
     return Scaffold(
         appBar: CustomAppBar('تحويل العملات ', context),
-        body: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: GetBuilder<ConvertController>(
-            assignId: true,
-            builder: (logic) {
-              return ListView(children: [
-                const SizedBox(height: 21,),
-                Row(children: [
-                  Column(children: [
-                    Text("العملة المراد تحويلها", style: Styles.darkTextStyle,),
-                    const SizedBox(height: 5,),
-
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                          color: Colors.grey[100]
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(13.0),
-                        child: DropdownButton<String>(
-                          underline: const SizedBox(),
-                          value: controller.selectCurrency,
-                          onChanged: (String? newValue) {
-                            controller.changeCurrency(newValue!);
-                          },
-                          items: controller.currencyList
-                          //<String>['One', 'Two', 'Three', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-
-                            );
-                          }).toList(),
+        body: Directionality(
+          textDirection:TextDirection.rtl,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: GetBuilder<ConvertController>(
+              assignId: true,
+              builder: (logic) {
+                return ListView(children: [
+                  const SizedBox(height: 21,),
+                  Row(children: [
+                    Column(children: [
+                      Text("العملة المراد تحويلها", style: Styles.darkTextStyle,),
+                      const SizedBox(height: 5,),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Colors.grey[100]
                         ),
-                      ),
-                    )
-
-                  ],),
-
-                  const SizedBox(width: 8,),
-
-                  Column(
-                    children: [
-                      Icon(Icons.arrow_back, color: kPrimaryColor,),
-                      Icon(Icons.arrow_forward, color: kPrimaryColor,),
-                    ],
-                  ),
-                  const SizedBox(width: 8,),
-
-                  Column(children: [
-                    Text("العملة المراد التحويل اليها ",
-                      style: Styles.darkTextStyle,),
-                    const SizedBox(height: 5,),
-
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                          color: Colors.grey[100]
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(13.0),
-                        child: DropdownButton<String>(
-                          underline: const SizedBox(),
-                          value: controller.selectCurrency2,
-                          onChanged: (String? newValue) {
-                            controller.changeCurrency2(newValue!);
-                          },
-                          items: controller.currencyList2
-                          //<String>['One', 'Two', 'Three', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-
-                            );
-                          }).toList(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: DropdownButton<String>(
+                            underline: const SizedBox(),
+                            value: controller.selectCurrency,
+                            onChanged: (String? newValue) {
+                              controller.changeCurrency(newValue!);
+                            },
+                            items: controller.currencyList
+                            //<String>['One', 'Two', 'Three', 'Four']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+          
+                              );
+                            }).toList(),
+                          ),
                         ),
-                      ),
-                    )
-
-                  ],),
-
-
-                ],),
-                const SizedBox(height: 21,),
-                Row(children: [
-                  Container(
-                    width: 120,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey[100]
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: controller.priceController,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(width: 12,),
-
-                  Icon(Icons.arrow_forward, color: kPrimaryColor,),
-                  const SizedBox(width: 33,),
-                  Container(
-                    width: 122,
-                    height: 70,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey[100]),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(child: Text(
-                        "1200", style: Styles.darkTextStyle,)),
-
-                    ),
-                  )
-
-                ],),
-                
-                const SizedBox(height: 60,),
-                
-                SizedBox(
-                    width: 90,
-                    child: Row(
-                      mainAxisAlignment:MainAxisAlignment.center,
+                      )
+          
+                    ],),
+          
+                    const SizedBox(width: 8,),
+          
+                    Column(
                       children: [
-                        CustomButton(text: 'تحويل', onPressed: (){}),
+                        Icon(Icons.arrow_back, color: kPrimaryColor,),
+                        Icon(Icons.arrow_forward, color: kPrimaryColor,),
                       ],
-                    ))
-              ]);
-            },
+                    ),
+                    const SizedBox(width: 8,),
+          
+                    Column(children: [
+                      Text("العملة المراد التحويل اليها ",
+                        style: Styles.darkTextStyle,),
+                      const SizedBox(height: 5,),
+          
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Colors.grey[100]
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: DropdownButton<String>(
+                            underline: const SizedBox(),
+                            value: controller.selectCurrency2,
+                            onChanged: (String? newValue) {
+                              controller.changeCurrency2(newValue!);
+                            },
+                            items: controller.currencyList2
+                            //<String>['One', 'Two', 'Three', 'Four']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+          
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      )
+          
+                    ],),
+          
+          
+                  ],),
+                  const SizedBox(height: 21,),
+                  Row(children: [
+                    Container(
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey[100]
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          controller: controller.priceController,
+                        ),
+                      ),
+                    ),
+          
+                    const SizedBox(width: 12,),
+          
+                    Icon(Icons.arrow_forward, color: kPrimaryColor,),
+                    const SizedBox(width: 33,),
+                    Container(
+                      width: 122,
+                      height: 70,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey[100]),
+                      child: Padding(
+                        padding:  const EdgeInsets.all(8.0),
+                        child: Center(child: Text(
+                          controller. changeAmount.toString(), style: Styles.darkTextStyle,)),
+                      ),
+                    )
+          
+                  ],),
+                  
+                  const SizedBox(height: 60,),
+                  
+                  SizedBox(
+                      width: 90,
+                      child: Row(
+                        mainAxisAlignment:MainAxisAlignment.center,
+                        children: [
+                          CustomButton(text: 'تحويل', onPressed: (){
+
+                            controller. convertAmount();
+                            
+                          }),
+                        ],
+                      ))
+                ]);
+              },
+            ),
           ),
         ));
   }

@@ -6,6 +6,7 @@ import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/features/auth/views/login_view.dart';
 import 'package:freelancerApp/features/home/views/home_view.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -18,11 +19,20 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
+
+    final box=GetStorage();
+    String email=box.read('email')??'x';
    
 
    Future.delayed(const Duration(seconds: 3), () {
 
-      Get.offAll(const LoginView());
+    if(email=='x'){
+  Get.offAll(const LoginView());
+    }else{
+      Get.offAll(const HomeView());
+    }
+
+    
       
    });
    
@@ -36,8 +46,8 @@ class _SplashViewState extends State<SplashView> {
         decoration:BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              kPrimaryColor,
-              Colors.white
+             const Color(0xffC7E1EE),
+               Colors.blue[200]!,
             ],
         )),
         child: Center(

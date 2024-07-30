@@ -78,41 +78,43 @@ PreferredSizeWidget CustomAppBar(
 
 String title='';
     if(text=='money'){
-      title='اسعار العملات ';
+      text='اسعار العملات ';
     }
      if(text=='gold'){
-      title='اسعار الذهب ';
+      text='اسعار الذهب ';
     }
      if(text=='gaz'){
-      title='اسعار المحروقات ';
+      text='اسعار المحروقات ';
     }
 
      if(text=='phone'){
-      title='دليل الارقام';
+      text='دليل الارقام';
     }
 
     if(text=='news'){
-      title='اخبار اقتصادية';
+      text='اخبار اقتصادية';
     }
 
     if(text=='ball'){
-      title='المباريات';
+      text='المباريات';
     }
 
 
   return AppBar(
+    
     backgroundColor: kPrimaryColor,
     elevation: 0,
     centerTitle: true,
+    toolbarHeight: 70,
     leading:   Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(8.0),
       child: Image.asset(AppAssets.whiteLogo,fit:BoxFit.fill,
-          height: 44,
+          height: 47,width: 55,
           ),
     ),
     title: Padding(
       padding: const EdgeInsets.all(7),
-      child:Text(title,style: Styles.appBarTextStyle,),
+      child:Text(text,style: Styles.appBarTextStyle,),
       ),
       actions: [
         GestureDetector(

@@ -5,6 +5,7 @@
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
+import 'package:freelancerApp/features/notifications/noti_controller.dart';
 import 'package:get/get.dart';
 
 class NotiView extends StatefulWidget {
@@ -15,30 +16,84 @@ class NotiView extends StatefulWidget {
  }
  
  class _NotiViewState extends State<NotiView> {
+
+  NotiController controller=Get.put(NotiController());
+  @override
+  void initState() {
+    controller.getNotifications();
+    super.initState();
+  }
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
        appBar:CustomAppBar('الاشعارات', context),
        body:Container(
-        color:kPrimaryColor,
+      
+         decoration: BoxDecoration(
+                gradient:  LinearGradient(
+              colors: [
+               const Color(0xffC7E1EE),
+               Colors.blue[200]!,
+           
+              ],
+            )
+            )
+        ,
+       // color:
+        //Color(0XXFFDFEBF6),
          child: Padding(
            padding: const EdgeInsets.all(8.0),
-           child: ListView(children: [
-            const SizedBox(height: 12,),
+           child: GetBuilder<NotiController>(
+             builder: (_) {
+               return ListView(children: [
+                const SizedBox(height: 12,),
+               
+                ListView.builder(
+                  itemCount: controller.notiDataList.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
 
-            ListView.builder(
-              itemCount: 3,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: NotiCardWidget(),
-                );
-              
-            })
-         
-            
-           ],),
+
+                    if(controller.notiDataList.isEmpty){
+
+                      return  Column(children: [
+
+
+                        Image.asset("assets/images/noti.png",height: 300,
+                        fit:BoxFit.fill,
+                        
+                        ),
+
+
+                        Text('لا يوجد اشعارات',style: Styles.lightTextStyleBold)
+
+                      ],);
+
+
+
+
+                    }
+                    
+                    else{
+
+
+                      return  Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: NotiCardWidget(
+                        data: controller.notiDataList[index],
+                      ),
+                    );
+
+                    }
+                    
+                  
+                })
+                        
+                
+               ],);
+             }
+           ),
          ),
        ),
      );
@@ -46,7 +101,11 @@ class NotiView extends StatefulWidget {
  }
 
  class NotiCardWidget extends StatelessWidget {
-   const NotiCardWidget({super.key});
+
+  Map<String,dynamic>data;
+
+  
+   NotiCardWidget({super.key,required this.data});
  
    @override
    Widget build(BuildContext context) {
@@ -58,9 +117,10 @@ class NotiView extends StatefulWidget {
       child:Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-         const SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Row(children: [
-            Text('تم تحديث سعر الذهب',
+            Text(
+            data['msg'],
             style:Styles.darkTextStyle,
             )
           ],)

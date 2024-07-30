@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_assets.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/Custom_Text.dart';
+import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/core/widgets/custom_loading.dart';
 import 'package:freelancerApp/core/widgets/custom_textformfield.dart';
 import 'package:freelancerApp/features/auth/controllers/auth_controller.dart';
@@ -28,8 +29,14 @@ class SignupView extends StatelessWidget {
     controller.loginFormKey = GlobalKey<FormState>();
 
     return Scaffold(
+       appBar: AppBar(
+        toolbarHeight: 43,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       backgroundColor: Colors.white,
-      appBar: null,
+      //appBar: CustomAppBar('', context),
       body: Form(
         key: controller.loginFormKey,
         child: Center(
@@ -41,7 +48,7 @@ class SignupView extends StatelessWidget {
               Column(children: [
                 Container(
                   //width: 350,
-                  height:200,
+                  height:140,
                   clipBehavior: Clip.antiAlias,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(25)),

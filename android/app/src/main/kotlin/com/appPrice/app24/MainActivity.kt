@@ -1,4 +1,4 @@
-package com.easyService.freelancing_app
+package com.appPrice.app24
 
 import io.flutter.embedding.android.FlutterActivity
 

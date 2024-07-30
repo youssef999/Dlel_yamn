@@ -63,7 +63,8 @@ dependencies:
   iconsax:
   image_picker:
   cloud_firestore: ^4.7.1
-  toggle_switch: ^2.1.0
+  
+  toggle_switch: ^2.3.0
   bot_toast: ^4.1.3
   flutter_localizations:
     sdk: flutter
