@@ -16,7 +16,7 @@ appMessage({required String text,required bool fail}){
   );
  }else{
  Get.snackbar ("   $text ", '',colorText:AppColors.textColorLight,
-      backgroundColor:AppColors.primary.withOpacity( 0.5),
+      backgroundColor:Colors.green.withOpacity( 0.5),
       duration: const Duration(seconds: 3),
       icon:const Icon(Icons.app_shortcut,
         color:Colors.purple,size:33,)

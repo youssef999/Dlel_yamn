@@ -1,6 +1,4 @@
-
-
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/features/phone/phone_controller.dart';
@@ -16,49 +14,58 @@ class PhoneView extends StatefulWidget {
   @override
   State<PhoneView> createState() => _PhoneViewState();
 }
+
 class _PhoneViewState extends State<PhoneView> {
   @override
   Widget build(BuildContext context) {
-
-    PhoneController controller=Get.put(PhoneController());
+    PhoneController controller = Get.put(PhoneController());
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar:CustomAppBar('phone', context),
-      body:Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-         
-             decoration:BoxDecoration(
-               gradient: LinearGradient(
-                  colors: [
-                  const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-               
-                  ],
+      //  appBar:CustomAppBar('phone', context),
+      body: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: Stack(
+          children: [
+            SizedBox(
+            height: 3000,
+            child:Image.asset('assets/images/appBackground.png',
+            fit:BoxFit.fill,),
+          ),
+            Container(
+             // decoration: AppDecoration,
+              child: ListView(
+                children: [
+                  Image.asset(
+                    'assets/images/phoneDrawer.png',
+                    //height: 55,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  const SizedBox(height: 14),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.phoneImage.length,
+                      itemBuilder: (context, index) {
+                        return PhoneCardWidget(
+                            image: controller.phoneImage[index],
+                            txt: controller.phoneName[index]);
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.1,
+                        crossAxisSpacing: 1,
+                        mainAxisSpacing: 1,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          child: ListView(
-            children: [
-              const SizedBox(height: 21,),
-
-          
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.phoneImage.length,
-                itemBuilder: (context, index) {
-          
-                  return PhoneCardWidget(image: controller.phoneImage[index], 
-                  txt: controller.phoneName[index]);
-                
-              }, gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),)
-          
-            
-          
-          
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -67,36 +74,50 @@ class _PhoneViewState extends State<PhoneView> {
 
 // ignore: must_be_immutable
 class PhoneCardWidget extends StatelessWidget {
-
   String image;
   String txt;
 
- PhoneCardWidget({super.key,required this.image,required this.txt});
+  PhoneCardWidget({super.key, required this.image, required this.txt});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Column(children: [
-        Container(
-          width: MediaQuery.of(context).size.width*0.46,
-          decoration:BoxDecoration(
-            borderRadius:BorderRadius.circular(12),
-            color: Colors.white,
-      
+      child: Column(
+        children: [
+          SizedBox(
+            height: 120,
+            width: 164,
+            child: Card(
+             // elevation: 10,
+            color: const Color(0XFFcfe2f3),
+              child: Image.asset(
+                image,height: 100,
+                width: 70,
+              )),
           ),
-          child:Image.asset(image,height: 100,width: 70,),
-      
-        ),
-        const SizedBox(height: 10,),
-      
-        Text(txt,style: Styles.darkTextStyle)
-      
-      
-      ],),
-      onTap:(){
-        Get.to(PhoneDetailsView(
-          phoneType: txt
-        ));
+          // Container(
+          //   width: MediaQuery.of(context).size.width * 0.46,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     color: Colors.white,
+          //   ),
+          //   child: Image.asset(
+          //     image,
+          //     height: 100,
+          //     width: 70,
+          //   ),
+          // ),
+          const SizedBox(
+            height: 2
+          ),
+          Text(txt, style: Styles.darkTextStyle),
+           const SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
+      onTap: () {
+        Get.to(PhoneDetailsView(phoneType: txt));
       },
     );
   }

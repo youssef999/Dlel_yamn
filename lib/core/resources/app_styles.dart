@@ -20,7 +20,8 @@ abstract class Styles {
    static dynamic primaryTextStyleLarge = TextStyle(
      fontSize: 32,
      color:kTextPrimaryColor,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.bold
+
   );
 
    static dynamic primaryTextStyleSmall = TextStyle(
@@ -48,9 +49,9 @@ abstract class Styles {
   );
 
   static dynamic darkTextStyle = TextStyle(
-     fontSize: 16,
+     fontSize: 18,
      color:kTextHelperDarkColor,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w800,
   );
 
   static dynamic darkTextStyleBold = TextStyle(

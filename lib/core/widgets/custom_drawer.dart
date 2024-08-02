@@ -16,6 +16,7 @@ import 'package:freelancerApp/features/news/news_view.dart';
 import 'package:freelancerApp/features/phone/phone_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../features/notifications/noti_view.dart';
 
@@ -23,26 +24,33 @@ import '../../features/notifications/noti_view.dart';
  Widget CustomDrawer(){
 
   return Drawer(
-    backgroundColor: AppColors.primaryBGLightColor,
-    child:Container(
-        decoration:BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
+   // backgroundColor: AppColors.primaryBGLightColor,
+   child: Stack(
+      children: [
+    Container(
+            decoration: AppDecorationDrawer,
+            child:SizedBox(
+              height: 2000,
+              width: 2000,
+              child: 
+              Image.asset
+              ('assets/images/drawer_color.png',fit:BoxFit.cover,))),
 
-               const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-               // kPrimaryColor,
-               // kPrimaryColor,
-              ],
-            )),
 
-
-    //  height: 200,
-      child: ListView(children: [
+ ListView(children: [
         const SizedBox(height: 6,),
 
-        Image.asset(AppAssets.logo,fit:BoxFit.cover,
-        height: 173,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius:BorderRadius.circular(13),
+              color:  const Color(0xffC7E1EE).withOpacity(0.1),
+            ),
+            child: Image.asset(AppAssets.logo,fit:BoxFit.cover,
+            height: 173,
+            ),
+          ),
         ),
 
 
@@ -65,9 +73,7 @@ import '../../features/notifications/noti_view.dart';
           
           onTap:(){
             Get.to(DetailsView(
-              
               dataKey: 'money'
-
             ));
           },
           ),
@@ -151,7 +157,16 @@ import '../../features/notifications/noti_view.dart';
         },
         ),
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/share.png', txt: 'شارك التطبيق',),
+
+        InkWell(child:
+
+        DrawerItemWidget(image: 'assets/images/share2.png',
+          txt: 'شارك التطبيق',),
+
+        onTap:(){
+          Share.share('https://play.google.com/store/apps/details?id=com.appPrice.app24&amp;hl=en');
+        },
+        ),
 
         const SizedBox(height: 20,),
         InkWell(child: DrawerItemWidget(image: 'assets/images/logout.png', txt: 'تسجيل الخروج',),
@@ -172,7 +187,27 @@ import '../../features/notifications/noti_view.dart';
 
 
       ],),
-    ));
+
+      ],
+    )
+    ,
+
+        // BoxDecoration(
+        //     gradient: LinearGradient(
+        //       colors: [
+        //        //const Color(0xffC7E1EE),
+        //         const Color(0xff346EA2),
+        //        const Color(0xff5E34A2).withOpacity(0.9)
+        //
+        //
+        //       // Colors.blue[400]!,
+        //        // kPrimaryColor,
+        //        // kPrimaryColor,
+        //       ],
+        //     )),
+    //  height: 200,
+     
+    );
  }
 
  class DrawerItemWidget extends StatefulWidget {
@@ -197,3 +232,6 @@ import '../../features/notifications/noti_view.dart';
      ],);
    }
  }
+
+
+

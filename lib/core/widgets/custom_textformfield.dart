@@ -65,19 +65,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                           border: OutlineInputBorder(
                               borderSide: const BorderSide(
                                   width: 1, color: AppColors.whiteColor),
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(10)),
                           focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                   width: 1, color: AppColors.whiteColor),
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(10)),
                           enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                   width: 1, color: AppColors.whiteColor),
-                              borderRadius: BorderRadius.circular(20)),
-                          prefixIcon: Icon(
-                            Icons.admin_panel_settings_sharp,
-                            color: AppColors.primary,
-                          ),
+                              borderRadius: BorderRadius.circular(10)),
+                          // prefixIcon: Icon(
+                          //   Icons.admin_panel_settings_sharp,
+                          //   color: AppColors.primary,
+                          // ),
                            suffixIcon: IconButton(
               icon: Icon(
                 widget.obs ? Icons.visibility_off : Icons.visibility,
@@ -126,11 +126,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                         filled: true,
                           border:OutlineInputBorder(
                               borderSide:  BorderSide.none,
-                              borderRadius: BorderRadius.circular(20)),
-                          prefixIcon: Icon(
-                           widget.icon,
-                            color: AppColors.primaryDarkColor
-                          ),
+                              borderRadius: BorderRadius.circular(10)),
+                         
                           hintText: widget.hint,
                           hintStyle: const TextStyle(color: Colors.grey),
                           labelStyle: const TextStyle(color: Colors.grey),
@@ -166,18 +163,18 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                         filled: true,
                           border: OutlineInputBorder(
                               borderSide:  BorderSide.none,
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(10)),
                           focusedBorder:OutlineInputBorder(
                               borderSide:  BorderSide.none,
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(10)),
                           // enabledBorder: OutlineInputBorder(
                           //     borderSide: const BorderSide(
                           //         width: 1, color: AppColors.cardLightTextColor),
                           //     borderRadius: BorderRadius.circular(20)),
-                          prefixIcon: Icon(
-                           widget.icon,
-                            color: AppColors.primaryDarkColor
-                          ),
+                          // prefixIcon: Icon(
+                          //  widget.icon,
+                          //  // color: AppColors.primaryDarkColor
+                          // ),
                           hintText: widget.hint,
                           hintStyle: const TextStyle(color: Colors.grey),
                      //     labelStyle: const TextStyle(color: Colors.grey),

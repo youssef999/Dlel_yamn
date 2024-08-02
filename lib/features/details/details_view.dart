@@ -1,14 +1,12 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/Core/resources/app_colors.dart';
 import 'package:freelancerApp/core/resources/app_assets.dart';
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
+import 'package:freelancerApp/core/widgets/appbar.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
-
 import '../data_card_widget/data_card.dart';
 import '../home/views/widgets/drop_down.dart';
 
@@ -59,142 +57,256 @@ class _DetailsViewState extends State<DetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(widget.dataKey, context),
+    //  appBar: CustomAppBar(widget.dataKey, context),
       body:Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GetBuilder<HomeController>(
-          builder: (_) {
-            return ListView(children: [
+        padding: const EdgeInsets.all(0.0),
+        child: Stack(
+          children: [
+         SizedBox(
+            height: 3000,
+            child:Image.asset('assets/images/appBackground.png',
+            fit:BoxFit.fill,),
+          ),
+
+            GetBuilder<HomeController>(
+              builder: (_) {
+                return ListView(children: [
+
+
+                
+                if(widget.dataKey=='gaz')
+                Image.asset('assets/images/gazDrawer.png',
+                //height: 55,
+                width:MediaQuery.of(context).size.width,
+                ),
+
+                  if(widget.dataKey=='money')
+                Image.asset('assets/images/priceDrawer.png',
+                //height: 55,
+                width:MediaQuery.of(context).size.width,
+                ),
+                 if(widget.dataKey=='gold')
+                Image.asset('assets/images/goldDrawer.png',
+                //height: 55,
+                width:MediaQuery.of(context).size.width,
+                ),
+
+
+                 const SizedBox(height: 21),
+                
+                  if(widget.dataKey=='gaz')
                   Padding(
-                    padding: const EdgeInsets.only(left: 11, right: 11),
+                    padding: const EdgeInsets.only(left:25.0,right:25),
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(21),
-                          color: Colors.white),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "المناطق",
-                            style: TextStyle(color: AppColors.txtPrimaryColor),
-                          ),
-                          DropDownWidget(
-                            items: controller.placesList,
-                            hintText: 'المناطق',
-                            selectedValue: controller.selcetPlace,
-                            onChanged: (String? newValue) {
-                              controller.chnagePlace(newValue!);
-                            },
-                          ),
-                          SizedBox(
-                            height: 21,
-                            child: Image.asset(
-                              'assets/images/star.png',
-                              fit: BoxFit.cover,
+                      decoration:BoxDecoration(
+                        borderRadius:BorderRadius.circular(8),
+                        color:Colors.white.withOpacity(0.2),
+                        border:Border.all(color:Colors.white)
+                      ),
+                      child:  Padding(
+                        padding: const EdgeInsets.only(left:18.0,right:18),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                              children: [
+                            
+                                Text("المنطقة",style: TextStyle(
+                                  color:kPrimaryColor,
+                                  fontSize: 20,
+                                  fontWeight:FontWeight.bold
+                                )),
+                                DropDownWidget(
+                                            items: controller.placesList,
+                                            hintText: ' المنطقة',
+                                            selectedValue: controller.selcetPlace,
+                                            onChanged: (String? newValue) {
+                                              controller.chnagePlace(newValue!);
+                                            },
+                                          ),
+                              ],
                             ),
-                          ),
-                        ],
+                    
+                             Row(
+                              mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                              children: [
+                            
+                                Text("العملة ",style: TextStyle(
+                                  color:kPrimaryColor,
+                                  fontSize: 20,
+                                  fontWeight:FontWeight.bold
+                                )),
+                                DropDownWidget(
+                                            items: controller.placesList,
+                                            hintText: ' العملة ',
+                                            selectedValue: controller.selcetPlace,
+                                            onChanged: (String? newValue) {
+                                              controller.chnagePlace(newValue!);
+                                            },
+                                          ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-            
-              if(widget.dataKey=='money')
-             ListView.builder(
-                      itemCount: controller.priceDataList.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        if (controller.priceDataList.isEmpty) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DataCardWidget(
-                                buyPrice: controller.priceDataList[index]
-                                        ['buyPrice']
-                                    .toString(),
-                                image: 'assets/images/st.png',
-                                sellPrice: controller.priceDataList[index]
-                                        ['sellPrice']
-                                    .toString(),
-                                title: controller.priceDataList[index]
-                                            ['country1']
-                                        .toString() +
-                                    "          مقابل     " +
-                                    controller.priceDataList[index]['country2']
+                
+                
+                
+                  
+                
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 11, right: 11),
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(21),
+                      //         color: Colors.white),
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //       children: [
+                      //         Text(
+                      //           "المناطق",
+                      //           style: TextStyle(color: AppColors.txtPrimaryColor),
+                      //         ),
+                      //         DropDownWidget(
+                      //           items: controller.placesList,
+                      //           hintText: 'المناطق',
+                      //           selectedValue: controller.selcetPlace,
+                      //           onChanged: (String? newValue) {
+                      //             controller.chnagePlace(newValue!);
+                      //           },
+                      //         ),
+                      //         SizedBox(
+                      //           height: 21,
+                      //           child: Image.asset(
+                      //             'assets/images/star.png',
+                      //             fit: BoxFit.cover,
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                
+                      
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                  const SizedBox(height: 7,),
+                            
+                  if(widget.dataKey=='money')
+                 ListView.builder(
+                          itemCount: controller.priceDataList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            if (controller.priceDataList.isEmpty) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: DataCardWidget(
+                                    buyPrice: controller.priceDataList[index]
+                                            ['buyPrice']
                                         .toString(),
-                                type: 'money',
-                                date: controller.priceDataList[index]['date'],
-                                country: controller.priceDataList[index]
-                                    ['location']),
-                          );
-                        }
-                      },
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                    ),
-            
-            
-               if(widget.dataKey=='gold')
-             ListView.builder(
-                      itemCount: controller.goldDataList.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        if (controller.goldDataList.isEmpty) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DataCardWidget(
-                                buyPrice: controller.goldDataList[index]
-                                        ['buyPrice']
-                                    .toString(),
-                                image: 'assets/images/gold.png',
-                                type: 'gold',
-                                sellPrice: controller.goldDataList[index]
-                                        ['sellPrice']
-                                    .toString(),
-                                title: controller.goldDataList[index]['txt']
-                                    .toString(),
-                                date: controller.goldDataList[index]['date'],
-                                country: controller.goldDataList[index]
-                                    ['location']),
-                          );
-                        }
-                      },
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                    ),
-
-
-
-               if(widget.dataKey=='gaz')
-             ListView.builder(
-                      itemCount: controller.gazDataList.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        if (controller.gazDataList.isEmpty) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GazCardWidget(title: controller.gazDataList[index]['name']
-                            , image: controller.gazDataList[index]['image']
-                            , price: controller.gazDataList[index]['price'].toString()+" "+"﷼")
-                          );
-                        }
-                      },
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                    ),
-              
-            ],);
-          }
+                                    image: 'assets/images/st.png',
+                                    sellPrice: controller.priceDataList[index]
+                                            ['sellPrice']
+                                        .toString(),
+                                    title: controller.priceDataList[index]
+                                                ['country1']
+                                            .toString() +
+                                        "          مقابل     " +
+                                        controller.priceDataList[index]['country2']
+                                            .toString(),
+                                    type: 'money',
+                                    date: controller.priceDataList[index]['date'],
+                                    country: controller.priceDataList[index]
+                                        ['location']),
+                              );
+                            }
+                          },
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                        ),
+                            
+                            
+                   if(widget.dataKey=='gold')
+                 ListView.builder(
+                          itemCount: controller.goldDataList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            if (controller.goldDataList.isEmpty) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: DataCardWidget(
+                                    buyPrice: controller.goldDataList[index]
+                                            ['buyPrice']
+                                        .toString(),
+                                    image: 'assets/images/gold.png',
+                                    type: 'gold',
+                                    sellPrice: controller.goldDataList[index]
+                                            ['sellPrice']
+                                        .toString(),
+                                    title: controller.goldDataList[index]['txt']
+                                        .toString(),
+                                    date: controller.goldDataList[index]['date'],
+                                    country: controller.goldDataList[index]
+                                        ['location']),
+                              );
+                            }
+                          },
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                        ),
+                            
+                            
+                            
+                   if(widget.dataKey=='gaz')
+                 GridView.builder(
+                          itemCount: controller.gazDataList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            if (controller.gazDataList.isEmpty) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GazCardWidget(title: controller.gazDataList[index]['name']
+                                , image: controller.gazDataList[index]['image']
+                                , price: controller.gazDataList[index]['price'].toString()+" "+"﷼")
+                              );
+                            }
+                          },
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true, gridDelegate: 
+                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+                          childAspectRatio: 0.77
+                          ),
+                        ),
+                            
+                ],);
+              }
+            ),
+          ],
         ),
       ),
     );
@@ -221,21 +333,22 @@ GazCardWidget({super.key,
   @override
   Widget build(BuildContext context) {
 
-
-  
-
        return Padding(
          padding: const EdgeInsets.all(12.0),
          child: Container(
                decoration:BoxDecoration(
           borderRadius:BorderRadius.circular(12),
-          color:Colors.white,
-           border: Border.all(color:Colors.grey[300]!),
+          color:Colors.transparent.withOpacity(0.07),
+          // const Color(0xE5C0D9F0).withOpacity(0.5),
+
+           border: Border.all(color:Colors.white,
+           width: 1.2
+           ),
                ),
                child:Column(children: [
           Container(
             decoration:BoxDecoration(
-              color:Colors.white,
+             // color:Colors.white,
             
               borderRadius:BorderRadius.circular(12)
             ),
@@ -249,13 +362,18 @@ GazCardWidget({super.key,
           const SizedBox(height: 11,),
          
           Image.network(image,fit:BoxFit.fill,
-          height: 166,
+          height: 110,
           width: MediaQuery.of(context).size.width,
+          
           ),
          
           const SizedBox(height: 11,),
-          Text(price,style:Styles.primaryTextStyleLarge),
-           const SizedBox(height: 11,),
+          Text(price,style:
+          TextStyle(color:kPrimaryColor,
+          fontSize: 22,fontWeight:FontWeight.w700
+          )
+          ),
+    
                
          
          

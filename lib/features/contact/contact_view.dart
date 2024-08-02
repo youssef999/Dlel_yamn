@@ -8,6 +8,8 @@ import 'package:freelancerApp/core/widgets/custom_textformfield.dart';
 import 'package:freelancerApp/features/contact/contact_controller.dart';
 import 'package:get/get.dart';
 
+import '../../core/resources/colors.dart';
+
 class ContactView extends StatelessWidget {
   const ContactView({super.key});
 
@@ -21,41 +23,54 @@ class ContactView extends StatelessWidget {
       appBar:CustomAppBar('تواصل معنا', context),
       body:Padding(
         padding: const EdgeInsets.all(14.0),
-        child: ListView(children: [
-          const SizedBox(height: 30,),
+        child: Container(
+          decoration: AppDecoration,
+          child: GetBuilder<ContactController>(
+            builder: (_) {
+              return ListView(children: [
+                const SizedBox(height: 30,),
 
-          CustomTextFormField(hint: 'الاسم', obs: false, controller: controller.nameController,
-          icon:Icons.person, color:Colors.black
-          ), 
-          
-          const SizedBox(height: 15,),
+                CustomTextFormField(hint: 'الاسم', obs: false, controller: controller.nameController,
+                icon:Icons.person, color:Colors.black
+                ),
 
-           CustomTextFormField(hint: 'الايميل', obs: false, controller: controller.emailController,
-          icon:Icons.email, color:Colors.black
+                const SizedBox(height: 15,),
+
+                 CustomTextFormField(hint: 'الايميل', obs: false, controller: controller.emailController,
+                icon:Icons.email, color:Colors.black
+                ),
+
+                const SizedBox(height: 15,),
+
+                 CustomTextFormField(hint: 'الموضوع', obs: false, controller: controller.subjectController,
+                icon:Icons.subject, color:Colors.black,max: 3,
+                ),
+                 const SizedBox(height: 15,),
+
+                 CustomTextFormField(hint: 'الرسالة', obs: false, controller: controller.messageController,
+                icon:Icons.message, color:Colors.black,max: 5,
+                ),
+
+                    const SizedBox(height: 30,),
+
+                (controller.isLoading==false)?
+
+                    CustomButton(text: 'ارسال', onPressed: (){
+
+
+                      controller.sendMessageToAdmin();
+
+                    }):
+                    const Center(child: CircularProgressIndicator(),)
+
+
+
+
+
+              ],);
+            }
           ),
-
-          const SizedBox(height: 15,),
-
-           CustomTextFormField(hint: 'الموضوع', obs: false, controller: controller.subjectController,
-          icon:Icons.subject, color:Colors.black,max: 3,
-          ),
-           const SizedBox(height: 15,),
-
-           CustomTextFormField(hint: 'الرسالة', obs: false, controller: controller.messageController,
-          icon:Icons.message, color:Colors.black,max: 5,
-          ),
-
-              const SizedBox(height: 30,),
-
-              CustomButton(text: 'ارسال', onPressed: (){
-
-              })
-
-
-
-
-          
-        ],),
+        ),
       ),
     );
   }

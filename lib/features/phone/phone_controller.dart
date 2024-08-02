@@ -8,16 +8,16 @@ class PhoneController extends GetxController{
 
 
 List<String>phoneImage=[
-  'assets/images/home2.png',
+  'assets/images/shopCard.png',
   'assets/images/hospital.png',
-  'assets/images/learn.png',
-  'assets/images/phone2.png',
-  'assets/images/hotel.png',
-    "assets/images/love.png",
-  'assets/images/emer.png',
-  "assets/images/eng.png",
-    "assets/images/gov.png",
-    "assets/images/bag.png"
+  'assets/images/learnCard.png',
+  'assets/images/phoneCard.png',
+  'assets/images/hotelCard.png',
+    "assets/images/loveCard.png",
+  'assets/images/tww.png',
+  "assets/images/engCard.png",
+    "assets/images/govCard.png",
+    "assets/images/bagCard.png"
 ];
 
 
@@ -34,7 +34,7 @@ List<String>phoneName=[
     "أصحاب العمل الحر"
 ];
 
-  List<String>placesList=['عدن','حضر موت','صنعاة'];
+  List<String>placesList=['عدن','حضر موت','صنعاء'];
   String selcetPlace='عدن';
 
 

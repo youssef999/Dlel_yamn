@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../core/resources/app_styles.dart';
+import '../../core/resources/colors.dart';
 
 class FootballView extends StatefulWidget {
   const FootballView({super.key});
@@ -28,23 +29,22 @@ class _FootballViewState extends State<FootballView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('ball', context),
+      //appBar: CustomAppBar('ball', context),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-            ],
-          )),
+          decoration: AppDecoration,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(0.0),
             child: GetBuilder<FootballController>(
               builder: (_) {
                 return ListView(
-                  children: [
+                  children: [ 
+                    Image.asset('assets/images/ballDrawer.png',
+                //height: 55,
+                width:MediaQuery.of(context).size.width,
+                ),
+
                     const SizedBox(
                       height: 21,
                     ),

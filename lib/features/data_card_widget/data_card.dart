@@ -11,17 +11,19 @@ class DataCardWidget extends StatelessWidget {
 
   String title;
   String image;
+  String img1;
+  String img2;
   String buyPrice;
   String sellPrice;
   String date;
   String country;
-
   String type;
 
 DataCardWidget({super.key,
   required this.buyPrice,required this.image,
   required this.date,required this.country,
   required this.type,
+  this.img1='',this.img2='',
   required this.sellPrice,required this.title
   });
 
@@ -34,22 +36,46 @@ DataCardWidget({super.key,
        return Container(
       decoration:BoxDecoration(
         borderRadius:BorderRadius.circular(12),
+        
+        border:Border.all(
+          color:Colors.white
+        ),
         color:Colors.white
       ),
       child:Column(children: [
         Container(
+          height: 50,
           decoration:BoxDecoration(
             color:Colors.white,
             borderRadius:BorderRadius.circular(7)
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(title,
-            style:Styles.primaryTextStyleBold
+            padding: const EdgeInsets.all(1.0),
+            child: Row(
+              mainAxisAlignment:MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 15,
+                  backgroundImage: NetworkImage(img1),
+                ),
+              const  SizedBox(width: 2,),
+                Text(title,
+                style:TextStyle(
+                  color:kPrimaryColor,
+                  fontSize: 16,
+                  fontWeight:FontWeight.w800
+                )
+                ),
+                 const  SizedBox(width: 2,),
+                 CircleAvatar(
+                  radius: 15,
+                  backgroundImage: NetworkImage(img2),
+                ),
+              ],
             ),
           ),
         ),
-        const SizedBox(height: 11,),
+        const SizedBox(height: 1,),
         Container(
           color:kCardColor,
           child: Padding(
@@ -57,11 +83,12 @@ DataCardWidget({super.key,
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment:MainAxisAlignment.center,
                   children: [
                 
                   Column(children: [
-                
+                   const SizedBox(height: 41,),
+              
                     Text('سعر الشراء',
                     style:Styles.primaryTextStyleBold
                     ),
@@ -69,24 +96,27 @@ DataCardWidget({super.key,
                     Text(' ${buyPrice}'+"﷼",
                     style:Styles.primaryTextStyle
                     ),
-                      const SizedBox(height: 11,),
+                      //const SizedBox(height: 4),
                         
                   ],),
+               const   SizedBox(width: 21,),
                 
                   Column(children: [
-                
+                 
                     Text(country,style:Styles.primaryTextStyle),
-                
                    // Image.asset(image,height: 40,),
-                    const SizedBox(height: 3,),
-                    Image.asset(AppAssets.arrowSt,height: 40,),
+                    const SizedBox(height: 6,),
+                    Image.asset(AppAssets.refersh,height: 22,),
+                    const SizedBox(height: 8,),
+                    Image.asset(AppAssets.arrowSt,height: 22,),
                 
-                
-                
+              
                 
                   ],),
+                   const   SizedBox(width: 21,),
                 
                    Column(children: [
+                     const SizedBox(height: 41,),
                     Text('سعر البيع',
                     style:Styles.primaryTextStyleBold
                     ),
@@ -103,18 +133,32 @@ DataCardWidget({super.key,
           
                 const SizedBox(height: 7,),
           
-                Container(
-                  decoration:BoxDecoration(
-                    borderRadius:BorderRadius.circular(12),
-                    color:kButtonColor
-                  ),
-                  child:Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('اخر تحديث اليوم عند الساعة'+" : " +date,
-                    style:Styles.lightTextStyle,
-                    ),
-                  ),
-                ),
+                 InkWell(
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                'assets/images/button.png',
+                                width: 260,
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:7.0),
+                                child: Padding(
+                                                    padding:  const EdgeInsets.all(1.0),
+                                                    child: Text("  "+'اخر تحديث اليوم عند الساعة'+" : " +date,
+                                                    style:Styles.lightTextStyle,
+                                                    ),
+                                                  ),
+                              ),
+                          
+                            ],
+                          ),
+                        ),
+                        onTap:(){
+                          // controller.userLogin();
+
+                        },
+                      ),
                  const SizedBox(height: 12,),
           
               ],
@@ -133,8 +177,12 @@ DataCardWidget({super.key,
 
        return Container(
       decoration:BoxDecoration(
+          border:Border.all(
+          color:Colors.white
+        ),
         borderRadius:BorderRadius.circular(12),
         color:Colors.white
+        
       ),
       child:Column(children: [
         Container(
@@ -157,10 +205,12 @@ DataCardWidget({super.key,
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment:MainAxisAlignment.center,
                   children: [
+                     const   SizedBox(width: 21,),
                 
                   Column(children: [
+                     const SizedBox(height: 41,),
                 
                     Text('سعر الشراء',
                     style:Styles.primaryTextStyleBold
@@ -172,21 +222,27 @@ DataCardWidget({super.key,
                       const SizedBox(height: 11,),
                         
                   ],),
+                   const   SizedBox(width: 21,),
                 
                   Column(children: [
                 
                     Text(country,style:Styles.primaryTextStyle),
                 
+
                     Image.asset(AppAssets.gold,height: 40,),
-                    const SizedBox(height: 3,),
+                     const SizedBox(height: 5,),
+                      Image.asset(AppAssets.arrowSt,height: 22,),
+                    const SizedBox(height: 5,),
                    // Image.asset(AppAssets.arrowSt,height: 40,),
                 
                 
                 
                 
                   ],),
+                   const   SizedBox(width: 21,),
                 
                    Column(children: [
+                     const SizedBox(height: 41,),
                     Text('سعر البيع',
                     style:Styles.primaryTextStyleBold
                     ),
@@ -202,19 +258,49 @@ DataCardWidget({super.key,
                 ],),
           
                 const SizedBox(height: 7,),
+
+                InkWell(
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                'assets/images/button.png',
+                                width: 260,
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:7.0),
+                                child: Padding(
+                                                    padding:  const EdgeInsets.all(1.0),
+                                                    child: Text("  "+'اخر تحديث اليوم عند الساعة'+" : " +date,
+                                                    style:Styles.lightTextStyle,
+                                                    ),
+                                                  ),
+                              ),
+                          
+                            ],
+                          ),
+                        ),
+                        onTap:(){
+                          // controller.userLogin();
+
+                        },
+                      ),
+
+
+
           
-                Container(
-                  decoration:BoxDecoration(
-                    borderRadius:BorderRadius.circular(12),
-                    color:kButtonColor
-                  ),
-                  child:Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('اخر تحديث اليوم عند الساعة'+" : " +date,
-                    style:Styles.lightTextStyle,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   decoration:BoxDecoration(
+                //     borderRadius:BorderRadius.circular(12),
+                //     color:kButtonColor
+                //   ),
+                //   child:Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Text('اخر تحديث اليوم عند الساعة'+" : " +date,
+                //     style:Styles.lightTextStyle,
+                //     ),
+                //   ),
+                // ),
                  const SizedBox(height: 12,),
           
               ],

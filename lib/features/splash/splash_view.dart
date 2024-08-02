@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_assets.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/features/auth/views/login_view.dart';
+import 'package:freelancerApp/features/home/views/bottom_bar.dart';
 import 'package:freelancerApp/features/home/views/home_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -29,7 +30,8 @@ class _SplashViewState extends State<SplashView> {
     if(email=='x'){
   Get.offAll(const LoginView());
     }else{
-      Get.offAll(const HomeView());
+      Get.offAll( RootView());
+     // Get.offAll(const HomeView());
     }
 
     
@@ -42,14 +44,14 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:Container(
-     //   color:kPrimaryColor,
-        decoration:BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-             const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-            ],
-        )),
+        color:Colors.white,
+        // decoration:BoxDecoration(
+        //   gradient: LinearGradient(
+        //     colors: [
+        //      const Color(0xffC7E1EE),
+        //        Colors.blue[200]!,
+        //     ],
+        // )),
         child: Center(
           child: ListView(
             

@@ -8,6 +8,7 @@ import 'package:freelancerApp/features/phone/phone_controller.dart';
 import 'package:get/get.dart';
 
 import '../../core/resources/app_colors.dart';
+import '../../core/resources/colors.dart';
 import '../home/views/widgets/drop_down.dart';
 
 class PhoneDetailsView extends StatefulWidget {
@@ -36,15 +37,9 @@ class _PhoneDetailsViewState extends State<PhoneDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar: CustomAppBar('', context),
+     // appBar: CustomAppBar('', context),
       body:Container(
-         decoration: BoxDecoration(
-                gradient: LinearGradient(
-              colors: [
-             const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-              ],
-            )),
+        decoration: AppDecoration,
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: Padding(
@@ -52,6 +47,10 @@ class _PhoneDetailsViewState extends State<PhoneDetailsView> {
             child: GetBuilder<PhoneController>(
               builder: (_) {
                 return ListView(children: [
+                   Image.asset('assets/images/phoneDrawer.png',
+                //height: 55,
+                width:MediaQuery.of(context).size.width,
+                ),
                   const SizedBox(height: 12,),
                     Padding(
                     padding: const EdgeInsets.only(left: 11, right: 11),

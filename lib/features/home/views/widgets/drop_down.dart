@@ -27,9 +27,9 @@ class DropDownWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(21),
-        border: Border.all(
-          color: Colors.white
-        )
+        //border: Border.all(
+          //color: Colors.white
+        //)
       ),
       child: Padding(
         padding: const EdgeInsets.all(5.0),
@@ -41,7 +41,9 @@ class DropDownWidget extends StatelessWidget {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value,
-                  style:TextStyle(color: AppColors.txtPrimaryColor),
+                  style:TextStyle(color: AppColors.txtPrimaryColor,
+                  fontWeight:FontWeight.w800
+                  ),
                   ),
                 );
               }).toList(),

@@ -10,7 +10,7 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
 
-  List<String>placesList=['عدن','حضر موت','صنعاة'];
+  List<String>placesList=['عدن','حضر موت','صنعاء'];
 
 
   List<Map<String,dynamic>> priceDataList=[];
@@ -31,12 +31,12 @@ class HomeController extends GetxController {
   }
 
 
+bool isLoading=false;
 
 getDataDataWithFilter()async{
-
-
+isLoading=true;
+update();
  goldDataList=[];
- 
 QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
         ('goldData')
@@ -57,7 +57,11 @@ QuerySnapshot querySnapshot =
         // ignore: avoid_print
         print("E.......");
       }
-      update();
+      Future.delayed(const Duration(seconds: 1), () {
+        isLoading=false;
+        update();
+      });
+
     
   }
 
@@ -151,7 +155,7 @@ QuerySnapshot querySnapshot =
  
 QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
-        ('priceData').get();
+        ('priceData')  .where('location',isEqualTo: selcetPlace).get();
       try{
         List<Map<String, dynamic>> data
         = querySnapshot.docs.map((DocumentSnapshot doc) =>
@@ -174,7 +178,9 @@ QuerySnapshot querySnapshot =
      goldDataList=[];
 QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
-        ('goldData').get();
+        ('goldData')
+          .where('location',isEqualTo: selcetPlace)
+          .get();
       try{
         List<Map<String, dynamic>> data
         = querySnapshot.docs.map((DocumentSnapshot doc) =>

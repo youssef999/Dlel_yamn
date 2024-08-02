@@ -37,6 +37,7 @@ dependencies:
   rate: ^0.0.2
   flutter_carousel_slider:
   google_fonts: ^4.0.4
+  share_plus: ^10.0.0
   get: ^4.6.5
   flutter_local_notifications: ^14.1.0
   get_storage:

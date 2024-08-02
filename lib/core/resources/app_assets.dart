@@ -7,6 +7,7 @@ class AppAssets {
 
   static const String gold = '$imagePath/gold.png';
   static const String arrowSt = '$imagePath/st.png';
+   static const String refersh = '$imagePath/refersh_icon.png';
   static const String menu = '$imagePath/menu.png';
 
 static const String logo = '$imagePath/logo.png';

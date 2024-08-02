@@ -21,6 +21,7 @@ import '../../../../Core/const/app_message.dart';
 import '../views/verfied_email.dart';
 
 class AuthController extends GetxController {
+  
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController checkPassController = TextEditingController();
@@ -720,128 +721,31 @@ class AuthController extends GetxController {
   }
 
 
-  userSignUp() async {
-    final userId = FirebaseAuth.instance.currentUser;
-    // loading = true;
-    update();
-    final box = GetStorage();
-    var lat = box.read('lat') ?? '';
-    var lng = box.read('lng') ?? '';
-    //  Ui.logSuccess(phoneNumber);
-    String role = box.read('roleId') ?? 'x';
-    try {
-      await _auth
+
+
+  signupUser()async{
+
+ final box=GetStorage();
+
+    try{
+ await _auth
           .createUserWithEmailAndPassword(
         email: emailController.text,
         password: passController.text,
-      )
-          .then((user) async {
-        CustomLoading.cancelLoading();
-        try {
-          if (regRoleId == 1) {
-            await firestore.collection('users').add({
-              'name': nameController.text,
-              'password': passController.text,
-              'email': emailController.text,
-              'token': token,
-              'country': selectedCountry,
-              ''
-              //  'roleId': roleId.text,
-              'type': 'normal',
-              'uid': userId?.uid,
-              'city': selectedCity,
-              'lat': lat,
-              'lng': lng,
-            });
-          } else {
-            if (empType == 'online'.tr) {
+      ).then((user) async {
 
-              box.write('empType', 'online');
+    box.write('email', emailController.text);
+    appMessage(text: 'تم التسجيل بنجاح', fail: false);
+    Get.offAll(const HomeView());
 
-              addUserToWallet();
-
-
-              await firestore.collection('freelancers').add({
-                'name': nameController.text,
-                'password': passController.text,
-                'email': emailController.text,
-                'token': token,
-                'country': selectedCountry,
-                'price': priceController.text,
-                "cat": catValue,
-                'catEn': enCat,
-                //  'roleId': roleId.text,
-                'type': 'top',
-                'uid': userId?.uid,
-                'city': selectedCity,
-                'accountType': empType,
-                'images': downloadUrls,
-                'bio': '',
-                'phone': phoneNumber,
-                'image': profileDownloadUrl[0],
-                 'images2':[]
-              });
-            } else {
-                box.write('empType', 'offline');
-              CustomLoading.cancelLoading();
-              await firestore.collection('employees').add({
-                'name': nameController.text,
-                'password': passController.text,
-                'price': priceController.text,
-                'email': emailController.text,
-                'image': profileDownloadUrl[0],
-                'token': token,
-                'country': selectedCountry,
-                'images2':[],
-                'catEn': enCat,
-                'emp': empCatController.text,
-                'lat': lat,
-                'lng': lng,
-                'bio': '',
-                'phone': phoneNumber,
-                //  'roleId': roleId.text,
-                'type': 'top',
-                'uid': userId?.uid,
-                'city': selectedCity,
-                'accountType': empType,
-                'images': downloadUrls,
-              });
-            }
-          }
-          print("HERE DONE.....");
-          sendEmailVerfication();
-          Get.offAll(const VerfiedEmailView());
-         //  Get.offAllNamed(Routes.LOGIN);
-        } catch (e) {
-          CustomLoading.cancelLoading();
-          print(e.toString());
-          print("ERRORS");
-        }
-        loading = false;
-        box.write('roleId', role);
-        // box.write('email', emailController.text);
-        box.write('name', nameController.text);
-        update();
+        
       });
-    } catch (e) {
-      print("EEEEE=========="+e.toString());
-      if(e.toString()
-          .contains('The email address is already in use by another account')){
-      appMessage(text: 'emailUsed'.tr, fail: true);
-    }
+    }catch(e){
 
-    else if(e.toString()
-          .contains('Password should be at least 6 characters')){
-      appMessage(text: 'wrongPass'.tr, fail: true);
+        print("EEE=="+e.toString());
     }
-    else{
-      appMessage(text: 'wrongData'.tr, fail: true);
-    }
-    loading = false;
-    CustomLoading.cancelLoading();
-    update();
   }
-  }
+ 
 
   sendEmailVerfication() async {
     FirebaseAuth.instance.currentUser!.sendEmailVerification();
@@ -882,26 +786,7 @@ class AuthController extends GetxController {
     }
   }
 
-  startAddNewFreelancer() async {
-    print("ROLEID=====$regRoleId");
-
-    // final box=GetStorage();
-    // String roleId=box.read('roleId');
-    if (regRoleId == 1) {
-      userSignUp();
-    } else {
-      getCatInEnglish(catValue);
-      uploadMultiImageToFirebaseStorage(pickedImageXFiles ?? []).then((value) {
-        uploadProfileImageToFirebaseStorage(profilePickedFiles ?? [])
-            .then((value) {
-          Future.delayed(const Duration(seconds: 5)).then((value) {
-            userSignUp();
-            //addNewFreelancer();
-          });
-        });
-      });
-    }
-  }
+ 
 
   // addNewFreelancer() async {
   //   final box=GetStorage();

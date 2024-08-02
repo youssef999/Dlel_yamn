@@ -29,38 +29,43 @@ class SignupView extends StatelessWidget {
     controller.loginFormKey = GlobalKey<FormState>();
 
     return Scaffold(
-       appBar: AppBar(
-        toolbarHeight: 43,
+      //  appBar: AppBar(
+      //   toolbarHeight: 43,
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   iconTheme: const IconThemeData(color: Colors.black),
+      // ),
+      //backgroundColor: Colors.blue[200],
+      appBar:AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        elevation: 0.2,
+        leading: IconButton(onPressed: (){
+            Get.back();
+        }, icon: const Icon(Icons.arrow_back_ios,
+        size: 22,
+        )),
+       
+   
       ),
-      backgroundColor: Colors.white,
-      //appBar: CustomAppBar('', context),
       body: Form(
         key: controller.loginFormKey,
-        child: Center(
+        child: Container(
+          color:Colors.white,
+          //decoration: AppDecoration,
           child: ListView(
             children: [
-              const SizedBox(
-                height: 10,
-              ),
+            
+             
               Column(children: [
-                Container(
-                  //width: 350,
-                  height:140,
-                  clipBehavior: Clip.antiAlias,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(25)),
-                  child: Image.asset(
-                   AppAssets.logo
+                Image.asset(
+                    AppAssets.logo,
+                    fit: BoxFit.fill,
+                    height: 100,
                   ),
-                ),
-                 const SizedBox(height: 1,),
-                 Text('اهلا بك في تطبيق دليل اليمن ',
-                 style:Styles.primaryTextStyleLarge
-                 ),
-
+                  Image.asset(
+                    'assets/images/Text.png',
+                    fit: BoxFit.fill,
+                  ),
                 const SizedBox(height: 11,),
                 const SizedBox(
                   height: 20,
@@ -102,51 +107,44 @@ class SignupView extends StatelessWidget {
                          const SizedBox(
                       height: 20,
                     ),
-                    CustomTextFormField(
-                        hint: 'password'.tr,
-                        obs: true,
-                        color: AppColors.textColorDark,
-                        validateMessage: 'wrongPass'.tr,
-                        obx: true,
-                        controller: controller.passController),
+                    // CustomTextFormField(
+                    //     hint: 'password'.tr,
+                    //     obs: true,
+                    //     color: AppColors.textColorDark,
+                    //     validateMessage: 'wrongPass'.tr,
+                    //     obx: true,
+                    //     controller: controller.passController),
                     const SizedBox(
-                      height: 30,
+                      height: 3,
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          elevation: 7,
-                          fixedSize: const Size(300, 60),
-                          shadowColor: AppColors.darkColor,
-                          shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 0.1, color: AppColors.darkColor),
-                              borderRadius: BorderRadius.circular(10)),
-                          backgroundColor: kPrimaryColor),
-                      child: Text(
-                        "register".tr,
-                        style: const TextStyle(
-                          color:Colors.white
+                      InkWell(
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                'assets/images/button.png',
+                                width: 370,
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(top:20.0),
+                                child: Center(
+                                  child: Text(
+                                  " انشاء حساب",
+                                  style: TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                                          ),
+                                ),
+                              ),
+                          
+                            ],
+                          ),
                         ),
-                        textAlign: TextAlign.center,
+                        onTap:(){
+                          controller.signupUser();
+
+                        },
                       ),
-                      onPressed: () {
-
-
-                        CustomLoading.showLoading('Loading');
-
-                        controller.getRoleIdByUser().then((value) {
-                          print("role id done");
-                          Future.delayed(const Duration(seconds: 1))
-                              .then((value) {
-
-                            {
-                              controller.userLogin();
-                            }
-
-                          });
-                        });
-                      },
-                    ),
+                  
                     const SizedBox(height: 6,),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.end,

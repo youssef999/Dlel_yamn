@@ -27,68 +27,67 @@ class NotiView extends StatefulWidget {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-       appBar:CustomAppBar('الاشعارات', context),
+      // appBar:CustomAppBar('الاشعارات', context),
        body:Container(
-      
-         decoration: BoxDecoration(
-                gradient:  LinearGradient(
-              colors: [
-               const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-           
-              ],
-            )
-            )
-        ,
+
+           decoration: AppDecoration,
+
        // color:
         //Color(0XXFFDFEBF6),
          child: Padding(
-           padding: const EdgeInsets.all(8.0),
+           padding: const EdgeInsets.all(0.0),
            child: GetBuilder<NotiController>(
              builder: (_) {
                return ListView(children: [
-                const SizedBox(height: 12,),
+                Image.asset('assets/images/notiDrawer.png',
+                //height: 55,
+                width:MediaQuery.of(context).size.width,
+                ),
+                const SizedBox(height: 8,),
                
-                ListView.builder(
-                  itemCount: controller.notiDataList.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-
-
-                    if(controller.notiDataList.isEmpty){
-
-                      return  Column(children: [
-
-
-                        Image.asset("assets/images/noti.png",height: 300,
-                        fit:BoxFit.fill,
-                        
-                        ),
-
-
-                        Text('لا يوجد اشعارات',style: Styles.lightTextStyleBold)
-
-                      ],);
-
-
-
-
-                    }
-                    
-                    else{
-
-
-                      return  Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: NotiCardWidget(
-                        data: controller.notiDataList[index],
-                      ),
-                    );
-
-                    }
-                    
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.builder(
+                    itemCount: controller.notiDataList.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
                   
-                })
+                  
+                      if(controller.notiDataList.isNotEmpty){
+                  
+                        return  Column(children: [
+                  
+                  
+                          Image.asset("assets/images/noti.png",height: 300,
+                          fit:BoxFit.fill,
+                          
+                          ),
+                  
+                  
+                        //  Text('لا يوجد اشعارات',style: Styles.lightTextStyleBold)
+                  
+                        ],);
+                  
+                  
+                  
+                  
+                      }
+                      
+                      else{
+                  
+                  
+                        return  Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: NotiCardWidget(
+                          data: controller.notiDataList[index],
+                        ),
+                      );
+                  
+                      }
+                      
+                    
+                  }),
+                )
                         
                 
                ],);
@@ -115,7 +114,7 @@ class NotiView extends StatefulWidget {
         color: Colors.white
       ),
       child:Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(children: [
           const SizedBox(height: 10,),
           Row(children: [

@@ -101,8 +101,8 @@ String title='';
 
 
   return AppBar(
+    //backgroundColor: kPrimaryColor,
     
-    backgroundColor: kPrimaryColor,
     elevation: 0,
     centerTitle: true,
     toolbarHeight: 70,
@@ -130,5 +130,11 @@ String title='';
        
       ],
   );
+
+
+
+
+
+  
 
   }

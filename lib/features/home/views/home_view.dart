@@ -40,271 +40,287 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomDrawer(),
-      backgroundColor: Colors.blue[200]!,
-      body: GetBuilder<HomeController>(builder: (_) {
-        return Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              colors: [
-              const Color(0xffC7E1EE),
-               Colors.blue[200]!,
-              ],
-            )
-            )
-            ,
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: ListView(
-                children: [
-                  const SizedBox(
-                    height: 21,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          AppAssets.logo,
-                          fit: BoxFit.cover,
-                          width: 100,
-                          height: 50,
-                        ),
-                        InkWell(
-                          child: SizedBox(
-                            height: 30,
-                            child: Image.asset(
-                              'assets/images/menu.png',
+     // backgroundColor: const Color(0XFFFFFFF),
+      body: Stack(
+        children: [
+          SizedBox(
+            height: 3000,
+            child:Image.asset('assets/images/appBackground.png',
+            fit:BoxFit.fill,),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GetBuilder<HomeController>(builder: (_) {
+              return Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: ListView(
+                    children: [
+                      
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              AppAssets.logo,
                               fit: BoxFit.cover,
+                              width: 100,
+                              height: 50,
                             ),
-                          ),
-                          onTap: () {
-                            scaffoldKey.currentState?.openDrawer();
-                          },
+                            InkWell(
+                              child: SizedBox(
+                                height: 31,
+                                child: Image.asset(
+                                  'assets/images/menu.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              onTap: () {
+                                scaffoldKey.currentState?.openDrawer();
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(13.0),
-                    child: CustomTextFormField(
-                      hint: 'البحث',
-                      obs: false,
-                      controller: controller.searchController,
-                      icon: Icons.search,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 11, right: 11),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(21),
-                          color: Colors.white),
-                      child: Row(
+                      ),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(13.0),
+                      //   child: CustomTextFormField(
+                      //     hint: 'البحث',
+                      //     obs: false,
+                      //     controller: controller.searchController,
+                      //     icon: Icons.search,
+                      //   ),
+                      // ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 11, right: 11),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Colors.white),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                "المناطق",
+                                style:
+                                    TextStyle(color: AppColors.txtPrimaryColor),
+                              ),
+                              DropDownWidget(
+                                items: controller.placesList,
+                                hintText: 'المناطق',
+                                selectedValue: controller.selcetPlace,
+                                onChanged: (String? newValue) {
+                                  controller.chnagePlace(newValue!);
+                                },
+                              ),
+                              SizedBox(
+                                height: 21,
+                                child: Image.asset(
+                                  'assets/images/star.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ListView.builder(
+                          itemCount: 1,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            if (controller.isLoading == true) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (controller.priceDataList.isEmpty) {
+                              return const Center(child: SizedBox());
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: DataCardWidget(
+                                  img1: controller.priceDataList[index]
+                                            ['img1'],
+                                            img2: controller.priceDataList[index]
+                                            ['img2'],
+                                    buyPrice: controller.priceDataList[index]
+                                            ['buyPrice']
+                                        .toString(),
+                                    image: 'assets/images/st.png',
+                                    sellPrice: controller.priceDataList[index]
+                                            ['sellPrice']
+                                        .toString(),
+                                    title: controller.priceDataList[index]
+                                                ['country1']
+                                            .toString() +
+                                        "    مقابل   " +
+                                        controller.priceDataList[index]
+                                                ['country2']
+                                            .toString(),
+                                    type: 'money',
+                                    date: controller.priceDataList[index]
+                                        ['date'],
+                                    country: controller.priceDataList[index]
+                                        ['location']),
+                              );
+                            }
+                          },
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                        ),
+                      ),
+                    
+                      Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: ListView.builder(
+                          itemCount: 1,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            // if (controller.isLoading==true){
+                            //   return const Center(
+                            //     child: CircularProgressIndicator(),
+                            //   );
+                            // }
+                            if (controller.goldDataList.isEmpty) {
+                              return const Center(child: SizedBox());
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: DataCardWidget(
+                                    buyPrice: controller.goldDataList[index]
+                                            ['buyPrice']
+                                        .toString(),
+                                    image: 'assets/images/gold.png',
+                                    type: 'gold',
+                                    sellPrice: controller.goldDataList[index]
+                                            ['sellPrice']
+                                        .toString(),
+                                    title: controller.goldDataList[index]['txt']
+                                        .toString(),
+                                    date: controller.goldDataList[index]
+                                        ['date'],
+                                    country: controller.goldDataList[index]
+                                        ['location']),
+                              );
+                            }
+                          },
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left:23.0,right: 23),
+                        child: Text(
+                          'دليل اليمن',
+                          style: Styles.primaryTextStyleLarge,
+                        ),
+                      ),
+                     const SizedBox(height: 10,),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            "المناطق",
-                            style: TextStyle(color: AppColors.txtPrimaryColor),
-                          ),
-                          DropDownWidget(
-                            items: controller.placesList,
-                            hintText: 'المناطق',
-                            selectedValue: controller.selcetPlace,
-                            onChanged: (String? newValue) {
-                              controller.chnagePlace(newValue!);
+                          InkWell(
+                            child: AppCardWidget(
+                              image: 'assets/images/moneyPrice.png',
+                              txt: 'أسعار',
+                              txt2:'العملات'
+                            ),
+                            onTap: () {
+                              Get.to(DetailsView(
+                                dataKey: 'money',
+                              ));
                             },
                           ),
-                          SizedBox(
-                            height: 21,
-                            child: Image.asset(
-                              'assets/images/star.png',
-                              fit: BoxFit.cover,
+                          InkWell(
+                            child: AppCardWidget(
+                              image: 'assets/images/goldPrice.png',
+                              txt: 'اسعار',
+                              txt2: 'الذهب',
                             ),
+                            onTap: () {
+                              Get.to(DetailsView(
+                                dataKey: 'gold',
+                              ));
+                            },
                           ),
+                          InkWell(
+                            child: AppCardWidget(
+                              image: 'assets/images/gazPrice.png',
+                              txt: 'أسعار',
+                              txt2: 'المحروقات',
+                            ),
+                            onTap: () {
+                              Get.to(DetailsView(
+                                dataKey: 'gaz',
+                              ));
+                            },
+                          )
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: 
-                    ListView.builder(
-                      itemCount: 1,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        if (controller.priceDataList.isEmpty) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DataCardWidget(
-                                buyPrice: controller.priceDataList[index]
-                                        ['buyPrice']
-                                    .toString(),
-                                image: 'assets/images/st.png',
-                                sellPrice: controller.priceDataList[index]
-                                        ['sellPrice']
-                                    .toString(),
-                                title: controller.priceDataList[index]
-                                            ['country1']
-                                        .toString() +
-                                    "          مقابل     " +
-                                    controller.priceDataList[index]['country2']
-                                        .toString(),
-                                type: 'money',
-                                date: controller.priceDataList[index]['date'],
-                                country: controller.priceDataList[index]
-                                    ['location']),
-                          );
-                        }
-                      },
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: 
-                    ListView.builder(
-                      itemCount: 1,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        if (controller.goldDataList.isEmpty) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DataCardWidget(
-                                buyPrice: controller.goldDataList[index]
-                                        ['buyPrice']
-                                    .toString(),
-                                image: 'assets/images/gold.png',
-                                type: 'gold',
-                                sellPrice: controller.goldDataList[index]
-                                        ['sellPrice']
-                                    .toString(),
-                                title: controller.goldDataList[index]['txt']
-                                    .toString(),
-                                date: controller.goldDataList[index]['date'],
-                                country: controller.goldDataList[index]
-                                    ['location']),
-                          );
-                        }
-                      },
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(7.0),
-                    child: Text(
-                      'دليل اليمن',
-                      style: Styles.primaryTextStyleLarge,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        child: AppCardWidget(
-                          image: 'assets/images/moneyPrice.png',
-                          txt: 'أسعار العملات',
-                        ),
-                        onTap: () {
-                          Get.to(DetailsView(
-                            dataKey: 'money',
-                          ));
-                        },
+                      const SizedBox(
+                        height: 10,
                       ),
-                      InkWell(
-                        child: AppCardWidget(
-                          image: 'assets/images/goldPrice.png',
-                          txt: 'اسعار الذهب',
-                        ),
-                        onTap: () {
-                          Get.to(DetailsView(
-                            dataKey: 'gold',
-                          ));
-                        },
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          InkWell(
+                            child: AppCardWidget(
+                              image: 'assets/images/phone2.png',
+                              txt: 'دليل',
+                              txt2: 'الارقام',
+                            ),
+                            onTap: () {
+                              Get.to(const PhoneView());
+                            },
+                          ),
+                          InkWell(
+                            child: AppCardWidget(
+                              image: 'assets/images/news.png',
+                              txt: "أخبار",
+                              txt2: 'اقتصادية',
+                            ),
+                            onTap: () {
+                              Get.to(NewsView(
+                                txt: "news",
+                              ));
+                            },
+                          ),
+                          InkWell(
+                            child: AppCardWidget(
+                              image: 'assets/images/ball.png',
+                              txt: 'دليل',
+                              txt2: ' المباريات',
+                            ),
+                            onTap: () {
+                              Get.to(const FootballView());
+                            },
+                          )
+                        ],
                       ),
-                      InkWell(
-                        child: AppCardWidget(
-                          image: 'assets/images/gazPrice.png',
-                          txt: 'أسعار المحروقات',
-                        ),
-                        onTap: () {
-                          Get.to(DetailsView(
-                            dataKey: 'gaz',
-                          ));
-                        },
-                      )
+                      const SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        child: AppCardWidget(
-                          image: 'assets/images/phone.png',
-                          txt: 'دليل الأرقام',
-                        ),
-                        onTap: () {
-                          Get.to(const PhoneView());
-                        },
-                      ),
-                      InkWell(
-                        child: AppCardWidget(
-                          image: 'assets/images/news.png',
-                          txt: "أخبار اقتصادية",
-                        ),
-                        onTap: () {
-                          Get.to(NewsView(
-                            txt: "news",
-                          ));
-                        },
-                      ),
-                      InkWell(
-                        child: AppCardWidget(
-                          image: 'assets/images/ball.png',
-                          txt: 'دليل المباريات',
-                        ),
-                        onTap: () {
-                          Get.to(const FootballView());
-                        },
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            }),
           ),
-        );
-      }),
+        ],
+      ),
     );
   }
 }
@@ -313,8 +329,11 @@ class _HomeViewState extends State<HomeView> {
 class AppCardWidget extends StatelessWidget {
   String image;
   String txt;
+  String txt2;
 
-  AppCardWidget({super.key, required this.image, required this.txt});
+  AppCardWidget({super.key, required this.image, 
+  
+    required this.txt2,required this.txt});
 
   @override
   Widget build(BuildContext context) {
@@ -324,21 +343,48 @@ class AppCardWidget extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14), color: Colors.white),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(6.0),
         child: Row(
           children: [
-            Text(
-              txt,
-              style: Styles.primaryTextStyleSmall,
+            Column(
+              children: [
+           const   SizedBox(height: 22,),
+                SizedBox(
+                  width: 57,
+                  child: Text(
+                    txt,
+                    style: TextStyle(
+                      color:kPrimaryColor,
+                      fontSize:13,
+                      fontWeight:FontWeight.w800
+                    )
+                  ),
+                ),
+                  SizedBox(
+                  width: 57,
+                  child: Text(
+                    txt2,
+                    style: TextStyle(
+                      color:kPrimaryColor,
+                      fontSize:13,
+                      fontWeight:FontWeight.w800
+                    )
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
-              width: 10,
+              width: 5,
             ),
             Image.asset(
               image,
-              height: 23,
-              fit: BoxFit.cover,
-            )
+              height: 46,
+              width: 39,
+              fit: BoxFit.fill,
+            ),
+             const SizedBox(
+              width: 4
+            ),
           ],
         ),
       ),

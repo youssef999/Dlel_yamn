@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
+import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:get_storage/get_storage.dart';
 
 buildBottomNavigationMenu(context, bottomNavBarController) {
@@ -16,37 +17,30 @@ buildBottomNavigationMenu(context, bottomNavBarController) {
       color: AppColors.transparent,
       child: Container(
         height: 64,
-        margin: const EdgeInsets.only(
-          left: 24 * 0.7,
-          right: 24 * 0.7,
-          bottom: 24 * 0.2,
-        ),
+        // margin: const EdgeInsets.only(
+        //   left: 24 * 0.7,
+        //   right: 24 * 0.7,
+        //   bottom: 24 * 0.2,
+        // ),
         decoration: BoxDecoration(
-            color: AppColors.primaryBGLightColor,
-            borderRadius: BorderRadius.circular(10 * 3.22)),
+            color: Colors.blue[200]!.withOpacity( 0.4),
+            borderRadius: BorderRadius.circular(11)),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
 
-            bottomItemWidget('assets/icon/home.svg', bottomNavBarController, 0,
-                AppColors.transparent),
+      //back
+       bottomItemWidget('assets/images/back.png',
+                bottomNavBarController, 0, AppColors.transparent),
 
-            bottomItemWidget('assets/icon/messagetext.svg',
-                bottomNavBarController, 1, AppColors.transparent),
-
-
-            bottomItemWidget('assets/icon/torch.svg', bottomNavBarController, 2,
+            bottomItemWidget('assets/images/home.png', bottomNavBarController, 1,
                 AppColors.transparent),
 
 
-
-            bottomItemWidget('assets/icon/profile.svg', bottomNavBarController, 3,
-                AppColors.whiteColor.withOpacity(0.1)),
-
-            // bottomItemWidget('assets/icon/my_gift.svg', bottomNavBarController, 3,
-            //     AppColors.transparent),
-
+           bottomItemWidget('assets/images/ref2.png', bottomNavBarController, 2,
+                AppColors.transparent),
+            
           ],
         ),
       ),
@@ -124,11 +118,11 @@ bottomItemWidget(
       child: CircleAvatar(
         radius: 25,
         backgroundColor: color,
-        child: SvgPicture.asset(
+        child: Image.asset(
           icon,
           color: bottomNavBarController.selectedIndex.value == page
-              ? AppColors.whiteColor
-              : AppColors.whiteColor.withOpacity(0.4),
+              ? kPrimaryColor
+              : Colors.white,
           height: 24,
         ),
       ),
