@@ -6,6 +6,8 @@ import 'package:freelancerApp/features/convert_money/convert_controller.dart';
 import 'package:get/get.dart';
 
 import '../../core/resources/app_styles.dart';
+import '../../core/widgets/bottom_navber.dart';
+import '../home/controllers/root_controller.dart';
 
 class ConvertMoney extends StatefulWidget {
   const ConvertMoney({super.key});
@@ -26,8 +28,13 @@ class _ConvertMoneyState extends State<ConvertMoney> {
   }
   @override
   Widget build(BuildContext context) {
-   
+
+    RootController rootController=Get.put(RootController());
+
     return Scaffold(
+        bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+            ,  1 ),
+
         appBar: CustomAppBar('تحويل العملات ', context),
         body: Container(
           decoration: AppDecoration,

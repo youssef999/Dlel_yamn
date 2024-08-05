@@ -9,6 +9,8 @@ import 'package:freelancerApp/features/contact/contact_controller.dart';
 import 'package:get/get.dart';
 
 import '../../core/resources/colors.dart';
+import '../../core/widgets/bottom_navber.dart';
+import '../home/controllers/root_controller.dart';
 
 class ContactView extends StatelessWidget {
   const ContactView({super.key});
@@ -17,8 +19,11 @@ class ContactView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     ContactController controller=Get.put(ContactController());
+    RootController rootController=Get.put(RootController());
 
     return Scaffold(
+      bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+          ,  1 ),
       
       appBar:CustomAppBar('تواصل معنا', context),
       body:Padding(

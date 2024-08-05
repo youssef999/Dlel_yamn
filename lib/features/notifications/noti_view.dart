@@ -8,6 +8,9 @@ import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/notifications/noti_controller.dart';
 import 'package:get/get.dart';
 
+import '../../core/widgets/bottom_navber.dart';
+import '../home/controllers/root_controller.dart';
+
 class NotiView extends StatefulWidget {
    const NotiView({super.key});
  
@@ -26,7 +29,12 @@ class NotiView extends StatefulWidget {
 
    @override
    Widget build(BuildContext context) {
+
+     RootController rootController=Get.put(RootController());
+
      return Scaffold(
+       bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+           ,  1 ),
       // appBar:CustomAppBar('الاشعارات', context),
        body:Container(
 

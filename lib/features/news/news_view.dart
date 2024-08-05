@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/home/controllers/home_controller.dart';
+import 'package:freelancerApp/features/home/controllers/root_controller.dart';
 import 'package:get/get.dart';
 
 import '../../core/resources/app_styles.dart';
+import '../../core/widgets/bottom_navber.dart';
 
 // ignore: must_be_immutable
 class NewsView extends StatefulWidget {
@@ -29,7 +31,12 @@ class _NewsViewState extends State<NewsView> {
 
   @override
   Widget build(BuildContext context) {
+
+    RootController rootController=Get.put(RootController());
+
     return Scaffold(
+      bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+          ,  1 ),
       //appBar:CustomAppBar(widget.txt, context),
       body: Container(
         decoration: AppDecoration,
@@ -40,13 +47,14 @@ class _NewsViewState extends State<NewsView> {
               children: [
                 Image.asset(
                   'assets/images/newsDrawer.png',
+                  fit:BoxFit.fill,
                   //height: 55,
                   width: MediaQuery.of(context).size.width,
                 ),
                 Stack(
                   children: [
                     SizedBox(
-            height: 3000,
+            height: MediaQuery.of(context).size.height,
             child:Image.asset('assets/images/appBackground.png',
             fit:BoxFit.fill,),
           ),
@@ -61,6 +69,7 @@ class _NewsViewState extends State<NewsView> {
                             return Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: NewsCardWidget(
+                                controller: homeController,
                                 data: homeController.newsDataList[index],
                               ),
                             );
@@ -79,32 +88,47 @@ class _NewsViewState extends State<NewsView> {
 
 class NewsCardWidget extends StatelessWidget {
   Map<String, dynamic> data;
-  NewsCardWidget({super.key, required this.data});
+  HomeController controller;
+  NewsCardWidget({super.key, required this.data,required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 222,
+    //  height: 204,
       decoration: BoxDecoration(
         border:Border.all(color:Colors.white),
         borderRadius: BorderRadius.circular(12),
         color: Colors.blue[100]!.withOpacity(0.2),
         boxShadow: [
-          // BoxShadow(
-          //   color: kPrimaryColor.withOpacity(0.2),
-          //   spreadRadius: 2,
-          //   blurRadius: 7,
-          //   offset: const Offset(0, 3), // changes position of shadow
-          // ),
+
         ],
       ),
       child: Column(
         children: [
-          Image.network(
-            data['image'],
-            height: 122,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
+          Stack(
+            children: [
+              Image.network(
+                data['image'],
+                height: 122,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+              ),
+              Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width-60,
+
+              ),
+              child:IconButton(onPressed: () {
+
+                print("Link=="+data['link']);
+
+                controller.launchURL(data['link']);
+
+
+              }, icon: const Icon(Icons.share,
+              color:Colors.black,
+              size: 31
+              ),),
+              )
+            ],
           ),
           const SizedBox(
             height: 9,

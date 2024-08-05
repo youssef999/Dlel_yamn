@@ -14,12 +14,15 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'core/resources/check_theme.dart';
+
  void main() async {
   
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
   configureFirebaseMessaging();
+  CheckTheme();
    AwesomeNotifications()
       .initialize(null,[
     NotificationChannel
@@ -126,11 +129,11 @@ List<Map<String, dynamic>> tokenList = [];
         // translations: MyLocal(),
         locale:lang,
         translations: MyLocal(),
-        title: "EASY",
+        title: "دليل اليمن ",
         // locale: lang,
         //  supportedLocales: supportedLocales,
         initialRoute: 
-        Theme1AppPages.HOME,
+        Theme1AppPages.INITIAL,
         getPages: Theme1AppPages.routes,
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.cupertino,
@@ -156,7 +159,7 @@ List<Map<String, dynamic>> tokenList = [];
           // translations: MyLocal(),
           //locale:lang,
           translations: MyLocal(),
-          title: "EASY",
+          title: "دليل اليمن ",
           // locale: lang,
           //  supportedLocales: supportedLocales,
           initialRoute: Theme1AppPages.INITIAL,

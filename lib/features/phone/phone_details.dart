@@ -3,12 +3,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_styles.dart';
+import 'package:freelancerApp/core/widgets/bottom_navber.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/phone/phone_controller.dart';
 import 'package:get/get.dart';
 
 import '../../core/resources/app_colors.dart';
 import '../../core/resources/colors.dart';
+import '../home/controllers/root_controller.dart';
 import '../home/views/widgets/drop_down.dart';
 
 class PhoneDetailsView extends StatefulWidget {
@@ -35,7 +37,11 @@ class _PhoneDetailsViewState extends State<PhoneDetailsView> {
   }
   @override
   Widget build(BuildContext context) {
+    RootController rootController=Get.put(RootController());
+
     return Scaffold(
+      bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+          ,  1 ),
       
      // appBar: CustomAppBar('', context),
       body:Container(
@@ -47,7 +53,9 @@ class _PhoneDetailsViewState extends State<PhoneDetailsView> {
             child: GetBuilder<PhoneController>(
               builder: (_) {
                 return ListView(children: [
+
                    Image.asset('assets/images/phoneDrawer.png',
+                     fit:BoxFit.fill,
                 //height: 55,
                 width:MediaQuery.of(context).size.width,
                 ),
@@ -70,7 +78,6 @@ class _PhoneDetailsViewState extends State<PhoneDetailsView> {
                             hintText: 'المناطق',
                             selectedValue: controller.selcetPlace,
                             onChanged: (String? newValue) {
-
                               controller.chnagePlace(newValue!,
                               widget.phoneType
                               );

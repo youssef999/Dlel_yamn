@@ -22,7 +22,9 @@ class RootView extends GetView<RootController> {
         extendBody: true,
        // backgroundColor: AppColors.primaryLightColor,
         bottomNavigationBar:
-            buildBottomNavigationMenu(context, controller),
+            buildBottomNavigationMenu(context, controller,
+            0
+            ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: controller
             .page[controller.selectedIndex.value],

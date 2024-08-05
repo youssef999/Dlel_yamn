@@ -6,7 +6,9 @@ import 'package:freelancerApp/features/phone/phone_details.dart';
 
 import 'package:get/get.dart';
 
+import '../../core/widgets/bottom_navber.dart';
 import '../../core/widgets/custom_app_bar.dart';
+import '../home/controllers/root_controller.dart';
 
 class PhoneView extends StatefulWidget {
   const PhoneView({super.key});
@@ -19,8 +21,11 @@ class _PhoneViewState extends State<PhoneView> {
   @override
   Widget build(BuildContext context) {
     PhoneController controller = Get.put(PhoneController());
+    RootController rootController=Get.put(RootController());
 
     return Scaffold(
+      bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+          ,  1 ),
       backgroundColor: kBackgroundColor,
       //  appBar:CustomAppBar('phone', context),
       body: Padding(
@@ -40,6 +45,7 @@ class _PhoneViewState extends State<PhoneView> {
                     'assets/images/phoneDrawer.png',
                     //height: 55,
                     width: MediaQuery.of(context).size.width,
+                    fit:BoxFit.fill,
                   ),
                   const SizedBox(height: 14),
                   Padding(
@@ -54,9 +60,10 @@ class _PhoneViewState extends State<PhoneView> {
                             txt: controller.phoneName[index]);
                       },
                       gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                          const
+         SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 1.1,
+                        childAspectRatio: 0.92,
                         crossAxisSpacing: 1,
                         mainAxisSpacing: 1,
                       ),
@@ -85,11 +92,14 @@ class PhoneCardWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 120,
+            height: 130,
             width: 164,
-            child: Card(
+            child: Container(
+              decoration:BoxDecoration(
+                  color: const Color(0XFFcfe2f3).withOpacity(0.5),
+                borderRadius:BorderRadius.circular(22)
+              ),
              // elevation: 10,
-            color: const Color(0XFFcfe2f3),
               child: Image.asset(
                 image,height: 100,
                 width: 70,

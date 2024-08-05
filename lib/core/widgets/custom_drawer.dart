@@ -10,6 +10,7 @@ import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/features/auth/views/login_view.dart';
 import 'package:freelancerApp/features/contact/contact_view.dart';
 import 'package:freelancerApp/features/convert_money/convert_money_view.dart';
+import 'package:freelancerApp/features/dark/dark_view.dart';
 import 'package:freelancerApp/features/details/details_view.dart';
 import 'package:freelancerApp/features/football/football_view.dart';
 import 'package:freelancerApp/features/news/news_view.dart';
@@ -34,42 +35,41 @@ import '../../features/notifications/noti_view.dart';
               width: 2000,
               child: 
               Image.asset
-              ('assets/images/drawer_color.png',fit:BoxFit.cover,))),
+              (drawerBg,fit:BoxFit.cover,))),
 
 
  ListView(children: [
-        const SizedBox(height: 6,),
+        const SizedBox(height: 1,),
 
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(2.0),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius:BorderRadius.circular(13),
+             borderRadius:BorderRadius.circular(13),
               color:  const Color(0xffC7E1EE).withOpacity(0.1),
             ),
-            child: Image.asset(AppAssets.logo,fit:BoxFit.cover,
-            height: 173,
+            child: Image.asset(logo,fit:BoxFit.cover,
+            height: 165,
             ),
           ),
         ),
 
 
-        Divider(color:Colors.grey[100],),
-        const SizedBox(height: 20,),
+      //  Divider(color:Colors.grey[100],),
+        const SizedBox(height: 12,),
       
-        DrawerItemWidget(image: 'assets/images/home.png', txt: 'الرئيسية',),
+        DrawerItemWidget(image: homeDrawer, txt: 'الرئيسية',),
         const SizedBox(height: 20,),
-        InkWell(child: DrawerItemWidget(image: 'assets/images/bill.png',
+        InkWell(child: DrawerItemWidget(image: billDrawer,
          txt: 'اشعارات',),
          onTap:(){
           Get.to(const NotiView());
          },
          ),
         const SizedBox(height: 20,),
-       
-       
+
         InkWell(child: DrawerItemWidget(
-          image: 'assets/images/priceMoney.png', txt: 'اسعار العملات',),
+          image: priceMoneyDrawer, txt: 'اسعار العملات',),
           
           onTap:(){
             Get.to(DetailsView(
@@ -82,7 +82,7 @@ import '../../features/notifications/noti_view.dart';
       
         const SizedBox(height: 20,),
         InkWell(child: DrawerItemWidget
-        (image: 'assets/images/goldMoney.png', txt: 'اسعار الذهب',),
+        (image:goldDrawer, txt: 'اسعار الذهب',),
         onTap:(){
            Get.to(DetailsView(
               
@@ -95,7 +95,7 @@ import '../../features/notifications/noti_view.dart';
 
         const SizedBox(height: 20,),
         InkWell(child: DrawerItemWidget
-        (image: 'assets/images/gaz.png', txt: 'اسعار المحروقات',),
+        (image:gazDrawer, txt: 'اسعار المحروقات',),
         
         onTap:(){
 
@@ -109,7 +109,7 @@ import '../../features/notifications/noti_view.dart';
 
         const SizedBox(height: 20,),
         InkWell(child:
-         DrawerItemWidget(image: 'assets/images/phoneDrawerIcon.png',
+         DrawerItemWidget(image:phoneDrawer,
           txt: 'دليل الارقام',),
           onTap:()
           {
@@ -121,7 +121,7 @@ import '../../features/notifications/noti_view.dart';
 
         const SizedBox(height: 20,),
         InkWell(child: DrawerItemWidget
-        (image: 'assets/images/newsDrawerIcon.png', txt: 'أخبار اقتصادية',),
+        (image: newsDrawer, txt: 'أخبار اقتصادية',),
         onTap:(){
           Get.to(NewsView(txt:''));
         },
@@ -129,7 +129,7 @@ import '../../features/notifications/noti_view.dart';
 
         const SizedBox(height: 20,),
         InkWell(child: DrawerItemWidget
-        (image: 'assets/images/ball.png', txt: 'دليل المباريات',),
+        (image: ballDrawer, txt: 'دليل المباريات',),
         
         onTap:(){
 
@@ -137,7 +137,7 @@ import '../../features/notifications/noti_view.dart';
         },
         ),
         const SizedBox(height: 20,),
-        InkWell(child: DrawerItemWidget(image: 'assets/images/convert.png',
+        InkWell(child: DrawerItemWidget(image:convertDrawer,
           txt: 'تحويل العملات',),
 
         onTap:(){
@@ -147,9 +147,20 @@ import '../../features/notifications/noti_view.dart';
 
 
         const SizedBox(height: 20,),
-        DrawerItemWidget(image: 'assets/images/lang.png', txt: 'اللغة الانجليزية',),
+
+
+        InkWell(child: DrawerItemWidget(image: darkModeDrawer,
+          txt: 'الوضع الليلي ',),
+
+        onTap:(){
+          Get.to(const DarkView());
+        },
+        ),
+
+
         const SizedBox(height: 20,),
-        InkWell(child: DrawerItemWidget(image: 'assets/images/contact.png', txt: 'تواصل معنا',),
+        InkWell(child: DrawerItemWidget(image: contactDrawer,
+          txt: 'تواصل معنا',),
         onTap:(){
 
           Get.to(const ContactView());
@@ -160,7 +171,7 @@ import '../../features/notifications/noti_view.dart';
 
         InkWell(child:
 
-        DrawerItemWidget(image: 'assets/images/share2.png',
+        DrawerItemWidget(image: share,
           txt: 'شارك التطبيق',),
 
         onTap:(){
@@ -169,7 +180,8 @@ import '../../features/notifications/noti_view.dart';
         ),
 
         const SizedBox(height: 20,),
-        InkWell(child: DrawerItemWidget(image: 'assets/images/logout.png', txt: 'تسجيل الخروج',),
+        InkWell(child: DrawerItemWidget(image:
+        logout, txt: 'تسجيل الخروج',),
         onTap:(){
           final box=GetStorage();
           box.remove('email');
@@ -228,7 +240,11 @@ import '../../features/notifications/noti_view.dart';
        const SizedBox(width: 16,),
       Image.asset(widget.image,width: 20,height: 20,),
       const SizedBox(width: 16,),
-      Text(widget.txt,style:Styles.lightTextStyle,),
+      Text(widget.txt,
+        style:TextStyle(
+          color:kDrawerText,fontSize: 16,fontWeight:FontWeight.bold
+
+        )),
      ],);
    }
  }

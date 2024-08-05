@@ -46,8 +46,9 @@ dependencies:
   awesome_notifications:
   search_map_location: ^0.0.6
   geolocator: ^9.0.2
-  url_launcher: ^6.2.3
+  url_launcher: ^6.3.0
   webview_flutter: ^2.0.10
+  flutter_switch: ^0.3.2
   intl:
   geocoding:
   location: ^5.0.3

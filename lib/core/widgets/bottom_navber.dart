@@ -4,17 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
+import 'package:freelancerApp/features/home/views/bottom_bar.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-buildBottomNavigationMenu(context, bottomNavBarController) {
+buildBottomNavigationMenu(context, bottomNavBarController, int index) {
 
   final box=GetStorage();
   String roleId=box.read('roleId')??'1';
 
   if(roleId=='1'){
     return BottomAppBar(
-      elevation: 0,
-      color: AppColors.transparent,
+      elevation: 3,
+      color: kBottomBarColor,
+      //Colors.blue[400]!.withOpacity( 0.4),
       child: Container(
         height: 64,
         // margin: const EdgeInsets.only(
@@ -23,24 +26,23 @@ buildBottomNavigationMenu(context, bottomNavBarController) {
         //   bottom: 24 * 0.2,
         // ),
         decoration: BoxDecoration(
-            color: Colors.blue[200]!.withOpacity( 0.4),
+            color: kBottomBarColor,
+            //Colors.blue[100]!.withOpacity( 0.2),
             borderRadius: BorderRadius.circular(11)),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-
       //back
-       bottomItemWidget('assets/images/back.png',
+       bottomItemWidget(index,'assets/images/back.png',
                 bottomNavBarController, 0, AppColors.transparent),
 
-            bottomItemWidget('assets/images/home.png', bottomNavBarController, 1,
+            bottomItemWidget(index,'assets/images/home.png', bottomNavBarController, 1,
                 AppColors.transparent),
 
-
-           bottomItemWidget('assets/images/ref2.png', bottomNavBarController, 2,
+           bottomItemWidget(index,'assets/images/ref2.png', bottomNavBarController, 2,
                 AppColors.transparent),
-            
+
           ],
         ),
       ),
@@ -65,24 +67,24 @@ buildBottomNavigationMenu(context, bottomNavBarController) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
 
-            bottomItemWidget('assets/icon/home.svg', bottomNavBarController, 0,
+            bottomItemWidget(index,'assets/icon/home.svg', bottomNavBarController, 0,
                 AppColors.transparent),
 
-            bottomItemWidget('assets/icon/messagetext.svg',
+            bottomItemWidget(index,'assets/icon/messagetext.svg',
                 bottomNavBarController, 1, AppColors.transparent),
 
-            bottomItemWidget('assets/icon/cross.svg', bottomNavBarController, 2,
+            bottomItemWidget(index,'assets/icon/cross.svg', bottomNavBarController, 2,
                 AppColors.transparent),
 
 
 
-            bottomItemWidget('assets/icon/details.svg', bottomNavBarController, 3,
+            bottomItemWidget(index,'assets/icon/details.svg', bottomNavBarController, 3,
                 AppColors.transparent),
 
-            bottomItemWidget('assets/icon/my_wallet.svg', bottomNavBarController, 4,
+            bottomItemWidget(index,'assets/icon/my_wallet.svg', bottomNavBarController, 4,
                 AppColors.transparent),
 
-bottomItemWidget('assets/icon/profile.svg', bottomNavBarController, 5,
+bottomItemWidget(index,'assets/icon/profile.svg', bottomNavBarController, 5,
                 AppColors.whiteColor.withOpacity(0.1)),
 
 
@@ -100,10 +102,10 @@ bottomItemWidget('assets/icon/profile.svg', bottomNavBarController, 5,
 
 
   }
-
 }
 
 bottomItemWidget(
+    int index,
   var icon,
   bottomNavBarController,
   page,
@@ -114,6 +116,25 @@ bottomItemWidget(
       onTap: () {
         bottomNavBarController.selectedIndex.value = page;
         print(bottomNavBarController.selectedIndex.value);
+
+        if(index==1){
+
+          if(page==0){
+            print("0000");
+            Get.back();
+          }
+
+          if(page==1){
+            Get.offAll(RootView());
+          }
+
+          if(page==2){
+
+          }
+
+
+
+        }
       },
       child: CircleAvatar(
         radius: 25,
@@ -121,7 +142,8 @@ bottomItemWidget(
         child: Image.asset(
           icon,
           color: bottomNavBarController.selectedIndex.value == page
-              ? kPrimaryColor
+              ?Colors.white
+          //kPrimaryColor
               : Colors.white,
           height: 24,
         ),

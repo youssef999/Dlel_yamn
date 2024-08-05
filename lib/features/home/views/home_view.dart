@@ -45,7 +45,8 @@ class _HomeViewState extends State<HomeView> {
         children: [
           SizedBox(
             height: 3000,
-            child:Image.asset('assets/images/appBackground.png',
+            width: MediaQuery.of(context).size.width,
+            child:Image.asset(backgroundImage,
             fit:BoxFit.fill,),
           ),
 
@@ -65,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Image.asset(
-                              AppAssets.logo,
+                              logo,
                               fit: BoxFit.cover,
                               width: 100,
                               height: 50,
@@ -74,7 +75,7 @@ class _HomeViewState extends State<HomeView> {
                               child: SizedBox(
                                 height: 31,
                                 child: Image.asset(
-                                  'assets/images/menu.png',
+                               menuIcon,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -85,18 +86,7 @@ class _HomeViewState extends State<HomeView> {
                           ],
                         ),
                       ),
-                      // const SizedBox(
-                      //   height: 8,
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(13.0),
-                      //   child: CustomTextFormField(
-                      //     hint: 'البحث',
-                      //     obs: false,
-                      //     controller: controller.searchController,
-                      //     icon: Icons.search,
-                      //   ),
-                      // ),
+
                       const SizedBox(
                         height: 12,
                       ),
@@ -105,14 +95,16 @@ class _HomeViewState extends State<HomeView> {
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(21),
-                              color: Colors.white),
+                              color:kDropDownColor
+                          //    kTextHelperLightColor
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
                                 "المناطق",
                                 style:
-                                    TextStyle(color: AppColors.txtPrimaryColor),
+                                    TextStyle(color: kTextPrimaryColor),
                               ),
                               DropDownWidget(
                                 items: controller.placesList,
@@ -152,6 +144,8 @@ class _HomeViewState extends State<HomeView> {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: DataCardWidget(
+                                  dataType: controller.priceDataList[index]
+                                  ['type'],
                                   img1: controller.priceDataList[index]
                                             ['img1'],
                                             img2: controller.priceDataList[index]
@@ -200,6 +194,8 @@ class _HomeViewState extends State<HomeView> {
                               return Padding(
                                 padding: const EdgeInsets.all(3.0),
                                 child: DataCardWidget(
+                                    dataType:controller.priceDataList[index]
+                                    ['type'],
                                     buyPrice: controller.goldDataList[index]
                                             ['buyPrice']
                                         .toString(),
@@ -234,7 +230,7 @@ class _HomeViewState extends State<HomeView> {
                         children: [
                           InkWell(
                             child: AppCardWidget(
-                              image: 'assets/images/moneyPrice.png',
+                              image: moneyPrice,
                               txt: 'أسعار',
                               txt2:'العملات'
                             ),
@@ -246,7 +242,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           InkWell(
                             child: AppCardWidget(
-                              image: 'assets/images/goldPrice.png',
+                              image:goldPrice,
                               txt: 'اسعار',
                               txt2: 'الذهب',
                             ),
@@ -258,7 +254,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           InkWell(
                             child: AppCardWidget(
-                              image: 'assets/images/gazPrice.png',
+                              image: gazPrice,
                               txt: 'أسعار',
                               txt2: 'المحروقات',
                             ),
@@ -278,7 +274,7 @@ class _HomeViewState extends State<HomeView> {
                         children: [
                           InkWell(
                             child: AppCardWidget(
-                              image: 'assets/images/phone2.png',
+                              image: phoneIcon,
                               txt: 'دليل',
                               txt2: 'الارقام',
                             ),
@@ -288,7 +284,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           InkWell(
                             child: AppCardWidget(
-                              image: 'assets/images/news.png',
+                              image:newsIcon,
                               txt: "أخبار",
                               txt2: 'اقتصادية',
                             ),
@@ -300,7 +296,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           InkWell(
                             child: AppCardWidget(
-                              image: 'assets/images/ball.png',
+                              image:ballIcon,
                               txt: 'دليل',
                               txt2: ' المباريات',
                             ),
@@ -341,7 +337,19 @@ class AppCardWidget extends StatelessWidget {
       height: 90,
       //width:MediaQuery.of(context).size.width*0.24,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14), color: Colors.white),
+        border:Border.all(color:Colors.grey[900]!),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.7), // لون الظل مع ضبط الشفافية
+              spreadRadius: 2, // مدى انتشار الظل
+              blurRadius: 5, // مدى ضبابية الظل
+              offset: Offset(1, 3), // إزاحة الظل
+            ),
+          ],
+          borderRadius:
+          BorderRadius.circular(14),
+          color: newCardColor),
+
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: Row(

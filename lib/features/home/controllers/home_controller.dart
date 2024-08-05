@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends GetxController {
 
@@ -12,18 +13,40 @@ class HomeController extends GetxController {
 
   List<String>placesList=['عدن','حضر موت','صنعاء'];
 
-
   List<Map<String,dynamic>> priceDataList=[];
 
   List<Map<String,dynamic>> goldDataList=[];
 
  List<Map<String,dynamic>> gazDataList=[];
 
+  List<Map<String,dynamic>> currecncyDataList=[];
+
+   List<String>currencyList=[];
+
   String selcetPlace='عدن';
+  String selcetPrice='الريال اليمني';
+
+
+  void launchURL(String link) async {
+    String url = link;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      await launch(url);
+      throw 'Could not launch $url';
+    }
+  }
+
+
+  chnageCurrency(String newVal){
+    selcetPrice=newVal;
+    getGazDataWithFilter();
+    update();
+  }
+
 
   chnagePlace(String newVal){
     selcetPlace=newVal;
- 
     getPriceDataWithFilter();
     getDataDataWithFilter();
      getGazDataWithFilter();
@@ -32,6 +55,34 @@ class HomeController extends GetxController {
 
 
 bool isLoading=false;
+  
+  getCurrencyData()async{
+    currecncyDataList=[];
+    currencyList=[];
+    QuerySnapshot querySnapshot =
+    await FirebaseFirestore.instance.collection
+      ('currency').get();
+    try{
+      List<Map<String, dynamic>> data
+      = querySnapshot.docs.map((DocumentSnapshot doc) =>
+      doc.data() as Map<String, dynamic>).toList();
+      currecncyDataList=data;
+      for(int i=0;i<currecncyDataList.length;i++){
+        currencyList.add(currecncyDataList[i]['name']);
+      }
+      selcetPrice=currencyList[0];
+      update();
+    }catch(e){
+      // ignore: avoid_print
+      print("E.......");
+      // ignore: avoid_print
+      print(e);
+      // orderState='error';
+      // ignore: avoid_print
+      print("E.......");
+    }
+    
+  }
 
 getDataDataWithFilter()async{
 isLoading=true;
@@ -67,13 +118,12 @@ QuerySnapshot querySnapshot =
 
 
  getGazDataWithFilter()async{
-
  gazDataList=[];
- 
 QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection
         ('gazData')
-        .where('location',isEqualTo: selcetPlace)
+        .where('location',isEqualTo: selcetPlace).
+         where('currency',isEqualTo: selcetPrice)
         .get();
       try{
         List<Map<String, dynamic>> data

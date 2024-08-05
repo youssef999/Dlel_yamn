@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
+import 'package:freelancerApp/core/resources/colors.dart';
 
 
 class DropDownWidget extends StatelessWidget {
@@ -41,7 +42,7 @@ class DropDownWidget extends StatelessWidget {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value,
-                  style:TextStyle(color: AppColors.txtPrimaryColor,
+                  style:TextStyle(color: kTextPrimaryColor,
                   fontWeight:FontWeight.w800
                   ),
                   ),

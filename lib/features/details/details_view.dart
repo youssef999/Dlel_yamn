@@ -4,8 +4,10 @@ import 'package:freelancerApp/core/resources/app_assets.dart';
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/appbar.dart';
+import 'package:freelancerApp/core/widgets/bottom_navber.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/features/home/controllers/home_controller.dart';
+import 'package:freelancerApp/features/home/controllers/root_controller.dart';
 import 'package:get/get.dart';
 import '../data_card_widget/data_card.dart';
 import '../home/views/widgets/drop_down.dart';
@@ -22,19 +24,12 @@ class DetailsView extends StatefulWidget {
 }
 
 class _DetailsViewState extends State<DetailsView> {
-
-
   //'money',
-
-
   HomeController controller = Get.put(HomeController());
-
     String filter='';
 
   @override
   void initState() {
-  
-
     print("key==${widget.dataKey}");
     if(widget.dataKey=='money'){
       controller.getPriceData();
@@ -44,19 +39,20 @@ class _DetailsViewState extends State<DetailsView> {
       controller.getGoldData();
       filter='gold';
     }
-
     if(widget.dataKey=='gaz'){
       controller.getGazData();
+      controller.getCurrencyData();
       filter='gaz';
     }
-    
     super.initState();
   }
 
-
+ RootController rootController= Get.put(RootController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar:buildBottomNavigationMenu(context,rootController
+   ,  1 ),
     //  appBar: CustomAppBar(widget.dataKey, context),
       body:Padding(
         padding: const EdgeInsets.all(0.0),
@@ -64,7 +60,8 @@ class _DetailsViewState extends State<DetailsView> {
           children: [
          SizedBox(
             height: 3000,
-            child:Image.asset('assets/images/appBackground.png',
+            width:MediaQuery.of(context).size.width,
+            child:Image.asset(backgroundImage,
             fit:BoxFit.fill,),
           ),
 
@@ -72,25 +69,26 @@ class _DetailsViewState extends State<DetailsView> {
               builder: (_) {
                 return ListView(children: [
 
-
-                
                 if(widget.dataKey=='gaz')
-                Image.asset('assets/images/gazDrawer.png',
+
+                Image.asset(gazAppBar,
+                  fit:BoxFit.fill,
                 //height: 55,
                 width:MediaQuery.of(context).size.width,
                 ),
 
                   if(widget.dataKey=='money')
-                Image.asset('assets/images/priceDrawer.png',
+                Image.asset(priceAppBar,
+                  fit:BoxFit.fill,
                 //height: 55,
                 width:MediaQuery.of(context).size.width,
                 ),
                  if(widget.dataKey=='gold')
-                Image.asset('assets/images/goldDrawer.png',
+                Image.asset(goldAppBar,
+                  fit:BoxFit.fill,
                 //height: 55,
                 width:MediaQuery.of(context).size.width,
                 ),
-
 
                  const SizedBox(height: 21),
                 
@@ -137,11 +135,11 @@ class _DetailsViewState extends State<DetailsView> {
                                   fontWeight:FontWeight.bold
                                 )),
                                 DropDownWidget(
-                                            items: controller.placesList,
+                                            items: controller.currencyList,
                                             hintText: ' العملة ',
-                                            selectedValue: controller.selcetPlace,
+                                            selectedValue: controller.selcetPrice,
                                             onChanged: (String? newValue) {
-                                              controller.chnagePlace(newValue!);
+                                              controller.chnageCurrency(newValue!);
                                             },
                                           ),
                               ],
@@ -151,10 +149,6 @@ class _DetailsViewState extends State<DetailsView> {
                       ),
                     ),
                   ),
-                
-                
-                
-                  
                 
                       // Padding(
                       //   padding: const EdgeInsets.only(left: 11, right: 11),
@@ -188,23 +182,8 @@ class _DetailsViewState extends State<DetailsView> {
                       //     ),
                       //   ),
                       // ),
-                
-                      
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                   const SizedBox(height: 7,),
-                            
+
                   if(widget.dataKey=='money')
                  ListView.builder(
                           itemCount: controller.priceDataList.length,
@@ -218,6 +197,13 @@ class _DetailsViewState extends State<DetailsView> {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: DataCardWidget(
+
+                                  img1: controller.priceDataList[index]
+                                  ['img1'],
+                                  img2: controller.priceDataList[index]
+                                  ['img2'],
+                                  dataType: controller.priceDataList[index]
+                                  ['type'],
                                     buyPrice: controller.priceDataList[index]
                                             ['buyPrice']
                                         .toString(),
@@ -260,6 +246,8 @@ class _DetailsViewState extends State<DetailsView> {
                                             ['buyPrice']
                                         .toString(),
                                     image: 'assets/images/gold.png',
+                                    dataType: controller.priceDataList[index]
+                                    ['type'],
                                     type: 'gold',
                                     sellPrice: controller.goldDataList[index]
                                             ['sellPrice']
@@ -275,8 +263,7 @@ class _DetailsViewState extends State<DetailsView> {
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                         ),
-                            
-                            
+
                             
                    if(widget.dataKey=='gaz')
                  GridView.builder(
@@ -289,7 +276,7 @@ class _DetailsViewState extends State<DetailsView> {
                               );
                             } else {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(3.0),
                                 child: GazCardWidget(title: controller.gazDataList[index]['name']
                                 , image: controller.gazDataList[index]['image']
                                 , price: controller.gazDataList[index]['price'].toString()+" "+"﷼")
@@ -298,8 +285,10 @@ class _DetailsViewState extends State<DetailsView> {
                           },
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true, gridDelegate: 
-                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
-                          childAspectRatio: 0.77
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+
+                          childAspectRatio: 0.86
                           ),
                         ),
                             
@@ -359,15 +348,15 @@ GazCardWidget({super.key,
               ),
             ),
           ),
-          const SizedBox(height: 11,),
+          const SizedBox(height: 4,),
          
           Image.network(image,fit:BoxFit.fill,
-          height: 110,
+          height: 100,
           width: MediaQuery.of(context).size.width,
           
           ),
          
-          const SizedBox(height: 11,),
+          const SizedBox(height: 5,),
           Text(price,style:
           TextStyle(color:kPrimaryColor,
           fontSize: 22,fontWeight:FontWeight.w700
