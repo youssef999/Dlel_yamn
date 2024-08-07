@@ -18,6 +18,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 
 import '../../../../Core/const/app_message.dart';
+import '../../home/views/bottom_bar.dart';
 import '../views/verfied_email.dart';
 
 class AuthController extends GetxController {
@@ -647,7 +648,7 @@ class AuthController extends GetxController {
             print("DONE");
             box.write('email', emailController.text);
            // box.write('roleId', roleId);
-            Get.offAll(const HomeView());
+            Get.offAll( RootView());
             loading = false;
             CustomLoading.cancelLoading();
             update();
@@ -736,7 +737,7 @@ class AuthController extends GetxController {
 
     box.write('email', emailController.text);
     appMessage(text: 'تم التسجيل بنجاح', fail: false);
-    Get.offAll(const HomeView());
+    Get.offAll( RootView());
 
         
       });

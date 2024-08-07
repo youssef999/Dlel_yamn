@@ -43,28 +43,28 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
-        color:Colors.white,
-        // decoration:BoxDecoration(
-        //   gradient: LinearGradient(
-        //     colors: [
-        //      const Color(0xffC7E1EE),
-        //        Colors.blue[200]!,
-        //     ],
-        // )),
-        child: Center(
-          child: ListView(
-            
-            children: [
-            const SizedBox(height: 201,),
-            SizedBox(
-              height: 260,
-              child: Image.asset(AppAssets.logo,fit: BoxFit.contain,),
-            ),
-            const SizedBox(height: 21,),
-          
-          ],),
-        ),
+      body:Stack(
+        children: [
+          SizedBox(
+            height: 3000,
+            width: MediaQuery.of(context).size.width,
+            child:Image.asset(backgroundImage,
+              fit:BoxFit.fill,),
+          ),
+          Center(
+            child: ListView(
+
+              children: [
+              const SizedBox(height: 201,),
+              SizedBox(
+                height: 260,
+                child: Image.asset(logo,fit: BoxFit.contain,),
+              ),
+              const SizedBox(height: 21,),
+
+            ],),
+          ),
+        ],
       ),
 
     );

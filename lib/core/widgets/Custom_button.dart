@@ -48,7 +48,9 @@ import '../resources/app_colors.dart';
                 padding: const EdgeInsets.all(4.0),
                 child: 
                 Text(
-                  text,style:const TextStyle(color:Colors.white,fontSize: 17),
+                  text,style:const TextStyle(color:Colors.white,fontSize: 17,
+                fontWeight: FontWeight.bold
+                ),
                 ),
               
               ),

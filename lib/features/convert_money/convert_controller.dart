@@ -20,17 +20,16 @@ class ConvertController extends GetxController{
 
   List<String> currencyList2=[
    'دولار',
-   
-    'GBP',
+ 'الريال  السعودي',
     'JPY',
   ];
 
 
-  String selectCurrency='دولار';
-  String selectCurrency2='جنيه';
+  String selectCurrency= 'الريال  السعودي';
+  String selectCurrency2= 'الريال  السعودي';
+
 
   getAllCurrency()async {
-
      currencyList=[];
      currencyList2=[];
 

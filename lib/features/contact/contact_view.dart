@@ -25,57 +25,84 @@ class ContactView extends StatelessWidget {
       bottomNavigationBar:buildBottomNavigationMenu(context,rootController
           ,  1 ),
       
-      appBar:CustomAppBar('تواصل معنا', context),
-      body:Padding(
-        padding: const EdgeInsets.all(14.0),
-        child: Container(
-          decoration: AppDecoration,
-          child: GetBuilder<ContactController>(
-            builder: (_) {
-              return ListView(children: [
-                const SizedBox(height: 30,),
-
-                CustomTextFormField(hint: 'الاسم', obs: false, controller: controller.nameController,
-                icon:Icons.person, color:Colors.black
-                ),
-
-                const SizedBox(height: 15,),
-
-                 CustomTextFormField(hint: 'الايميل', obs: false, controller: controller.emailController,
-                icon:Icons.email, color:Colors.black
-                ),
-
-                const SizedBox(height: 15,),
-
-                 CustomTextFormField(hint: 'الموضوع', obs: false, controller: controller.subjectController,
-                icon:Icons.subject, color:Colors.black,max: 3,
-                ),
-                 const SizedBox(height: 15,),
-
-                 CustomTextFormField(hint: 'الرسالة', obs: false, controller: controller.messageController,
-                icon:Icons.message, color:Colors.black,max: 5,
-                ),
-
-                    const SizedBox(height: 30,),
-
-                (controller.isLoading==false)?
-
-                    CustomButton(text: 'ارسال', onPressed: (){
-
-
-                      controller.sendMessageToAdmin();
-
-                    }):
-                    const Center(child: CircularProgressIndicator(),)
-
-
-
-
-
-              ],);
-            }
+      //appBar:CustomAppBar('تواصل معنا', context),
+      body:Stack(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child:Image.asset(backgroundImage,
+              fit:BoxFit.fill,),
           ),
-        ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset(contactAppBar,
+                  fit:BoxFit.fill,
+                  //height: 55,
+                  width:MediaQuery.of(context).size.width,
+                ),
+            
+            
+            
+                Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: Container(
+                    //decoration: AppDecoration,
+                    child: GetBuilder<ContactController>(
+                      builder: (_) {
+                        return SizedBox(
+                         // height:MediaQuery.of(context).size.height,
+                          child: Column(children: [
+                            const SizedBox(height: 30,),
+                          
+                            CustomTextFormField(hint: 'الاسم', obs: false, controller: controller.nameController,
+                            icon:Icons.person, color:Colors.black
+                            ),
+                          
+                            const SizedBox(height: 15,),
+                          
+                             CustomTextFormField(hint: 'الايميل', obs: false, controller: controller.emailController,
+                            icon:Icons.email, color:Colors.black
+                            ),
+                          
+                            const SizedBox(height: 15,),
+                          
+                             CustomTextFormField(hint: 'الموضوع', obs: false, controller: controller.subjectController,
+                            icon:Icons.subject, color:Colors.black,max: 3,
+                            ),
+                             const SizedBox(height: 15,),
+                          
+                             CustomTextFormField(hint: 'الرسالة', obs: false, controller: controller.messageController,
+                            icon:Icons.message, color:Colors.black,max: 5,
+                            ),
+                          
+                                const SizedBox(height: 30,),
+                          
+                            (controller.isLoading==false)?
+                          
+                                CustomButton(text: 'ارسال', onPressed: (){
+                          
+                          
+                                  controller.sendMessageToAdmin();
+                          
+                                }):
+                                const Center(child: CircularProgressIndicator(),)
+                          
+                          
+                          
+                          
+                          
+                          ],),
+                        );
+                      }
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

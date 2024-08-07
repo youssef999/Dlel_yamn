@@ -25,7 +25,6 @@ class _NewsViewState extends State<NewsView> {
   @override
   void initState() {
     homeController.getNewsData();
-
     super.initState();
   }
 
@@ -40,47 +39,44 @@ class _NewsViewState extends State<NewsView> {
       //appBar:CustomAppBar(widget.txt, context),
       body: Container(
         decoration: AppDecoration,
-        child: Padding(
-          padding: const EdgeInsets.all(0.0),
-          child: GetBuilder<HomeController>(builder: (_) {
-            return ListView(
-              children: [
-                Image.asset(
-                  'assets/images/newsDrawer.png',
-                  fit:BoxFit.fill,
-                  //height: 55,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                Stack(
-                  children: [
-                    SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child:Image.asset('assets/images/appBackground.png',
-            fit:BoxFit.fill,),
-          ),
-
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                          itemCount: homeController.newsDataList.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: NewsCardWidget(
-                                controller: homeController,
-                                data: homeController.newsDataList[index],
-                              ),
-                            );
-                          }),
-                    ),
-                  ],
-                )
-              ],
-            );
-          }),
+        child: GetBuilder<HomeController>(builder: (_) {
+          return ListView(
+            children: [
+              Image.asset(
+                newsAppBar,
+                fit:BoxFit.fill,
+                //height: 55,
+                width: MediaQuery.of(context).size.width,
+              ),
+              Stack(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child:Image.asset(backgroundImage,
+          fit:BoxFit.fill,),
         ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                        itemCount: homeController.newsDataList.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: NewsCardWidget(
+                              controller: homeController,
+                              data: homeController.newsDataList[index],
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              )
+            ],
+          );
+        }),
       ),
     );
   }
@@ -95,14 +91,7 @@ class NewsCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
     //  height: 204,
-      decoration: BoxDecoration(
-        border:Border.all(color:Colors.white),
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.blue[100]!.withOpacity(0.2),
-        boxShadow: [
-
-        ],
-      ),
+      decoration: CardDecoration,
       child: Column(
         children: [
           Stack(

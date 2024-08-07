@@ -11,7 +11,8 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
 
-  List<String>placesList=['عدن','حضر موت','صنعاء'];
+  List<String>placesList=['صنعاء','تعز','عدن','حضر موت'];
+  String selcetPlace='حضر موت';
 
   List<Map<String,dynamic>> priceDataList=[];
 
@@ -23,7 +24,8 @@ class HomeController extends GetxController {
 
    List<String>currencyList=[];
 
-  String selcetPlace='عدن';
+
+
   String selcetPrice='الريال اليمني';
 
 
@@ -36,7 +38,6 @@ class HomeController extends GetxController {
       throw 'Could not launch $url';
     }
   }
-
 
   chnageCurrency(String newVal){
     selcetPrice=newVal;
@@ -81,7 +82,6 @@ bool isLoading=false;
       // ignore: avoid_print
       print("E.......");
     }
-    
   }
 
 getDataDataWithFilter()async{

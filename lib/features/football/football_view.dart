@@ -55,21 +55,20 @@ class _FootballViewState extends State<FootballView> {
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height,
-                      child:Image.asset('assets/images/appBackground.png',
+                      width: MediaQuery.of(context).size.width,
+                      child:Image.asset(backgroundImage,
                         fit:BoxFit.fill,),
                     ),
                     ListView(
                       children: [
-                        Image.asset('assets/images/ballDrawer.png',
+                        Image.asset(ballAppBar,
                     //height: 55,
                     width:MediaQuery.of(context).size.width,
                           fit:BoxFit.fill,
                     ),
-
                         const SizedBox(
                           height: 21,
                         ),
-
                         // Here, default theme colors are used for activeBgColor, activeFgColor, inactiveBgColor and inactiveFgColor
                         SizedBox(
                           height: 60,
@@ -80,17 +79,19 @@ class _FootballViewState extends State<FootballView> {
                             )],
                             initialLabelIndex: controller.toogleIndex,
                             totalSwitches: 2,
-                            inactiveBgColor:backgroundColor,
-                            activeBgColor:[ kPrimaryColor,
-                            const Color(0xff5E34A2).withOpacity(0.6),
-                            kPrimaryColor,
+                            inactiveBgColor:Colors.grey,
+                            activeBgColor: [
+                              kBallColor,
+                              kBallColor2,
+                              // Color(0xffFECF3B),
+                              // Color(0xffEA4335)
+                          //  const Color(0xff5E34A2).withOpacity(0.6),
+                           // kPrimaryColor,
                            // kPrimaryColor
                             ],
-
                             fontSize: 20,
                             minWidth: 200,
-                            inactiveFgColor:kPrimaryColor,
-
+                          inactiveFgColor:kPrimaryColor,
                             labels: const ['مباريات اليوم ','مباريات الغد '],
 
                             onToggle: (index) {
@@ -111,8 +112,9 @@ class _FootballViewState extends State<FootballView> {
                               children: [
                                 Text(
                                   controller.dayValue,
-                                  style: TextStyle(color:kTextHelperDarkColor,
-                                      fontSize: 20,
+                                  style: TextStyle(color: kTextHelperDarkColor,
+                                  //kTextHelperDarkColor,
+                                      fontSize: 21,
                                       fontWeight:FontWeight.bold
                                   ),
                                 ),

@@ -1,6 +1,7 @@
 
 
  import 'package:flutter/material.dart';
+import 'package:freelancerApp/features/home/views/home_view.dart';
 
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_styles.dart';
@@ -60,13 +61,20 @@ DataCardWidget({super.key,
                   backgroundImage: NetworkImage(img1),
                 ),
               const  SizedBox(width: 2,),
-                Text(title,
-                style:TextStyle(
-                  color:kPrimaryColor,
-                  fontSize: 16,
-                  fontWeight:FontWeight.w800
-                )
+                GradientText(
+                  title,
+                  style:TextStyle(
+                      color:kPrimaryColor,
+                      fontSize: 16,
+                      fontWeight:FontWeight.w800
+                  ),
+                  gradient: LinearGradient(
+                    colors: [ kBallColor
+                      ,  kBallColor2],
+                  ),
+                  // style: TextStyle(fontSize: 40),
                 ),
+
                  const  SizedBox(width: 2,),
                  CircleAvatar(
                   radius: 15,
@@ -90,21 +98,46 @@ DataCardWidget({super.key,
                     children: [
                     Column(children: [
                      const SizedBox(height: 41,),
-                      Text('سعر الشراء',
-                      style:Styles.primaryTextStyleBold
+                      GradientText(
+                        'سعر الشراء',
+                        style:Styles.primaryTextStyleBold,
+                        gradient: LinearGradient(
+                          colors: [ kBallColor
+                            ,  kBallColor2],
+                        ),
+                        // style: TextStyle(fontSize: 40),
+                      ), GradientText(
+                        ' ${buyPrice}'+"﷼",
+                        style:Styles.primaryTextStyleBold,
+                        gradient: LinearGradient(
+                          colors: [ kBallColor
+                            ,  kBallColor2],
+                        ),
+                        // style: TextStyle(fontSize: 40),
                       ),
+
+
+
                       const SizedBox(height: 6,),
-                      Text(' ${buyPrice}'+"﷼",
-                      style:Styles.primaryTextStyle
-                      ),
-                        //const SizedBox(height: 4),
+
+
 
                     ],),
                  const   SizedBox(width: 21,),
 
                     Column(children: [
 
-                      Text(country,style:Styles.primaryTextStyle),
+                     // Text(country,style:Styles.primaryTextStyle),
+
+                      GradientText(
+                        country,
+                          style:Styles.primaryTextStyle,
+                        gradient: LinearGradient(
+                          colors: [ kBallColor
+                            ,  kBallColor2],
+                        ),
+                        // style: TextStyle(fontSize: 40),
+                      ),
                      // Image.asset(image,height: 40,),
                       const SizedBox(height: 6,),
                       Image.asset(AppAssets.refersh,height: 22,),
@@ -114,20 +147,32 @@ DataCardWidget({super.key,
                       Image.asset(AppAssets.arrowStRed,height: 22,)
 
 
-
-
                     ],),
                      const   SizedBox(width: 21,),
 
                      Column(children: [
                        const SizedBox(height: 41,),
-                      Text('سعر البيع',
-                      style:Styles.primaryTextStyleBold
-                      ),
+                       GradientText(
+                         'سعر البيع',
+                         style:Styles.primaryTextStyleBold,
+                         gradient: LinearGradient(
+                           colors: [ kBallColor
+                             ,  kBallColor2],
+                         ),
+                         // style: TextStyle(fontSize: 40),
+                       ),
+
                       const SizedBox(height: 6,),
-                      Text(' ${sellPrice} '+"﷼",
-                      style:Styles.primaryTextStyle
-                      ),
+                       GradientText(
+                         ' ${sellPrice} '+"﷼",
+                         style:Styles.primaryTextStyle,
+                         gradient: LinearGradient(
+                           colors: [ kBallColor
+                             ,  kBallColor2],
+                         ),
+                         // style: TextStyle(fontSize: 40),
+                       ),
+
                      const SizedBox(height: 11,),
 
                     ],),
@@ -203,9 +248,16 @@ DataCardWidget({super.key,
           child: Padding(
             padding: const EdgeInsets.all(2.0),
             child: Center(
-              child: Text(title,
-              style:Styles.primaryTextStyleBold
+              child: GradientText(
+                title,
+                gradient: LinearGradient(
+                  colors: [kBallColor
+                    ,  kBallColor2]
+                ),
+                  style:Styles.primaryTextStyleBold
               ),
+
+
             ),
           ),
         ),
@@ -223,22 +275,45 @@ DataCardWidget({super.key,
                 
                   Column(children: [
                      const SizedBox(height: 41,),
-                
-                    Text('سعر الشراء',
-                    style:Styles.primaryTextStyleBold
+
+                    GradientText(
+                        'سعر الشراء',
+                        gradient: LinearGradient(
+                            colors: [kBallColor
+                              ,  kBallColor2]
+                        ),
+                        style:Styles.primaryTextStyleBold
                     ),
+
+
                     const SizedBox(height: 6,),
-                    Text(' ${buyPrice}'+"﷼",
-                    style:Styles.primaryTextStyle
+                    GradientText(
+                        ' ${buyPrice}'+"﷼",
+                        gradient: LinearGradient(
+                            colors: [kBallColor
+                              ,  kBallColor2]
+                        ),
+                        style:Styles.primaryTextStyle
                     ),
+
+
                       const SizedBox(height: 11,),
                         
                   ],),
                    const   SizedBox(width: 21,),
                 
                   Column(children: [
+
+                    GradientText(
+                  country,
+                        gradient: LinearGradient(
+                            colors: [kBallColor
+                              ,  kBallColor2]
+                        ),
+                        style:Styles.primaryTextStyle
+                    ),
                 
-                    Text(country,style:Styles.primaryTextStyle),
+
                 
 
                     Image.asset(AppAssets.gold,height: 40,),
@@ -252,13 +327,25 @@ DataCardWidget({super.key,
                 
                    Column(children: [
                      const SizedBox(height: 41,),
-                    Text('سعر البيع',
-                    style:Styles.primaryTextStyleBold
-                    ),
+                     GradientText(
+                         'سعر البيع',
+                         gradient: LinearGradient(
+                             colors: [kBallColor
+                               ,  kBallColor2]
+                         ),
+                         style:Styles.primaryTextStyleBold
+                     ),
+
                     const SizedBox(height: 6,),
-                    Text(' ${sellPrice} '+"﷼",
-                    style:Styles.primaryTextStyle
-                    ),
+                     GradientText(
+                         ' ${sellPrice} '+"﷼",
+                         gradient: LinearGradient(
+                             colors: [kBallColor
+                               ,  kBallColor2]
+                         ),
+                         style:Styles.primaryTextStyleBold
+                     ),
+
                    const SizedBox(height: 11,),
                 
                   ],),

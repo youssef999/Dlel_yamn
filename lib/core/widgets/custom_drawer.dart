@@ -15,10 +15,12 @@ import 'package:freelancerApp/features/details/details_view.dart';
 import 'package:freelancerApp/features/football/football_view.dart';
 import 'package:freelancerApp/features/news/news_view.dart';
 import 'package:freelancerApp/features/phone/phone_view.dart';
+import 'package:freelancerApp/features/trips/trips_view.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../features/home/views/home_view.dart';
 import '../../features/notifications/noti_view.dart';
 
 
@@ -144,7 +146,14 @@ import '../../features/notifications/noti_view.dart';
           Get.to(const ConvertMoney());
         },
         ),
-
+   const SizedBox(height: 20,),
+   InkWell(child: DrawerItemWidget(image:convertDrawer,
+     txt: 'الرحلات',),
+     onTap:(){
+       Get.to(const TripsView());
+     },
+   ),
+        //TripsView
 
         const SizedBox(height: 20,),
 
@@ -236,16 +245,46 @@ import '../../features/notifications/noti_view.dart';
  class _DrawerItemWidgetState extends State<DrawerItemWidget> {
    @override
    Widget build(BuildContext context) {
-     return Row(children: [
-       const SizedBox(width: 16,),
-      Image.asset(widget.image,width: 20,height: 20,),
-      const SizedBox(width: 16,),
-      Text(widget.txt,
-        style:TextStyle(
-          color:kDrawerText,fontSize: 16,fontWeight:FontWeight.bold
+     final box=GetStorage();
+     bool isDarkMode = box.read('theme')??false ;
+     if(isDarkMode==true){
+       return Row(children: [
+         const SizedBox(width: 16,),
+         Image.asset(widget.image,width: 20,height: 20,),
+         const SizedBox(width: 16,),
+         GradientText(
+           widget.txt,
+           style:TextStyle(
+               color:kDrawerText,fontSize: 16,fontWeight:FontWeight.bold
+           ),
+           gradient: LinearGradient(
+             colors: [ kBallColor
+               ,  kBallColor2],
+           ),
+           // style: TextStyle(fontSize: 40),
+         ),
 
-        )),
-     ],);
+       ],);
+     }else{
+       return Row(children: [
+         const SizedBox(width: 16,),
+         Image.asset(widget.image,width: 20,height: 20,),
+         const SizedBox(width: 16,),
+         GradientText(
+           widget.txt,
+           style:TextStyle(
+               color:kDrawerText,fontSize: 16,fontWeight:FontWeight.bold
+           ),
+           gradient: const LinearGradient(
+             colors: [ Colors.white
+               ,  Colors.white],
+           ),
+           // style: TextStyle(fontSize: 40),
+         ),
+
+       ],);
+     }
+
    }
  }
 

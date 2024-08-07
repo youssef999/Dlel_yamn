@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_colors.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 
+import '../home_view.dart';
+
 
 class DropDownWidget extends StatelessWidget {
 
@@ -41,11 +43,20 @@ class DropDownWidget extends StatelessWidget {
               items: items.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value,
-                  style:TextStyle(color: kTextPrimaryColor,
-                  fontWeight:FontWeight.w800
+                  child:
+
+                  GradientText(
+                value,
+                    style:TextStyle(color: kTextPrimaryColor,
+                        fontWeight:FontWeight.w800
+                    ),
+                    gradient: LinearGradient(
+                      colors: [ kBallColor
+                        ,  kBallColor2],
+                    ),
+                    // style: TextStyle(fontSize: 40),
                   ),
-                  ),
+
                 );
               }).toList(),
               onChanged: (String? newValue) {

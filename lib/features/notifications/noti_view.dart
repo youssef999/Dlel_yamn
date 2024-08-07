@@ -37,70 +37,79 @@ class NotiView extends StatefulWidget {
            ,  1 ),
       // appBar:CustomAppBar('الاشعارات', context),
        body:Container(
-
-           decoration: AppDecoration,
-
+          // decoration: AppDecoration,
        // color:
         //Color(0XXFFDFEBF6),
-         child: Padding(
-           padding: const EdgeInsets.all(0.0),
-           child: GetBuilder<NotiController>(
-             builder: (_) {
-               return ListView(children: [
-                Image.asset('assets/images/notiDrawer.png',
-                //height: 55,
-                width:MediaQuery.of(context).size.width,
-                ),
-                const SizedBox(height: 8,),
-               
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                    itemCount: controller.notiDataList.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                  
-                  
-                      if(controller.notiDataList.isNotEmpty){
-                  
-                        return  Column(children: [
-                  
-                  
-                          Image.asset("assets/images/noti.png",height: 300,
-                          fit:BoxFit.fill,
-                          
-                          ),
-                  
-                  
-                        //  Text('لا يوجد اشعارات',style: Styles.lightTextStyleBold)
-                  
-                        ],);
-                  
-                  
-                  
-                  
-                      }
-                      
-                      else{
-                  
-                  
-                        return  Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: NotiCardWidget(
-                          data: controller.notiDataList[index],
-                        ),
-                      );
-                  
-                      }
-                      
-                    
-                  }),
-                )
-                        
-                
-               ],);
-             }
-           ),
+         child: Stack(
+           children: [
+             SizedBox(
+               width: MediaQuery.of(context).size.width,
+               height: MediaQuery.of(context).size.height,
+               child:Image.asset(backgroundImage,
+                 fit:BoxFit.fill,),
+             ),
+             Padding(
+               padding: const EdgeInsets.all(0.0),
+               child: GetBuilder<NotiController>(
+                 builder: (_) {
+                   return ListView(children: [
+                    Image.asset(notiAppBar,
+                    //height: 55,
+                    width:MediaQuery.of(context).size.width,
+                      fit:BoxFit.fill,
+                    ),
+                    const SizedBox(height: 8,),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                        itemCount: controller.notiDataList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+
+
+                          if(controller.notiDataList.isNotEmpty){
+
+                            return  Column(children: [
+
+
+                              Image.asset(notiImage,height: 300,
+                              fit:BoxFit.fill,
+
+                              ),
+
+
+                            //  Text('لا يوجد اشعارات',style: Styles.lightTextStyleBold)
+
+                            ],);
+
+
+
+
+                          }
+
+                          else{
+
+
+                            return  Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: NotiCardWidget(
+                              data: controller.notiDataList[index],
+                            ),
+                          );
+
+                          }
+
+
+                      }),
+                    )
+
+
+                   ],);
+                 }
+               ),
+             ),
+           ],
          ),
        ),
      );

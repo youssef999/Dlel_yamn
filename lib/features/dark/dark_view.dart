@@ -43,8 +43,9 @@ class _DarkViewState extends State<DarkView> {
       body:Stack(
         children: [
           SizedBox(
-            height: 3000,
-            child:Image.asset('assets/images/appBackground.png',
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child:Image.asset(backgroundImage,
               fit:BoxFit.fill,),
           ),
 
@@ -52,41 +53,44 @@ class _DarkViewState extends State<DarkView> {
             padding: const EdgeInsets.all(12.0),
             child: GetBuilder<DarkController>(
               builder: (_) {
-                return Column(children: [
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(children: [
 
-                  const SizedBox(height: 51,),
-                  Row(
-                    mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("الوضع الليلي ",
-                      style:TextStyle(color:kPrimaryColor,
-                      fontSize: 33,fontWeight:FontWeight.w900
-                      ),
-                      ),
-                      FlutterSwitch(
-                        activeText: 'نشط ',
-                        inactiveText: 'غير مفعل',
-                        width: 125.0,
-                        height: 55.0,
-                        valueFontSize: 14.0,
-                        toggleSize: 35.0,
-                        value:controller.themeStatus,
-                        borderRadius: 22.0,
-                        padding: 8.0,
-                        showOnOff: true,
-                        onToggle: (val) {
-                          controller.changeThemeStatus(val);
-                         // Get.offAll(SplashView());
-                        },
-                      ),
-                    ],
-                  ),
-            //      const SizedBox(height: 61,),
-                  // CustomButton(text: 'تاكيد', onPressed: (){
-                  //
-                  // })
+                    const SizedBox(height: 71,),
+                    Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("الوضع الليلي ",
+                        style:TextStyle(color:kPrimaryColor,
+                        fontSize: 33,fontWeight:FontWeight.w900
+                        ),
+                        ),
+                        FlutterSwitch(
+                          activeText: 'نشط ',
+                          inactiveText: 'غير مفعل',
+                          width: 125.0,
+                          height: 55.0,
+                          valueFontSize: 14.0,
+                          toggleSize: 35.0,
+                          value:controller.themeStatus,
+                          borderRadius: 22.0,
+                          padding: 8.0,
+                          showOnOff: true,
+                          onToggle: (val) {
+                            controller.changeThemeStatus(val);
+                           // Get.offAll(SplashView());
+                          },
+                        ),
+                      ],
+                    ),
+                              //      const SizedBox(height: 61,),
+                    // CustomButton(text: 'تاكيد', onPressed: (){
+                    //
+                    // })
 
-                ],);
+                  ],),
+                );
               }
             ),
           ),

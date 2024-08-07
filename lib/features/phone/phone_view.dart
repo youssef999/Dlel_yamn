@@ -18,9 +18,15 @@ class PhoneView extends StatefulWidget {
 }
 
 class _PhoneViewState extends State<PhoneView> {
+  PhoneController controller = Get.put(PhoneController());
+  @override
+  void initState() {
+   controller.checkTheme();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    PhoneController controller = Get.put(PhoneController());
+
     RootController rootController=Get.put(RootController());
 
     return Scaffold(
@@ -34,7 +40,7 @@ class _PhoneViewState extends State<PhoneView> {
           children: [
             SizedBox(
             height: 3000,
-            child:Image.asset('assets/images/appBackground.png',
+            child:Image.asset(backgroundImage,
             fit:BoxFit.fill,),
           ),
             Container(
@@ -42,7 +48,7 @@ class _PhoneViewState extends State<PhoneView> {
               child: ListView(
                 children: [
                   Image.asset(
-                    'assets/images/phoneDrawer.png',
+                    phoneAppBar,
                     //height: 55,
                     width: MediaQuery.of(context).size.width,
                     fit:BoxFit.fill,
@@ -99,28 +105,21 @@ class PhoneCardWidget extends StatelessWidget {
                   color: const Color(0XFFcfe2f3).withOpacity(0.5),
                 borderRadius:BorderRadius.circular(22)
               ),
-             // elevation: 10,
+
               child: Image.asset(
                 image,height: 100,
                 width: 70,
               )),
           ),
-          // Container(
-          //   width: MediaQuery.of(context).size.width * 0.46,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(12),
-          //     color: Colors.white,
-          //   ),
-          //   child: Image.asset(
-          //     image,
-          //     height: 100,
-          //     width: 70,
-          //   ),
-          // ),
+
           const SizedBox(
             height: 2
           ),
-          Text(txt, style: Styles.darkTextStyle),
+          Text(txt, style: TextStyle(
+            color: phoneCardTextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w600
+          )),
            const SizedBox(
             height: 10,
           ),

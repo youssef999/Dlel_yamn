@@ -3,6 +3,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PhoneController extends GetxController{
 
@@ -20,6 +21,25 @@ List<String>phoneImage=[
     "assets/images/bagCard.png"
 ];
 
+checkTheme(){
+  final box=GetStorage();
+  bool isDarkMode = box.read('theme')??false ;
+  if(isDarkMode==true){
+    phoneImage=[
+      'assets/images/shopDark.png',
+      'assets/images/medDarkPhone.png',
+      'assets/images/learnDark.png',
+      'assets/images/pPhoneDark2.png',
+      'assets/images/darkHotel.png',
+      "assets/images/darkLove.png",
+      'assets/images/pDarkPhone.png',
+      "assets/images/darkEng.png",
+      "assets/images/darkGov.png",
+      "assets/images/bagDark.png"
+    ];
+  }
+
+}
 
 List<String>phoneName=[
   'المحلات التجارية',
@@ -34,8 +54,8 @@ List<String>phoneName=[
     "أصحاب العمل الحر"
 ];
 
-  List<String>placesList=['عدن','حضر موت','صنعاء'];
-  String selcetPlace='عدن';
+List<String>placesList=['صنعاء','تعز','عدن','حضر موت'];
+String selcetPlace='حضر موت';
 
 
   chnagePlace(String newVal,String type){

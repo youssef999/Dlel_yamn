@@ -10,6 +10,7 @@ import 'package:freelancerApp/features/home/controllers/home_controller.dart';
 import 'package:freelancerApp/features/home/controllers/root_controller.dart';
 import 'package:get/get.dart';
 import '../data_card_widget/data_card.dart';
+import '../home/views/home_view.dart';
 import '../home/views/widgets/drop_down.dart';
 
 // ignore: must_be_immutable
@@ -101,19 +102,29 @@ class _DetailsViewState extends State<DetailsView> {
                         color:Colors.white.withOpacity(0.2),
                         border:Border.all(color:Colors.white)
                       ),
-                      child:  Padding(
+                      child:
+
+
+                      Padding(
                         padding: const EdgeInsets.only(left:18.0,right:18),
                         child: Column(
                           children: [
                             Row(
                               mainAxisAlignment:MainAxisAlignment.spaceBetween,
                               children: [
-                            
-                                Text("المنطقة",style: TextStyle(
-                                  color:kPrimaryColor,
-                                  fontSize: 20,
-                                  fontWeight:FontWeight.bold
-                                )),
+
+                                GradientText(
+                                "المنطقة",
+                                  gradient: LinearGradient(
+                                    colors: [kBallColor, kBallColor2],
+                                  ),
+                style: TextStyle(
+                color:kPrimaryColor,
+                fontSize: 20,
+                fontWeight:FontWeight.bold
+                )),
+
+
                                 DropDownWidget(
                                             items: controller.placesList,
                                             hintText: ' المنطقة',
@@ -128,12 +139,17 @@ class _DetailsViewState extends State<DetailsView> {
                              Row(
                               mainAxisAlignment:MainAxisAlignment.spaceBetween,
                               children: [
-                            
-                                Text("العملة ",style: TextStyle(
-                                  color:kPrimaryColor,
-                                  fontSize: 20,
-                                  fontWeight:FontWeight.bold
-                                )),
+                                GradientText(
+                                     "العملة ",
+                                    gradient: LinearGradient(
+                                      colors: [kBallColor, kBallColor2],
+                                    ),
+                                    style: TextStyle(
+                                        color:kPrimaryColor,
+                                        fontSize: 20,
+                                        fontWeight:FontWeight.bold
+                                    )),
+
                                 DropDownWidget(
                                             items: controller.currencyList,
                                             hintText: ' العملة ',
@@ -343,9 +359,20 @@ GazCardWidget({super.key,
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(title,
-              style:Styles.primaryTextStyleBold
-              ),
+              child:
+
+              GradientText(
+                  title,
+                  gradient: LinearGradient(
+                    colors: [kBallColor, kBallColor2],
+                  ),
+                  style: TextStyle(
+                      color:kPrimaryColor,
+                      fontSize: 20,
+                      fontWeight:FontWeight.bold
+                  )),
+
+
             ),
           ),
           const SizedBox(height: 4,),
@@ -357,11 +384,16 @@ GazCardWidget({super.key,
           ),
          
           const SizedBox(height: 5,),
-          Text(price,style:
-          TextStyle(color:kPrimaryColor,
-          fontSize: 22,fontWeight:FontWeight.w700
-          )
-          ),
+                 GradientText(
+                     price,
+                     gradient: LinearGradient(
+                       colors: [kBallColor, kBallColor2],
+                     ),
+                     style: TextStyle(
+                         color:kPrimaryColor,
+                         fontSize: 22,fontWeight:FontWeight.w700
+                     )),
+
     
                
          

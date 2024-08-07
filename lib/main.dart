@@ -12,6 +12,7 @@ import 'package:freelancerApp/core/localization/local.dart';
 import 'package:freelancerApp/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'core/resources/check_theme.dart';
@@ -57,9 +58,7 @@ import 'core/resources/check_theme.dart';
  class _MainAppState extends State<MainApp> {
 
 List<Map<String, dynamic>> tokenList = [];
-
   String? token='';
-
   // getToken() async{
 
   //   final box=GetStorage();
@@ -135,6 +134,11 @@ List<Map<String, dynamic>> tokenList = [];
         initialRoute: 
         Theme1AppPages.INITIAL,
         getPages: Theme1AppPages.routes,
+    theme: ThemeData(
+    // تطبيق خط Cairo كنوع النص الافتراضي
+    textTheme: GoogleFonts.cairoTextTheme(
+    Theme.of(context).textTheme,
+    )),
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.cupertino,
         navigatorObservers: [BotToastNavigatorObserver()],

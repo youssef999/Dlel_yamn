@@ -45,76 +45,90 @@ class _PhoneDetailsViewState extends State<PhoneDetailsView> {
       
      // appBar: CustomAppBar('', context),
       body:Container(
-        decoration: AppDecoration,
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: GetBuilder<PhoneController>(
-              builder: (_) {
-                return ListView(children: [
+        //decoration: AppDecoration,
+        child: Stack(
+          children: [
 
-                   Image.asset('assets/images/phoneDrawer.png',
-                     fit:BoxFit.fill,
-                //height: 55,
-                width:MediaQuery.of(context).size.width,
-                ),
-                  const SizedBox(height: 12,),
-                    Padding(
-                    padding: const EdgeInsets.only(left: 11, right: 11),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(21),
-                          color: Colors.white),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "المناطق",
-                            style: TextStyle(color: AppColors.txtPrimaryColor),
-                          ),
-                          DropDownWidget(
-                            items: controller.placesList,
-                            hintText: 'المناطق',
-                            selectedValue: controller.selcetPlace,
-                            onChanged: (String? newValue) {
-                              controller.chnagePlace(newValue!,
-                              widget.phoneType
-                              );
-                            },
-                          ),
-                          SizedBox(
-                            height: 21,
-                            child: Image.asset(
-                              'assets/images/star.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                 const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child:  PhoneTitleWidget(),
-                  ),
-                  ListView.builder(
-                    itemCount: controller.phoneDataList.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                    return Padding(padding: const EdgeInsets.all(10.0),
-                    child:PhoneCardWidget(
-                      txt:controller.phoneDataList[index]['name'],
-                      phone:controller.phoneDataList[index]['phone'],
-                
-                    ),
-                    );
-                  })
-                  
-                ],);
-              }
+
+
+            SizedBox(
+              height: 3000,
+              width: MediaQuery.of(context).size.width,
+              child:Image.asset(backgroundImage,
+                fit:BoxFit.fill,),
             ),
-          ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: GetBuilder<PhoneController>(
+                  builder: (_) {
+                    return ListView(children: [
+                       Image.asset(phoneAppBar,
+                         fit:BoxFit.fill,
+                    //height: 55,
+                    width:MediaQuery.of(context).size.width,
+                    ),
+                      const SizedBox(height: 22,),
+                        Padding(
+                        padding: const EdgeInsets.only(left: 11, right: 11),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Colors.white),
+
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                "المناطق",
+                                style: TextStyle(color: AppColors.txtPrimaryColor),
+                              ),
+                              DropDownWidget(
+                                items: controller.placesList,
+                                hintText: 'المناطق',
+                                selectedValue: controller.selcetPlace,
+                                onChanged: (String? newValue) {
+                                  controller.chnagePlace(newValue!,
+                                  widget.phoneType
+                                  );
+                                },
+                              ),
+                              SizedBox(
+                                height: 21,
+                                child: Image.asset(
+                                  'assets/images/star.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                     const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child:  PhoneTitleWidget(),
+                      ),
+                      ListView.builder(
+                        itemCount: controller.phoneDataList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                        return Padding(padding: const EdgeInsets.all(10.0),
+                        child:PhoneCardWidget(
+                          txt:controller.phoneDataList[index]['name'],
+                          phone:controller.phoneDataList[index]['phone'],
+
+                        ),
+                        );
+                      })
+
+                    ],);
+                  }
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -196,6 +210,7 @@ class PhoneTitleWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment:MainAxisAlignment.spaceBetween,
           children: [
+          const  SizedBox(width: 6,),
         
           Text('الاسم',style:Styles.darkTextStyleBold),
         

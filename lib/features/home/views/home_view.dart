@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       key: scaffoldKey,
       drawer: CustomDrawer(),
-     // backgroundColor: const Color(0XFFFFFFF),
+
       body: Stack(
         children: [
           SizedBox(
@@ -69,7 +69,7 @@ class _HomeViewState extends State<HomeView> {
                               logo,
                               fit: BoxFit.cover,
                               width: 100,
-                              height: 50,
+                              height: 60,
                             ),
                             InkWell(
                               child: SizedBox(
@@ -101,11 +101,22 @@ class _HomeViewState extends State<HomeView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
+                              GradientText(
                                 "المناطق",
-                                style:
-                                    TextStyle(color: kTextPrimaryColor),
+                                style:const TextStyle(
+                                  //  color: kTextPrimaryColor
+                                    fontSize: 16,
+                                    fontWeight:FontWeight.w800
+                                ),
+                                gradient: LinearGradient(
+                                  colors: [ kBallColor
+                                    ,  kBallColor2],
+                                ),
+                                // style: TextStyle(fontSize: 40),
                               ),
+
+
+
                               DropDownWidget(
                                 items: controller.placesList,
                                 hintText: 'المناطق',
@@ -217,11 +228,18 @@ class _HomeViewState extends State<HomeView> {
                           shrinkWrap: true,
                         ),
                       ),
+
+                      //GradientText(
                       Padding(
                         padding: const EdgeInsets.only(left:23.0,right: 23),
-                        child: Text(
+                        child: GradientText(
                           'دليل اليمن',
                           style: Styles.primaryTextStyleLarge,
+                          gradient: LinearGradient(
+                            colors: [ kBallColor
+                              ,  kBallColor2],
+                          ),
+                         // style: TextStyle(fontSize: 40),
                         ),
                       ),
                      const SizedBox(height: 10,),
@@ -320,7 +338,32 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+class GradientText extends StatelessWidget {
+  GradientText(
+      this.text, {
+        required this.gradient,
+        this.style,
+      });
 
+  final String text;
+  final Gradient gradient;
+  final TextStyle? style;
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: (bounds) {
+        return gradient.createShader(
+          Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+        );
+      },
+      child: Text(
+        text,
+        style: style?.copyWith(color: Colors.white),
+      ),
+    );
+  }
+}
 // ignore: must_be_immutable
 class AppCardWidget extends StatelessWidget {
   String image;
@@ -337,13 +380,13 @@ class AppCardWidget extends StatelessWidget {
       height: 90,
       //width:MediaQuery.of(context).size.width*0.24,
       decoration: BoxDecoration(
-        border:Border.all(color:Colors.grey[900]!),
+        border:Border.all(color:Colors.grey),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.7), // لون الظل مع ضبط الشفافية
+              color: kShadowColor.withOpacity(0.2), // لون الظل مع ضبط الشفافية
               spreadRadius: 2, // مدى انتشار الظل
               blurRadius: 5, // مدى ضبابية الظل
-              offset: Offset(1, 3), // إزاحة الظل
+              offset: const Offset(1, 3), // إزاحة الظل
             ),
           ],
           borderRadius:
@@ -359,24 +402,38 @@ class AppCardWidget extends StatelessWidget {
            const   SizedBox(height: 22,),
                 SizedBox(
                   width: 57,
-                  child: Text(
+                  child:
+
+                  GradientText(
                     txt,
-                    style: TextStyle(
-                      color:kPrimaryColor,
-                      fontSize:13,
-                      fontWeight:FontWeight.w800
-                    )
+                    style: const TextStyle(
+                        //color:kPrimaryColor,
+                        fontSize:13,
+                        fontWeight:FontWeight.w800
+                    ),
+                    gradient: LinearGradient(
+                      colors: [ kBallColor
+                        ,  kBallColor2],
+                    ),
+                    // style: TextStyle(fontSize: 40),
                   ),
+
+
                 ),
                   SizedBox(
                   width: 57,
-                  child: Text(
+                  child: GradientText(
                     txt2,
-                    style: TextStyle(
-                      color:kPrimaryColor,
-                      fontSize:13,
-                      fontWeight:FontWeight.w800
-                    )
+                    style: const TextStyle(
+                        //color:kPrimaryColor,
+                        fontSize:13,
+                        fontWeight:FontWeight.w800
+                    ),
+                    gradient: LinearGradient(
+                      colors: [ kBallColor
+                        ,  kBallColor2],
+                    ),
+                    // style: TextStyle(fontSize: 40),
                   ),
                 ),
               ],
