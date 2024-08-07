@@ -61,11 +61,21 @@ class _FootballViewState extends State<FootballView> {
                     ),
                     ListView(
                       children: [
-                        Image.asset(ballAppBar,
-                    //height: 55,
-                    width:MediaQuery.of(context).size.width,
-                          fit:BoxFit.fill,
-                    ),
+                        Stack(
+                          children: [
+
+                            Container(
+                              height: 55,
+                              width:MediaQuery.of(context).size.width,
+                              color: kPrimaryColor,
+                            ),
+                            Image.asset(ballAppBar,
+                                                height: 55,
+                                                width:MediaQuery.of(context).size.width,
+                              fit:BoxFit.cover
+                                                ),
+                          ],
+                        ),
                         const SizedBox(
                           height: 21,
                         ),
@@ -101,11 +111,11 @@ class _FootballViewState extends State<FootballView> {
                           ),
                         ),
                       const  SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Row(
                           children: [
-                           const SizedBox(width: 44,),
+                           const SizedBox(width:14,),
                             Row(
 
                              // mainAxisAlignment:MainAxisAlignment.start,

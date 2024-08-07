@@ -683,7 +683,7 @@ class AuthController extends GetxController {
         }
       }
     } else {
-      CustomLoading.cancelLoading();
+     // CustomLoading.cancelLoading();
       if (emailController.text.contains('@') == false) {
         appMessage(text: 'wrongMail'.tr, fail: false);
       }

@@ -70,7 +70,7 @@ DataCardWidget({super.key,
                   ),
                   gradient: LinearGradient(
                     colors: [ kBallColor
-                      ,  kBallColor2],
+                      ,  kBallColor],
                   ),
                   // style: TextStyle(fontSize: 40),
                 ),
@@ -103,7 +103,7 @@ DataCardWidget({super.key,
                         style:Styles.primaryTextStyleBold,
                         gradient: LinearGradient(
                           colors: [ kBallColor
-                            ,  kBallColor2],
+                            ,  kBallColor],
                         ),
                         // style: TextStyle(fontSize: 40),
                       ), GradientText(
@@ -111,7 +111,7 @@ DataCardWidget({super.key,
                         style:Styles.primaryTextStyleBold,
                         gradient: LinearGradient(
                           colors: [ kBallColor
-                            ,  kBallColor2],
+                            ,  kBallColor],
                         ),
                         // style: TextStyle(fontSize: 40),
                       ),
@@ -134,7 +134,7 @@ DataCardWidget({super.key,
                           style:Styles.primaryTextStyle,
                         gradient: LinearGradient(
                           colors: [ kBallColor
-                            ,  kBallColor2],
+                            ,  kBallColor],
                         ),
                         // style: TextStyle(fontSize: 40),
                       ),
@@ -157,7 +157,7 @@ DataCardWidget({super.key,
                          style:Styles.primaryTextStyleBold,
                          gradient: LinearGradient(
                            colors: [ kBallColor
-                             ,  kBallColor2],
+                             ,  kBallColor],
                          ),
                          // style: TextStyle(fontSize: 40),
                        ),
@@ -168,7 +168,7 @@ DataCardWidget({super.key,
                          style:Styles.primaryTextStyle,
                          gradient: LinearGradient(
                            colors: [ kBallColor
-                             ,  kBallColor2],
+                             ,  kBallColor],
                          ),
                          // style: TextStyle(fontSize: 40),
                        ),
@@ -252,7 +252,7 @@ DataCardWidget({super.key,
                 title,
                 gradient: LinearGradient(
                   colors: [kBallColor
-                    ,  kBallColor2]
+                    ,  kBallColor]
                 ),
                   style:Styles.primaryTextStyleBold
               ),
@@ -280,7 +280,7 @@ DataCardWidget({super.key,
                         'سعر الشراء',
                         gradient: LinearGradient(
                             colors: [kBallColor
-                              ,  kBallColor2]
+                              ,  kBallColor]
                         ),
                         style:Styles.primaryTextStyleBold
                     ),
@@ -291,7 +291,7 @@ DataCardWidget({super.key,
                         ' ${buyPrice}'+"﷼",
                         gradient: LinearGradient(
                             colors: [kBallColor
-                              ,  kBallColor2]
+                              ,  kBallColor]
                         ),
                         style:Styles.primaryTextStyle
                     ),
@@ -308,7 +308,7 @@ DataCardWidget({super.key,
                   country,
                         gradient: LinearGradient(
                             colors: [kBallColor
-                              ,  kBallColor2]
+                              ,  kBallColor]
                         ),
                         style:Styles.primaryTextStyle
                     ),
@@ -331,7 +331,7 @@ DataCardWidget({super.key,
                          'سعر البيع',
                          gradient: LinearGradient(
                              colors: [kBallColor
-                               ,  kBallColor2]
+                               ,  kBallColor]
                          ),
                          style:Styles.primaryTextStyleBold
                      ),
@@ -341,7 +341,7 @@ DataCardWidget({super.key,
                          ' ${sellPrice} '+"﷼",
                          gradient: LinearGradient(
                              colors: [kBallColor
-                               ,  kBallColor2]
+                               ,  kBallColor]
                          ),
                          style:Styles.primaryTextStyleBold
                      ),

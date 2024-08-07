@@ -69,9 +69,11 @@ class _ConvertMoneyState extends State<ConvertMoney> {
                         builder: (logic) {
                           return Column(children: [
                             const SizedBox(height: 21,),
-                            Row(children: [
+                            Row(
+                              children: [
                               Column(children: [
-                                Text("العملة المراد تحويلها", style: Styles.darkTextStyle,),
+                                Text("العملة المراد تحويلها",
+                                  style: Styles.darkTextStyle,),
                                 const SizedBox(height: 5,),
                                 Container(
                                   decoration: BoxDecoration(

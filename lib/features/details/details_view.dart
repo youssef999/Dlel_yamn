@@ -73,7 +73,7 @@ class _DetailsViewState extends State<DetailsView> {
                 if(widget.dataKey=='gaz')
 
                 Image.asset(gazAppBar,
-                  fit:BoxFit.fill,
+                  fit:BoxFit.cover,
                 //height: 55,
                 width:MediaQuery.of(context).size.width,
                 ),
@@ -97,11 +97,13 @@ class _DetailsViewState extends State<DetailsView> {
                   Padding(
                     padding: const EdgeInsets.only(left:25.0,right:25),
                     child: Container(
-                      decoration:BoxDecoration(
-                        borderRadius:BorderRadius.circular(8),
-                        color:Colors.white.withOpacity(0.2),
-                        border:Border.all(color:Colors.white)
-                      ),
+                      decoration:CardDecoration,
+
+                      // BoxDecoration(
+                      //   borderRadius:BorderRadius.circular(8),
+                      //   color:Colors.white.withOpacity(0.2),
+                      //   border:Border.all(color:Colors.white)
+                      // ),
                       child:
 
 
@@ -116,7 +118,7 @@ class _DetailsViewState extends State<DetailsView> {
                                 GradientText(
                                 "المنطقة",
                                   gradient: LinearGradient(
-                                    colors: [kBallColor, kBallColor2],
+                                    colors: [kBallColor, kBallColor],
                                   ),
                 style: TextStyle(
                 color:kPrimaryColor,
@@ -142,7 +144,7 @@ class _DetailsViewState extends State<DetailsView> {
                                 GradientText(
                                      "العملة ",
                                     gradient: LinearGradient(
-                                      colors: [kBallColor, kBallColor2],
+                                      colors: [kBallColor, kBallColor],
                                     ),
                                     style: TextStyle(
                                         color:kPrimaryColor,
@@ -341,15 +343,17 @@ GazCardWidget({super.key,
        return Padding(
          padding: const EdgeInsets.all(12.0),
          child: Container(
-               decoration:BoxDecoration(
-          borderRadius:BorderRadius.circular(12),
-          color:Colors.transparent.withOpacity(0.07),
-          // const Color(0xE5C0D9F0).withOpacity(0.5),
+          decoration:CardDecoration,
 
-           border: Border.all(color:Colors.white,
-           width: 1.2
-           ),
-               ),
+          //      BoxDecoration(
+          // borderRadius:BorderRadius.circular(12),
+          // color:Colors.transparent.withOpacity(0.07),
+          // // const Color(0xE5C0D9F0).withOpacity(0.5),
+          //
+          //  border: Border.all(color:Colors.white,
+          //  width: 1.2
+          //  ),
+          //      ),
                child:Column(children: [
           Container(
             decoration:BoxDecoration(
@@ -364,7 +368,7 @@ GazCardWidget({super.key,
               GradientText(
                   title,
                   gradient: LinearGradient(
-                    colors: [kBallColor, kBallColor2],
+                    colors: [kBallColor, kBallColor],
                   ),
                   style: TextStyle(
                       color:kPrimaryColor,
@@ -387,11 +391,11 @@ GazCardWidget({super.key,
                  GradientText(
                      price,
                      gradient: LinearGradient(
-                       colors: [kBallColor, kBallColor2],
+                       colors: [kBallColor, kBallColor],
                      ),
                      style: TextStyle(
                          color:kPrimaryColor,
-                         fontSize: 22,fontWeight:FontWeight.w700
+                         fontSize: 20,fontWeight:FontWeight.w700
                      )),
 
     

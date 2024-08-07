@@ -107,9 +107,9 @@ abstract class Styles {
 
   GoogleFonts.cairo(
     textStyle: TextStyle(
-      fontSize: 18,
+      fontSize: 14,
       color:kTextHelperDarkColor,
-      fontWeight: FontWeight.w800,
+      fontWeight: FontWeight.w600,
     ),
   );
 
@@ -125,8 +125,6 @@ abstract class Styles {
       fontWeight: FontWeight.w700,
     ),
   );
-
-
 }
 
 const TextStyle textStyle = TextStyle();

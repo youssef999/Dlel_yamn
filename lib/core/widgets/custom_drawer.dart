@@ -41,24 +41,24 @@ import '../../features/notifications/noti_view.dart';
 
 
  ListView(children: [
-        const SizedBox(height: 1,),
+        const SizedBox(height: 5,),
 
         Padding(
           padding: const EdgeInsets.all(2.0),
           child: Container(
             decoration: BoxDecoration(
              borderRadius:BorderRadius.circular(13),
-              color:  const Color(0xffC7E1EE).withOpacity(0.1),
+              color:  Colors.black12.withOpacity(0.4),
             ),
             child: Image.asset(logo,fit:BoxFit.cover,
-            height: 165,
+            height: 133,
             ),
           ),
         ),
 
 
       //  Divider(color:Colors.grey[100],),
-        const SizedBox(height: 12,),
+        const SizedBox(height: 22,),
       
         DrawerItemWidget(image: homeDrawer, txt: 'الرئيسية',),
         const SizedBox(height: 20,),

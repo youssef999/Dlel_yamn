@@ -110,7 +110,7 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 gradient: LinearGradient(
                                   colors: [ kBallColor
-                                    ,  kBallColor2],
+                                    ,  kBallColor],
                                 ),
                                 // style: TextStyle(fontSize: 40),
                               ),
@@ -237,7 +237,7 @@ class _HomeViewState extends State<HomeView> {
                           style: Styles.primaryTextStyleLarge,
                           gradient: LinearGradient(
                             colors: [ kBallColor
-                              ,  kBallColor2],
+                              ,  kBallColor],
                           ),
                          // style: TextStyle(fontSize: 40),
                         ),
@@ -394,12 +394,12 @@ class AppCardWidget extends StatelessWidget {
           color: newCardColor),
 
       child: Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(5.0),
         child: Row(
           children: [
             Column(
               children: [
-           const   SizedBox(height: 22,),
+           const   SizedBox(height: 20,),
                 SizedBox(
                   width: 57,
                   child:
@@ -413,7 +413,7 @@ class AppCardWidget extends StatelessWidget {
                     ),
                     gradient: LinearGradient(
                       colors: [ kBallColor
-                        ,  kBallColor2],
+                        ,  kBallColor],
                     ),
                     // style: TextStyle(fontSize: 40),
                   ),
@@ -421,7 +421,7 @@ class AppCardWidget extends StatelessWidget {
 
                 ),
                   SizedBox(
-                  width: 57,
+                  width: 61,
                   child: GradientText(
                     txt2,
                     style: const TextStyle(
@@ -431,7 +431,7 @@ class AppCardWidget extends StatelessWidget {
                     ),
                     gradient: LinearGradient(
                       colors: [ kBallColor
-                        ,  kBallColor2],
+                        ,  kBallColor],
                     ),
                     // style: TextStyle(fontSize: 40),
                   ),
@@ -443,9 +443,9 @@ class AppCardWidget extends StatelessWidget {
             ),
             Image.asset(
               image,
-              height: 46,
+              height: 40,
               width: 39,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
              const SizedBox(
               width: 4

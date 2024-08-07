@@ -41,15 +41,33 @@ class LoginView extends StatelessWidget {
                 Column(children: [
                   Image.asset(
                     AppAssets.logo,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
-                  Image.asset(
-                    'assets/images/Text.png',
-                    fit: BoxFit.fill,
+
+                  GradientText(
+                    "أهلا بك في تطبيق دليل اليمن !",
+
+                    style:const TextStyle(
+                      //  color: kTextPrimaryColor
+                        fontSize: 27,
+                        fontWeight:FontWeight.bold
+                    ),
+                    gradient: LinearGradient(
+                      colors: [ kBallColor
+                        ,  kBallColor2],
+                    ),
+                    // style: TextStyle(fontSize: 40),
                   ),
+
+
+                  // Image.asset(
+                  //   'assets/images/Text.png',
+                  //   fit: BoxFit.cover,
+                  // ),
                   const SizedBox(
                     height: 1,
                   ),
+
                   //  Text('اهلا بك في تطبيق دليل اليمن ',
                   //  style:Styles.primaryTextStyleLarge
                   //  ),
