@@ -117,7 +117,6 @@ abstract class Styles {
 
 
   static dynamic darkTextStyleBold =
-
   GoogleFonts.cairo(
     textStyle: TextStyle(
       fontSize: 16,

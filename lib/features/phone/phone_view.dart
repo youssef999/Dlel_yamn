@@ -1,11 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/phone/phone_controller.dart';
 import 'package:freelancerApp/features/phone/phone_details.dart';
-
 import 'package:get/get.dart';
-
 import '../../core/widgets/bottom_navber.dart';
 import '../../core/widgets/custom_app_bar.dart';
 import '../home/controllers/root_controller.dart';
@@ -43,40 +43,38 @@ class _PhoneViewState extends State<PhoneView> {
             child:Image.asset(backgroundImage,
             fit:BoxFit.fill,),
           ),
-            Container(
-             // decoration: AppDecoration,
-              child: ListView(
-                children: [
-                  Image.asset(
-                    phoneAppBar,
-                    //height: 55,
-                    width: MediaQuery.of(context).size.width,
-                    fit:BoxFit.fill,
-                  ),
-                  const SizedBox(height: 14),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.phoneImage.length,
-                      itemBuilder: (context, index) {
-                        return PhoneCardWidget(
-                            image: controller.phoneImage[index],
-                            txt: controller.phoneName[index]);
-                      },
-                      gridDelegate:
-                          const
-         SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.92,
-                        crossAxisSpacing: 1,
-                        mainAxisSpacing: 1,
-                      ),
+            ListView(
+              children: [
+                NewAppbar(txt:'أرقام مهمة'),
+                // Image.asset(
+                //   phoneAppBar,
+                //   //height: 55,
+                //   width: MediaQuery.of(context).size.width,
+                //   fit:BoxFit.fill,
+                // ),
+                const SizedBox(height: 14),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.phoneImage.length,
+                    itemBuilder: (context, index) {
+                      return PhoneCardWidget(
+                          image: controller.phoneImage[index],
+                          txt: controller.phoneName[index]);
+                    },
+                    gridDelegate:
+                        const
+                     SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.92,
+                      crossAxisSpacing: 1,
+                      mainAxisSpacing: 1,
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ],
         ),

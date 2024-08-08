@@ -33,192 +33,199 @@ class LoginView extends StatelessWidget {
         child: Center(
           child: Container(
             //decoration: AppDecoration,
-            child: ListView(
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Column(children: [
-                  Image.asset(
-                    AppAssets.logo,
-                    fit: BoxFit.cover,
-                  ),
-
-                  GradientText(
-                    "أهلا بك في تطبيق دليل اليمن !",
-
-                    style:const TextStyle(
-                      //  color: kTextPrimaryColor
-                        fontSize: 27,
-                        fontWeight:FontWeight.bold
+            child: GetBuilder<AuthController>(
+              builder: (_) {
+                return ListView(
+                  children: [
+                    const SizedBox(
+                      height: 10,
                     ),
-                    gradient: LinearGradient(
-                      colors: [ kBallColor
-                        ,  kBallColor2],
-                    ),
-                    // style: TextStyle(fontSize: 40),
-                  ),
+                    Column(children: [
+                      Image.asset(
+                        height: 150,
+                        AppAssets.logo,
+                        fit: BoxFit.cover,
+                      ),
 
+                      GradientText(
+                        "أهلا بك في تطبيق دليل اليمن !",
 
-                  // Image.asset(
-                  //   'assets/images/Text.png',
-                  //   fit: BoxFit.cover,
-                  // ),
-                  const SizedBox(
-                    height: 1,
-                  ),
-
-                  //  Text('اهلا بك في تطبيق دليل اليمن ',
-                  //  style:Styles.primaryTextStyleLarge
-                  //  ),
-                  const SizedBox(
-                    height: 11,
-                  ),
-                ]),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                      //color: AppColors.primaryDarkColor,
-                      borderRadius: BorderRadius.all(Radius.circular(25))),
-                  child: Column(
-                    children: [
-                      CustomTextFormField(
-                          hint: 'البريد الالكتروني',
-                          obs: false,
-                          color: AppColors.textColorDark,
-                          validateMessage: 'بريد الكتروني غير صحيح',
-                          controller: controller.emailController),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      CustomTextFormField(
-                          hint: 'كلمة المرور ',
-                          obs: true,
-                          color: AppColors.textColorDark,
-                          validateMessage: 'كلمة المرور غير صحيحة',
-                          obx: true,
-                          controller: controller.passController),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(
-                            width: 200,
-                          ),
-                          InkWell(
-                            child: Custom_Text(
-                              text: 'نسيت كلمة المرور؟',
-                              color: Colors.grey[600]!,
-                              fontSize: 15,
-                            ),
-                            onTap: () {
-                              Get.to(const ForgotPass());
-                            },
-                          )
-                        ],
-                      ),
-                       const SizedBox(
-                        height: 20
-                      ),
-                      InkWell(
-                        child: Center(
-                          child: Stack(
-                            children: [
-                              Image.asset(
-                                'assets/images/button.png',
-                                width: 330,
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(top:20.0),
-                                child: Center(
-                                  child: Text(
-                                  " تسجيل الدخول  ",
-                                  style: TextStyle(color: Colors.white),
-                                  textAlign: TextAlign.center,
-                                                          ),
-                                ),
-                              ),
-                          
-                            ],
-                          ),
+                        style:const TextStyle(
+                          //  color: kTextPrimaryColor
+                            fontSize: 27,
+                            fontWeight:FontWeight.bold
                         ),
-                        onTap:(){
-                           controller.userLogin();
-
-                        },
+                        gradient: LinearGradient(
+                          colors: [ kBallColor
+                            ,  kBallColor2],
+                        ),
+                        // style: TextStyle(fontSize: 40),
                       ),
-                      // ElevatedButton(
-                      //   style: ElevatedButton.styleFrom(
-                      //       elevation: 7,
-                      //       fixedSize: const Size(300, 60),
-                      //       shadowColor: AppColors.darkColor,
-                      //       shape: RoundedRectangleBorder(
-                      //           side: BorderSide(
-                      //               width: 0.1, color: AppColors.darkColor),
-                      //           borderRadius: BorderRadius.circular(10)),
-                      //       backgroundColor: kPrimaryColor),
-                      //   child: const Text(
-                      //     "تسجيل دخول الان ",
-                      //     style: TextStyle(color: Colors.white),
-                      //     textAlign: TextAlign.center,
-                      //   ),
-                      //   onPressed: () {
-                      //     CustomLoading.showLoading('Loading');
-                      //     controller.userLogin();
 
-                      //     // controller.getRoleIdByUser().then((value) {
-                      //     //   print("role id done");
-                      //     //   Future.delayed(const Duration(seconds: 1))
-                      //     //       .then((value) {
 
-                      //     //     {
-                      //     //      // Get.offAll(const HomeView());
-
-                      //     //     }
-
-                      //     //   });
-                      //     // });
-                      //   },
+                      // Image.asset(
+                      //   'assets/images/Text.png',
+                      //   fit: BoxFit.cover,
                       // ),
                       const SizedBox(
-                        height: 6,
+                        height: 1,
                       ),
-                     
-                      const SizedBox(height: 3),
-                      Center(
-                          child: Text(
-                        'او'.tr,
-                        style: const TextStyle(
-                            color: AppColors.redColor, fontSize: 20),
-                      )),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+
+                      //  Text('اهلا بك في تطبيق دليل اليمن ',
+                      //  style:Styles.primaryTextStyleLarge
+                      //  ),
+                      const SizedBox(
+                        height: 11,
+                      ),
+                    ]),
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                          //color: AppColors.primaryDarkColor,
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                      child: Column(
                         children: [
-                          Text(
-                            "لا تمتلك حساب ؟",
-                            style:
-                                TextStyle(fontSize: 15, color: kPrimaryColor),
+                          CustomTextFormField(
+                              hint: 'البريد الالكتروني',
+                              obs: false,
+                              color: AppColors.textColorDark,
+                              validateMessage: 'بريد الكتروني غير صحيح',
+                              controller: controller.emailController),
+                          const SizedBox(
+                            height: 20,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Get.to(const SignupView());
-                            },
-                            child: Text(
-                              'انشاء حساب'.tr,
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black),
+                          CustomTextFormField(
+                              hint: 'كلمة المرور ',
+                              obs: true,
+                              color: AppColors.textColorDark,
+                              validateMessage: 'كلمة المرور غير صحيحة',
+                              obx: true,
+                              controller: controller.passController),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                           Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const SizedBox(
+                                width: 200,
+                              ),
+                              InkWell(
+                                child: Custom_Text(
+                                  text: 'نسيت كلمة المرور؟',
+                                  color: Colors.grey[600]!,
+                                  fontSize: 15,
+                                ),
+                                onTap: () {
+                                  Get.to(const ForgotPass());
+                                },
+                              )
+                            ],
+                          ),
+                           const SizedBox(
+                            height: 20
+                          ),
+                          (controller.isLoading == false)?
+                          InkWell(
+                            child: Center(
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/button.png',
+                                    width: 326,
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(top:20.0),
+                                    child: Center(
+                                      child: Text(
+                                      " تسجيل الدخول  ",
+                                      style: TextStyle(color: Colors.white),
+                                      textAlign: TextAlign.center,
+                                                              ),
+                                    ),
+                                  ),
+
+                                ],
+                              ),
                             ),
+                            onTap:(){
+                               controller.userLogin();
+                            },
+                          ):const Center(
+                            child:CircularProgressIndicator(),
+                          ),
+                          // ElevatedButton(
+                          //   style: ElevatedButton.styleFrom(
+                          //       elevation: 7,
+                          //       fixedSize: const Size(300, 60),
+                          //       shadowColor: AppColors.darkColor,
+                          //       shape: RoundedRectangleBorder(
+                          //           side: BorderSide(
+                          //               width: 0.1, color: AppColors.darkColor),
+                          //           borderRadius: BorderRadius.circular(10)),
+                          //       backgroundColor: kPrimaryColor),
+                          //   child: const Text(
+                          //     "تسجيل دخول الان ",
+                          //     style: TextStyle(color: Colors.white),
+                          //     textAlign: TextAlign.center,
+                          //   ),
+                          //   onPressed: () {
+                          //     CustomLoading.showLoading('Loading');
+                          //     controller.userLogin();
+
+                          //     // controller.getRoleIdByUser().then((value) {
+                          //     //   print("role id done");
+                          //     //   Future.delayed(const Duration(seconds: 1))
+                          //     //       .then((value) {
+
+                          //     //     {
+                          //     //      // Get.offAll(const HomeView());
+
+                          //     //     }
+
+                          //     //   });
+                          //     // });
+                          //   },
+                          // ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+
+                          const SizedBox(height: 3),
+                          Center(
+                              child: Text(
+                            'او'.tr,
+                            style: const TextStyle(
+                                color: AppColors.redColor, fontSize: 20),
+                          )),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "لا تمتلك حساب ؟",
+                                style:
+                                    TextStyle(fontSize: 15, color: kPrimaryColor),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(const SignupView());
+                                },
+                                child: Text(
+                                  'انشاء حساب'.tr,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black),
+                                ),
+                              )
+                            ],
                           )
                         ],
-                      )
-                    ],
-                  ),
-                ),
-              ],
+                      ),
+                    ),
+                  ],
+                );
+              }
             ),
           ),
         ),

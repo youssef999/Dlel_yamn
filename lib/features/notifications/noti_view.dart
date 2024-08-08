@@ -5,6 +5,7 @@
 import 'package:freelancerApp/core/resources/app_styles.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/notifications/noti_controller.dart';
 import 'package:get/get.dart';
 
@@ -53,11 +54,14 @@ class NotiView extends StatefulWidget {
                child: GetBuilder<NotiController>(
                  builder: (_) {
                    return ListView(children: [
-                    Image.asset(notiAppBar,
-                    //height: 55,
-                    width:MediaQuery.of(context).size.width,
-                      fit:BoxFit.fill,
-                    ),
+
+                     NewAppbar(txt:'الاشعارات'),
+
+                    // Image.asset(notiAppBar,
+                    // //height: 55,
+                    // width:MediaQuery.of(context).size.width,
+                    //   fit:BoxFit.fill,
+                    // ),
                     const SizedBox(height: 8,),
 
                     Padding(

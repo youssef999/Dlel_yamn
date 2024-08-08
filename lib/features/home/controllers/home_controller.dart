@@ -12,6 +12,8 @@ class HomeController extends GetxController {
 
 
   List<String>placesList=['صنعاء','تعز','عدن','حضر موت'];
+
+  //['صنعاء','تعز','عدن','حضر موت'];
   String selcetPlace='حضر موت';
 
   List<Map<String,dynamic>> priceDataList=[];

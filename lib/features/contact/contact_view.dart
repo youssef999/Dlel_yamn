@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/widgets/Custom_button.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
 import 'package:freelancerApp/core/widgets/custom_textformfield.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/contact/contact_controller.dart';
 import 'package:get/get.dart';
 
@@ -21,10 +22,10 @@ class ContactView extends StatelessWidget {
     ContactController controller=Get.put(ContactController());
     RootController rootController=Get.put(RootController());
 
+
     return Scaffold(
       bottomNavigationBar:buildBottomNavigationMenu(context,rootController
           ,  1 ),
-      
       //appBar:CustomAppBar('تواصل معنا', context),
       body:Stack(
         children: [
@@ -37,12 +38,14 @@ class ContactView extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset(contactAppBar,
-                  fit:BoxFit.fill,
-                  //height: 55,
-                  width:MediaQuery.of(context).size.width,
-                ),
-            
+               const SizedBox(height: 11,),
+                NewAppbar(txt:'تواصل معنا '),
+                // Image.asset(contactAppBar,
+                //   fit:BoxFit.fill,
+                //   //height: 55,
+                //   width:MediaQuery.of(context).size.width,
+                // ),
+                //
             
             
                 Padding(

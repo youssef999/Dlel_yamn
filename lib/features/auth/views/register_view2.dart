@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/resources/app_colors.dart';
 import '../../../core/resources/app_styles.dart';
+import '../../home/views/home_view.dart';
 import 'register_view2.dart';
 
 class SignupView extends StatelessWidget {
@@ -37,7 +38,7 @@ class SignupView extends StatelessWidget {
       // ),
       //backgroundColor: Colors.blue[200],
       appBar:AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: kPrimaryColor,
         elevation: 0.2,
         leading: IconButton(onPressed: (){
             Get.back();
@@ -62,10 +63,24 @@ class SignupView extends StatelessWidget {
                     fit: BoxFit.fill,
                     height: 100,
                   ),
-                  Image.asset(
-                    'assets/images/Text.png',
-                    fit: BoxFit.fill,
+                GradientText(
+                  "أهلا بك في تطبيق دليل اليمن !",
+
+                  style:const TextStyle(
+                    //  color: kTextPrimaryColor
+                      fontSize: 27,
+                      fontWeight:FontWeight.bold
                   ),
+                  gradient: LinearGradient(
+                    colors: [ kBallColor
+                      ,  kBallColor2],
+                  ),
+                  // style: TextStyle(fontSize: 40),
+                ),
+                  // Image.asset(
+                  //   'assets/images/Text.png',
+                  //   fit: BoxFit.fill,
+                  // ),
                 const SizedBox(height: 11,),
                 const SizedBox(
                   height: 20,

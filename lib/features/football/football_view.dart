@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/football/football_controller.dart';
 import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -69,11 +70,12 @@ class _FootballViewState extends State<FootballView> {
                               width:MediaQuery.of(context).size.width,
                               color: kPrimaryColor,
                             ),
-                            Image.asset(ballAppBar,
-                                                height: 55,
-                                                width:MediaQuery.of(context).size.width,
-                              fit:BoxFit.cover
-                                                ),
+                            NewAppbar(txt:'المباريات'),
+                            // Image.asset(ballAppBar,
+                            //                     height: 55,
+                            //                     width:MediaQuery.of(context).size.width,
+                            //   fit:BoxFit.cover
+                            //                     ),
                           ],
                         ),
                         const SizedBox(

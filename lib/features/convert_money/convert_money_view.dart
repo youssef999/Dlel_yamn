@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/Custom_button.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/convert_money/convert_controller.dart';
 import 'package:get/get.dart';
 
@@ -50,12 +51,14 @@ class _ConvertMoneyState extends State<ConvertMoney> {
             ),
             Column(
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                 // height: MediaQuery.of(context).size.height,
-                  child:Image.asset(convertAppBar,
-                    fit:BoxFit.fill,),
-                ),
+                const SizedBox(height: 10,),
+                NewAppbar(txt:'تحويل العملات '),
+                // SizedBox(
+                //   width: MediaQuery.of(context).size.width,
+                //  // height: MediaQuery.of(context).size.height,
+                //   child:Image.asset(convertAppBar,
+                //     fit:BoxFit.fill,),
+                // ),
 
                 //
                 Container(

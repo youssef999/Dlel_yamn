@@ -316,68 +316,9 @@ class AuthController extends GetxController {
     update();
   }
 
-  getRoleIdByUser() async {
-    print(".....GET ROLE ID USERSSS.......");
 
-    userDataList = [];
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('users')
-        .where('email', isEqualTo: emailController.text)
-        .get();
-    try {
-      List<Map<String, dynamic>> data = querySnapshot.docs
-          .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
-          .toList();
-      userDataList = data;
-      if (userDataList.isNotEmpty) {
-        roleId.text = '1';
-        box.write('roleId', roleId.text);
-      } else {
-        getRoleIdByFreelancer();
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      print("E.......");
-      // ignore: avoid_print
-      print(e);
 
-      print("E.......");
-    }
 
-    update();
-  }
-
-  getRoleIdByFreelancer() async {
-    print("GET ROLE ID FREELANCERSSS....");
-    freelancerDataList = [];
-
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('freelancers')
-        .where('email', isEqualTo: emailController.text)
-        .get();
-    try {
-      List<Map<String, dynamic>> data = querySnapshot.docs
-          .map((DocumentSnapshot doc) => doc.data() as Map<String, dynamic>)
-          .toList();
-
-      freelancerDataList = data;
-
-      if (freelancerDataList.isNotEmpty) {
-        roleId.text = '2';
-        box.write('roleId', roleId.text);
-      } else {
-        print("ELSE");
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      print("E.......");
-      // ignore: avoid_print
-      print(e);
-
-      print("E.......");
-    }
-    update();
-  }
 
   changeCatValue(String value) {
     catValue = value;
@@ -627,14 +568,15 @@ class AuthController extends GetxController {
   }
 
   userLogin() async {
+    isLoading=true;
+    update();
     print("email==="+emailController.text);
     print("email==="+passController.text);
     final box = GetStorage();
     String roleId = box.read('roleId') ?? 'x';
     print("ROLENEWID===$roleId");
     print("LOGINNN");
-    loading = true;
-    update();
+
     // final box = GetStorage();
     if (emailController.text.length > 2
         && passController.text.length > 5) {
@@ -691,62 +633,27 @@ class AuthController extends GetxController {
         appMessage(text: 'wrongPass'.tr, fail: false);
       }
     }
+    isLoading=false;
+    update();
   }
-
-
-
-  addUserToWallet() async{
-
-    const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789)*&1!';
-    Random random = Random();
-    String result = '';
-    for (int i = 0; i < 12; i++) {
-      result += chars[random.nextInt(chars.length)];
-    }
-
-    try{
-      await FirebaseFirestore.instance.collection('wallet')
-          .doc(result)
-          .set({
-        'email':emailController.text,
-        'balance':0
-      }).then((value) {
-      });
-    }catch(e){
-      isLoading=false;
-      update();
-      // ignore: avoid_print
-      print(e);
-    }
-
-  }
-
-
 
 
   signupUser()async{
-
  final box=GetStorage();
-
     try{
  await _auth
           .createUserWithEmailAndPassword(
         email: emailController.text,
         password: passController.text,
       ).then((user) async {
-
     box.write('email', emailController.text);
     appMessage(text: 'تم التسجيل بنجاح', fail: false);
     Get.offAll( RootView());
-
-        
       });
     }catch(e){
-
         print("EEE=="+e.toString());
     }
   }
- 
 
   sendEmailVerfication() async {
     FirebaseAuth.instance.currentUser!.sendEmailVerification();
@@ -787,7 +694,6 @@ class AuthController extends GetxController {
     }
   }
 
- 
 
   // addNewFreelancer() async {
   //   final box=GetStorage();

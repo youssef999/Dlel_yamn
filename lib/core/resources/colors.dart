@@ -10,7 +10,7 @@ dynamic kTextHelperLightColor=Colors.white;
 dynamic kDropDownColor=Colors.white;
 dynamic kTextHelperDarkColor=Colors.black;
 
-dynamic kTextConvert=Colors.white;
+dynamic kTextConvert=Colors.black;
 
 dynamic kBottomBarColor=const Color(0xffDFEBF6);
 
@@ -38,7 +38,9 @@ String drawerBg='assets/images/drawer_color.png';
 String convertAppBar='assets/images/convertAppBar.png';
 String backgroundImage='assets/images/appBackground.png';
 String menuIcon='assets/images/menu.png';
+String menuIcon2='assets/images/menn2.png';
 String logo='assets/images/logo.png';
+String logo2='assets/images/appName.png';
 String buttonBg='assets/images/button.png';
 
 

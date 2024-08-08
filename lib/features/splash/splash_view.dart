@@ -27,14 +27,14 @@ class _SplashViewState extends State<SplashView> {
 
    Future.delayed(const Duration(seconds: 3), () {
 
-    if(email=='x'){
-  Get.offAll(const LoginView());
-    }else{
-      Get.offAll( RootView());
-     // Get.offAll(const HomeView());
-    }
+    if(email=='x') {
+      Get.offAll(const LoginView());
+        }else{
+          Get.offAll( RootView());
+         // Get.offAll(const HomeView());
+        }
 
-    
+//    }
       
    });
    
@@ -49,16 +49,16 @@ class _SplashViewState extends State<SplashView> {
             height: 3000,
             width: MediaQuery.of(context).size.width,
             child:Image.asset(backgroundImage,
-              fit:BoxFit.fill,),
+              fit:BoxFit.cover,),
           ),
           Center(
             child: ListView(
 
               children: [
-              const SizedBox(height: 201,),
+              const SizedBox(height: 231,),
               SizedBox(
-                height: 260,
-                child: Image.asset(logo,fit: BoxFit.contain,),
+                height:200,
+                child: Image.asset(logo,fit: BoxFit.cover),
               ),
               const SizedBox(height: 21,),
 

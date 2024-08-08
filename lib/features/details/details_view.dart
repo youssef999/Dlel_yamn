@@ -6,6 +6,7 @@ import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/appbar.dart';
 import 'package:freelancerApp/core/widgets/bottom_navber.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/home/controllers/home_controller.dart';
 import 'package:freelancerApp/features/home/controllers/root_controller.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class _DetailsViewState extends State<DetailsView> {
     return Scaffold(
       bottomNavigationBar:buildBottomNavigationMenu(context,rootController
    ,  1 ),
-    //  appBar: CustomAppBar(widget.dataKey, context),
+     // appBar: CustomAppBar(widget.dataKey, context),
       body:Padding(
         padding: const EdgeInsets.all(0.0),
         child: Stack(
@@ -70,27 +71,30 @@ class _DetailsViewState extends State<DetailsView> {
               builder: (_) {
                 return ListView(children: [
 
-                if(widget.dataKey=='gaz')
+                 if(widget.dataKey=='gaz')
+                  NewAppbar(txt:'أسعار المحروقات'),
 
-                Image.asset(gazAppBar,
-                  fit:BoxFit.cover,
-                //height: 55,
-                width:MediaQuery.of(context).size.width,
-                ),
+                // Image.asset(gazAppBar,
+                //   fit:BoxFit.cover,
+                // //height: 55,
+                // width:MediaQuery.of(context).size.width,
+                // ),
 
                   if(widget.dataKey=='money')
-                Image.asset(priceAppBar,
-                  fit:BoxFit.fill,
-                //height: 55,
-                width:MediaQuery.of(context).size.width,
-                ),
+                    NewAppbar(txt:'أسعار العملات'),
+                // Image.asset(priceAppBar,
+                //   fit:BoxFit.fill,
+                // //height: 55,
+                // width:MediaQuery.of(context).size.width,
+                // ),
                  if(widget.dataKey=='gold')
-                Image.asset(goldAppBar,
-                  fit:BoxFit.fill,
-                //height: 55,
-                width:MediaQuery.of(context).size.width,
-                ),
+                   NewAppbar(txt:'أسعار الذهب'),
 
+                // Image.asset(goldAppBar,
+                //   fit:BoxFit.fill,
+                // //height: 55,
+                // width:MediaQuery.of(context).size.width,
+                // ),
                  const SizedBox(height: 21),
                 
                   if(widget.dataKey=='gaz')
@@ -98,15 +102,7 @@ class _DetailsViewState extends State<DetailsView> {
                     padding: const EdgeInsets.only(left:25.0,right:25),
                     child: Container(
                       decoration:CardDecoration,
-
-                      // BoxDecoration(
-                      //   borderRadius:BorderRadius.circular(8),
-                      //   color:Colors.white.withOpacity(0.2),
-                      //   border:Border.all(color:Colors.white)
-                      // ),
                       child:
-
-
                       Padding(
                         padding: const EdgeInsets.only(left:18.0,right:18),
                         child: Column(
@@ -168,38 +164,7 @@ class _DetailsViewState extends State<DetailsView> {
                     ),
                   ),
                 
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 11, right: 11),
-                      //   child: Container(
-                      //     decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(21),
-                      //         color: Colors.white),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      //       children: [
-                      //         Text(
-                      //           "المناطق",
-                      //           style: TextStyle(color: AppColors.txtPrimaryColor),
-                      //         ),
-                      //         DropDownWidget(
-                      //           items: controller.placesList,
-                      //           hintText: 'المناطق',
-                      //           selectedValue: controller.selcetPlace,
-                      //           onChanged: (String? newValue) {
-                      //             controller.chnagePlace(newValue!);
-                      //           },
-                      //         ),
-                      //         SizedBox(
-                      //           height: 21,
-                      //           child: Image.asset(
-                      //             'assets/images/star.png',
-                      //             fit: BoxFit.cover,
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
+
                   const SizedBox(height: 7,),
 
                   if(widget.dataKey=='money')

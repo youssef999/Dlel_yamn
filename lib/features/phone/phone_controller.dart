@@ -53,8 +53,8 @@ List<String>phoneName=[
     "الممؤسسات الحكومية",
     "أصحاب العمل الحر"
 ];
-
 List<String>placesList=['صنعاء','تعز','عدن','حضر موت'];
+//List<String>placesList=['صنعاء','تعز','عدن','حضر موت'];
 String selcetPlace='حضر موت';
 
 

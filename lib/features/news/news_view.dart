@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:freelancerApp/core/resources/colors.dart';
 import 'package:freelancerApp/core/widgets/custom_app_bar.dart';
+import 'package:freelancerApp/core/widgets/new_appbar.dart';
 import 'package:freelancerApp/features/home/controllers/home_controller.dart';
 import 'package:freelancerApp/features/home/controllers/root_controller.dart';
 import 'package:get/get.dart';
@@ -42,12 +43,13 @@ class _NewsViewState extends State<NewsView> {
         child: GetBuilder<HomeController>(builder: (_) {
           return ListView(
             children: [
-              Image.asset(
-                newsAppBar,
-                fit:BoxFit.fill,
-                //height: 55,
-                width: MediaQuery.of(context).size.width,
-              ),
+              NewAppbar(txt:'أخبار اقتصادية'),
+              // Image.asset(
+              //   newsAppBar,
+              //   fit:BoxFit.fill,
+              //   //height: 55,
+              //   width: MediaQuery.of(context).size.width,
+              // ),
               Stack(
                 children: [
                   SizedBox(
